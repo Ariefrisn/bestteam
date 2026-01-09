@@ -1,0 +1,4933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🎧 BEST STREAM TEAM GLOBAL – Stats Submission </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root{
+  /* =====================================================
+     🌑 DARK THEME — CHATGPT LIKE (DEFAULT)
+     ===================================================== */
+
+  /* ===== SURFACE ===== */
+  --bg:#0f1115;
+  --card:#171a21;
+  --line:#232834;
+
+  /* ===== TEXT ===== */
+  --txt:#e6e9ef;
+  --muted:#9aa4b2;
+
+  /* ===== RAW COLORS (JANGAN DIPAKAI LANGSUNG) ===== */
+  --green:#1db954;
+  --yellow:#f0ad4e;
+  --red:#e5533d;
+
+  /* ===== FORM SYSTEM ===== */
+  --field-bg:#0f1218;
+  --field-text:var(--txt);
+  --field-border:var(--line);
+  --field-bg-disabled:#0b0e13;
+
+  /* ===== PRIMARY BUTTON (LEGACY – TETAP ADA) ===== */
+  --btn-bg:var(--green);
+  --btn-text:#04130a;
+  --btn-bg-hover:#1ed760;
+  --btn-shadow-hover:rgba(29,185,84,.45);
+
+  /* ===== CLEAR / DANGER BUTTON ===== */
+  --btn-clear-bg:var(--red);
+  --btn-clear-text:#ffffff;
+  --btn-clear-bg-hover:#ef5f49;
+
+  /* ===== BADGE / CHIP ===== */
+  --badge-bg:rgba(0,0,0,.75);
+  --badge-text:#ffffff;
+
+  /* ===== OVERLAY / MODAL ===== */
+  --overlay-bg-strong:rgba(0,0,0,.92);
+  --overlay-bg:rgba(0,0,0,.88);
+  --overlay-bg-soft:rgba(0,0,0,.85);
+
+  --modal-bg:var(--card);
+  --modal-border:var(--line);
+  --modal-text:var(--txt);
+
+  /* ===== SVG & CANVAS ===== */
+  --svg-main:var(--txt);
+  --svg-accent:#000000;
+  --watermark-color:rgba(0,0,0,.35);
+
+  /* =====================================================
+     🆕 BUTTON STATE SYSTEM (UPGRADE – ADD ONLY)
+     ===================================================== */
+  --btn-primary:#1d9bf0;            /* default */
+  --btn-primary-hover:#1db954;      /* hover */
+  --btn-primary-active:#e5533d;     /* click */
+  --btn-primary-disabled:#3b82f6;   /* disabled */
+  --btn-primary-text:#ffffff;
+}
+
+/* =====================================================
+   🌕 LIGHT THEME — TWITTER / X LIKE
+   ===================================================== */
+html[data-theme="light"]{
+
+  /* ===== SURFACE ===== */
+  --bg:#f7f9f9;
+  --card:#ffffff;
+  --line:#e6ecf0;
+
+  /* ===== TEXT ===== */
+  --txt:#0f1419;
+  --muted:#536471;
+
+  /* ===== RAW COLORS (OVERRIDE BRAND) ===== */
+  --green:#1d9bf0;
+  --yellow:#f59e0b;
+  --red:#ef4444;
+
+  /* ===== FORM SYSTEM ===== */
+  --field-bg:#ffffff;
+  --field-text:#0f1419;
+  --field-border:#e6ecf0;
+  --field-bg-disabled:#f1f5f9;
+
+  /* ===== PRIMARY BUTTON (LEGACY – TETAP ADA) ===== */
+  --btn-bg:#1d9bf0;
+  --btn-text:#ffffff;
+  --btn-bg-hover:#1a8cd8;
+
+  /* ===== CLEAR / DANGER BUTTON ===== */
+  --btn-clear-bg:#ef4444;
+  --btn-clear-bg-hover:#dc2626;
+
+  /* ===== BADGE ===== */
+  --badge-bg:rgba(15,20,25,.75);
+  --badge-text:#ffffff;
+
+  /* ===== OVERLAY / MODAL ===== */
+  --overlay-bg-strong:rgba(15,20,25,.92);
+  --overlay-bg:rgba(15,20,25,.88);
+  --overlay-bg-soft:rgba(15,20,25,.75);
+
+  --modal-bg:#ffffff;
+  --modal-border:#e6ecf0;
+  --modal-text:#0f1419;
+
+  /* ===== SVG & CANVAS ===== */
+  --svg-main:#0f1419;
+  --svg-accent:#0f1419;
+  --watermark-color:rgba(15,20,25,.25);
+
+  /* =====================================================
+     🆕 BUTTON STATE SYSTEM (UPGRADE – ADD ONLY)
+     ===================================================== */
+  --btn-primary:#1d9bf0;            /* default */
+  --btn-primary-hover:#16a34a;      /* hover (hijau) */
+  --btn-primary-active:#ef4444;     /* click (merah) */
+  --btn-primary-disabled:#93c5fd;   /* disabled */
+  --btn-primary-text:#ffffff;
+}
+/* ===============================
+   GLOBAL FLOATING UI (THEME LEVEL)
+================================ */
+html[data-theme] .ui-floating{
+  position: fixed;
+  left: 14px;
+  bottom: 86px; /* 👈 tepat di atas Theme */
+  z-index: 2147483646; /* sama kelasnya */
+  pointer-events: auto;
+}
+
+/* pastikan gak ketiban container */
+body > .ui-floating{
+  isolation: isolate;
+}
+
+/* =====================================================
+   ✨ LIGHT THEME POLISH — IG / X CARD FEEL
+   ===================================================== */
+
+/* ===== GLOBAL CONTRAST BOOST ===== */
+html[data-theme="light"] body{
+  background: linear-gradient(180deg,#f7f9f9,#eef2f6);
+}
+
+/* ===== CARD DEPTH (LEBIH HITAM) ===== */
+html[data-theme="light"] .card{
+  background: var(--card);
+  border: 1px solid rgba(15,20,25,.08);
+  box-shadow:
+    0 8px 24px rgba(15,20,25,.08),
+    0 2px 6px rgba(15,20,25,.04);
+}
+
+/* ===== INPUT / SELECT = IG CARD ===== */
+html[data-theme="light"] input,
+html[data-theme="light"] select{
+  background: #fff;
+  border: 1px solid rgba(15,20,25,.12);
+  box-shadow:
+    0 1px 0 rgba(15,20,25,.04),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+  transition: .18s ease;
+}
+
+/* hover */
+html[data-theme="light"] input:hover,
+html[data-theme="light"] select:hover{
+  border-color: #1d9bf0;
+}
+
+/* focus */
+html[data-theme="light"] input:focus,
+html[data-theme="light"] select:focus{
+  border-color: #1d9bf0;
+  box-shadow:
+    0 0 0 3px rgba(29,155,240,.18),
+    0 6px 18px rgba(29,155,240,.12);
+}
+
+/* ===== SUBMIT BUTTON — STATEFUL ===== */
+html[data-theme="light"] #btnCheckin{
+  background: linear-gradient(180deg,#1d9bf0,#1a8cd8);
+  color: #fff;
+  box-shadow:
+    0 10px 26px rgba(29,155,240,.35);
+  transition: .15s ease;
+}
+
+/* HOVER → BIRU LEBIH TERANG */
+html[data-theme="light"] #btnCheckin:not(:disabled):hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px rgba(29,155,240,.45);
+}
+
+/* ACTIVE / CLICK → MERAH + NAIK */
+html[data-theme="light"] #btnCheckin:active{
+  background: linear-gradient(180deg,#ef4444,#dc2626);
+  box-shadow:
+    0 6px 18px rgba(239,68,68,.45);
+  transform: translateY(-1px) scale(.98);
+}
+
+/* DISABLED TAPI MASIH KELIATAN */
+html[data-theme="light"] #btnCheckin:disabled{
+  background: linear-gradient(180deg,#c7d2fe,#93c5fd);
+  color: #fff;
+  opacity: .85;
+  box-shadow:
+    0 6px 16px rgba(99,102,241,.25);
+}
+
+/* ===== UPLOAD PROOF CARD ===== */
+html[data-theme="light"] #proofLabel{
+  background: #fff;
+  border: 1px dashed rgba(15,20,25,.25);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.8);
+}
+
+/* ada file */
+html[data-theme="light"] #proofLabel.has-file{
+  border-style: solid;
+  border-color: #f59e0b;
+  background: rgba(245,158,11,.06);
+}
+
+/* ===== PREVIEW IMAGE POLISH ===== */
+html[data-theme="light"] #previewCollage{
+  box-shadow:
+    0 18px 40px rgba(15,20,25,.25);
+}
+
+/* ===== BADGE / STATUS LEBIH KONTRAS ===== */
+html[data-theme="light"] .status{
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+}
+ .status.AUTO{
+ background:#00c2ff;
+ color:#001a22;
+}
+@keyframes waRun {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+.thumb-wrap{
+ position:relative;
+ display:inline-block;
+}
+.thumb-badge{
+ position:absolute;
+ bottom:2px;
+ right:2px;
+ background:rgba(0,0,0,.75);
+ color:#fff;
+ font-size:11px;
+ font-weight:700;
+ padding:2px 6px;
+ border-radius:999px;
+}
+#previewCollage{
+ transition: none;
+ opacity: 1;
+}
+ 
+#proofLabel{
+  border-color: #f0ad4e;
+  box-shadow: 0 0 0 2px rgba(240,173,78,.18);
+  color: #f0ad4e;
+  transition: border-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+#proofLabel.has-file{
+  box-shadow: 0 0 0 2px rgba(240,173,78,.35);
+}
+.btn-clear{
+  width:auto !important;
+  padding:6px 12px;
+  background:#e5533d;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* ================= STATUS BADGE ================= */
+.status{
+  padding:4px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+  display:inline-block;
+}
+.status.APPROVED{ background:#1db954; color:#04130a }
+.status.PENDING{ background:#f0ad4e; color:#1b1405 }
+.status.REJECTED{ background:#e5533d; color:#fff }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Arial}
+.container{max-width:1100px;margin:20px auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px}
+
+input,select{
+ width:100%;
+ padding:10px;
+ border-radius:10px;
+ background:var(--field-bg);   /* ✅ FIX */
+ border:1px solid var(--line);
+ color:var(--txt);
+}
+
+button{cursor:pointer;font-weight:700}
+.btn{
+  background:var(--btn-primary);
+  color:var(--btn-primary-text);
+  border:none;
+  transition:.15s ease;
+}
+
+.btn:not(:disabled):hover{
+  background:var(--btn-primary-hover);
+}
+
+.btn:active{
+  background:var(--btn-primary-active);
+  transform:scale(.97);
+}
+
+.btn:disabled{
+  background:var(--btn-primary-disabled);
+  cursor:not-allowed;
+  opacity:1;
+}
+.tab-btn{
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--txt);
+  font-weight:700;
+  cursor:pointer;
+}
+
+.tab-btn.active{
+  background:#1db954;
+  color:#04130a;
+}
+/* ================= ADVANCE STREAM ================= */
+
+.adv-filter-bar{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.adv-filter{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:140px;
+}
+
+.adv-filter label{
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+}
+
+.adv-filter select,
+.adv-filter input{
+  background:var(--field-bg);
+  color:var(--field-text);
+  border:1px solid var(--field-border);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:13px;
+}
+
+.adv-icon{
+  font-size:14px;
+  line-height:1;
+}
+
+/* ===== SUMMARY ===== */
+.adv-summary{
+  display:flex;
+  gap:12px;
+  margin:12px 0;
+  flex-wrap:wrap;
+}
+
+.adv-box{
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:700;
+  font-size:14px;
+}
+
+.adv-box.ok{
+  background:rgba(29,185,84,.15);
+  color:#1db954;
+}
+.adv-box.using{
+  background:rgba(240,173,78,.18);
+  color:#f0ad4e;
+}
+.adv-box.critical{
+  background:rgba(229,83,61,.18);
+  color:#e5533d;
+}
+
+/* ===== STATUS BADGE ===== */
+.adv-status{
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  display:inline-block;
+}
+.adv-status.OK{background:#1db954;color:#04130a}
+.adv-status.USING{background:#f0ad4e;color:#1b1405}
+.adv-status.CRITICAL{background:#e5533d;color:#fff}
+
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid var(--line);font-size:14px}
+th{color:var(--muted);text-align:left}
+
+img.thumb{
+  width:42px;
+  height:42px;
+  border-radius:6px;
+
+  object-fit: cover;          /* ✅ BALIKIN */
+  object-position: center;    /* ✅ */
+  
+  background:#000;
+  cursor:pointer;
+}
+
+
+.history-wrap{max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+
+#imgModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+
+  overflow:hidden;   /* ✅ */         
+  touch-action: none;         /* ⛔ page tidak ikut */
+}
+
+#imgBig{
+  display:block;
+  max-width:none;             /* ⛔ jangan dikunci */
+  max-height:none;
+  transform-origin: center center;
+  user-select:none;
+  cursor: grab;
+  will-change: transform;
+}
+#imgBig.dragging{
+  cursor: grabbing;
+}
+
+#imgModal span{position:absolute;top:20px;right:30px;font-size:28px;color:#fff;cursor:pointer}
+ /* 🔒 LOCK SCROLL SAAT SUBMIT */
+body.lock-scroll{
+  overflow: hidden !important;
+  touch-action: none;
+}
+ /* ===== HERO TITLE POLISH ===== */
+#title{
+  text-align:center;
+  font-weight:900;
+  letter-spacing:.4px;
+  margin-bottom:18px;
+}
+
+#title::after{
+  content:"";
+  display:block;
+  width:80px;
+  height:3px;
+  margin:10px auto 0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#1db954,#00ff88);
+}
+/* ===== CARD DEPTH ===== */
+.card{
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+/* ===== INPUT FOCUS POLISH ===== */
+input:focus,
+select:focus{
+  outline:none;
+  border-color:#1db954;
+  box-shadow:0 0 0 3px rgba(29,185,84,.25);
+}
+/* ===== PRIMARY BUTTON EMPHASIS ===== */
+#btnCheckin{
+  font-size:15px;
+  letter-spacing:.5px;
+  transition:.15s ease;
+}
+
+#btnCheckin:not(:disabled):hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(29,185,84,.45);
+}
+/* ===== PROOF DROPZONE FEEL ===== */
+#proofLabel{
+  transition:.2s ease;
+}
+
+#proofLabel:hover{
+  background:rgba(240,173,78,.05);
+}
+/* ===== IMAGE PREVIEW POLISH ===== */
+#previewCollage{
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+/* ===== TABLE ROW POLISH ===== */
+table tbody tr{
+  transition:background .12s ease;
+}
+
+table tbody tr:hover{
+  background:rgba(255,255,255,.035);
+}
+/* ===== STATUS BADGE ALIGN ===== */
+.status{
+  min-width:90px;
+  text-align:center;
+}
+/* ===== OVERLAY ANIMATION ===== */
+#loadingOverlay,
+#successOverlay{
+  animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+/* ===== WA STICKY BAR SHINE ===== */
+#waStickyModal{
+  box-shadow:0 6px 30px rgba(0,0,0,.7);
+}
+
+#waStickyModal::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.08),
+    transparent 70%
+  );
+  animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
+}
+/* ===============================
+   🐦 ADMIN BIRD AI GUIDE
+   =============================== */
+
+#adminBird {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  cursor: pointer;
+  transition: transform .4s ease, opacity .3s ease;
+}
+
+#adminBird svg {
+  width: 100%;
+  height: 100%;
+  animation: birdIdle 6s ease-in-out infinite;
+}
+
+@keyframes birdIdle {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+#birdBubble {
+  position: absolute;
+  bottom: 120%;
+  right: 0;
+  max-width: 260px;
+  background: #171a21;
+  border: 1px solid #232834;
+  color: #e6e9ef;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 12px 30px rgba(0,0,0,.6);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: .25s ease;
+  pointer-events: none;
+}
+
+#adminBird.show-bubble #birdBubble {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#adminBird.big{
+  transform: translate(-40%, -40%) scale(1.8); /* kecilin */
+}
+
+
+#adminBird.big #birdBubble {
+  max-width: 360px;
+  font-size: 16px;
+}
+
+/* Pointer follow */
+#adminBird.fly {
+  transition: left .25s ease, top .25s ease;
+}
+
+/* Tooltip highlight */
+.ai-highlight {
+  box-shadow: 0 0 0 3px rgba(29,185,84,.6) !important;
+  border-color: #1db954 !important;
+}
+/* ===============================
+   🐦 ADMIN BIRD – GOD LEVEL CSS
+   ADD-ON ONLY (NO CONFLICT)
+   =============================== */
+
+/* 👀 pupil (mata) */
+#adminBird .eye {
+  transform-origin: center;
+  transition: transform .15s ease;
+}
+
+/* 🎧 equalizer */
+#adminBird .eq rect {
+  transform-origin: bottom;
+  animation: eqBounce .6s ease-in-out infinite;
+}
+#adminBird .eq rect:nth-child(2){animation-delay:.1s}
+#adminBird .eq rect:nth-child(3){animation-delay:.2s}
+#adminBird .eq rect:nth-child(4){animation-delay:.3s}
+
+@keyframes eqBounce{
+  0%{transform:scaleY(.3)}
+  50%{transform:scaleY(1)}
+  100%{transform:scaleY(.4)}
+}
+
+/* 🗣️ bicara (wave) */
+#adminBird.talk::after{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border-radius:50%;
+  border:2px dashed rgba(29,185,84,.6);
+  animation: talkWave 1s linear infinite;
+}
+@keyframes talkWave{
+  from{transform:scale(.8);opacity:1}
+  to{transform:scale(1.4);opacity:0}
+}
+
+/* 😈 boss mode */
+#adminBird.boss{
+  filter: drop-shadow(0 0 25px #e5533d);
+  animation: bossShake .15s infinite;
+}
+@keyframes bossShake{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(4px,-4px)}
+  100%{transform:translate(-4px,4px)}
+}
+
+/* 🧠 mood colors */
+#adminBird.mood-happy svg circle:first-child{fill:#1db954}
+#adminBird.mood-focus svg circle:first-child{fill:#00c2ff}
+#adminBird.mood-angry svg circle:first-child{fill:#e5533d}
+/* ===============================
+   🐦 ADMIN BIRD – TITAN LEVEL CSS
+   ADD-ON ONLY (NO CONFLICT)
+   =============================== */
+
+/* 🧿 parallax aura */
+#adminBird::before{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(29,185,84,.35), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(0,194,255,.25), transparent 45%);
+  filter: blur(8px);
+  opacity:.8;
+  pointer-events:none;
+  transition: transform .15s ease;
+}
+
+/* 🧘 focus mode (hening) */
+#adminBird.focus-mode{
+  opacity:.65;
+  filter: saturate(.8);
+}
+
+/* 🎮 easter egg glow */
+#adminBird.titan-glow{
+  box-shadow:0 0 40px rgba(29,185,84,.8), 0 0 80px rgba(0,194,255,.6);
+  animation: titanPulse 1.2s ease-in-out infinite;
+}
+@keyframes titanPulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+/* ===============================
+   🐦 ADMIN BIRD — GOD TITAN++ CSS
+   ADD-ON ONLY (NO CONFLICT)
+   =============================== */
+
+/* 🗺️ flight trail */
+#adminBird .trail {
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(29,185,84,.35), transparent 45%),
+    radial-gradient(circle at 70% 70%, rgba(0,194,255,.25), transparent 50%);
+  filter: blur(10px);
+  opacity:.6;
+}
+
+/* 🧑‍💻 dev hud */
+#birdHUD{
+  position:fixed;
+  bottom:12px;
+  left:12px;
+  background:#0f1218;
+  color:#9aa4b2;
+  border:1px solid #232834;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:11px;
+  z-index:999999;
+  display:none;
+}
+#birdHUD b{color:#e6e9ef}
+
+/* 🔕 smart mute visual */
+#adminBird.muted{
+  opacity:.55;
+  filter: grayscale(.3);
+}
+/* ===============================
+   👀 ADMIN BIRD EYE LIFE
+   ADD-ON ONLY
+   =============================== */
+#adminBird .eye-pupil{
+  transition:transform .15s ease;
+}
+
+/* =========================================
+   🌗 THEME OVERRIDE LAYER (NO TOUCH OLD CSS)
+   ========================================= */
+
+/* GLOBAL */
+body{
+  background: var(--bg) !important;
+  color: var(--txt) !important;
+}
+
+/* CARD */
+.card{
+  background: var(--card) !important;
+  border-color: var(--line) !important;
+}
+
+/* INPUT / SELECT / BUTTON */
+input,
+select,
+button{
+  background: var(--field-bg) !important;
+  color: var(--field-text) !important;
+  border-color: var(--field-border) !important;
+}
+
+/* TABLE */
+table,
+th,
+td{
+  color: var(--txt) !important;
+  border-color: var(--line) !important;
+}
+
+/* OVERLAY & MODAL */
+#loadingOverlay,
+#successOverlay,
+#imgModal,
+#waPasteModal,
+#waGuideModal{
+  background: var(--overlay-bg-strong) !important;
+}
+
+/* TOAST */
+#toast{
+  background: var(--btn-bg) !important;
+  color: var(--btn-text) !important;
+}
+/* =====================================
+   🩹 FORCE FIX — HARD CODED PILL / TOGGLE
+   ===================================== */
+
+/* semua pill / toggle / rounded button */
+button,
+.toggle,
+.switch,
+.pill,
+[class*="pill"],
+[class*="toggle"],
+[class*="switch"]{
+  background: var(--card) !important;
+  color: var(--txt) !important;
+  border: 1px solid var(--line) !important;
+}
+
+/* mode LIGHT — BIKIN PUTIH BERSIH */
+html[data-theme="light"] button,
+html[data-theme="light"] .toggle,
+html[data-theme="light"] .pill{
+  background: #ffffff !important;
+  color: #0f1419 !important;
+  box-shadow:
+    0 4px 14px rgba(15,20,25,.12) !important;
+}
+
+/* icon di dalamnya */
+button svg,
+button img,
+.toggle svg{
+  filter: none !important;
+  fill: currentColor !important;
+}
+/* =====================================
+   🔨 FINAL FORCE FIX — THEME TOGGLE
+   (KALAHKAN INLINE + DEFAULT BROWSER)
+   ===================================== */
+
+/* TEMBAK LANGSUNG TOMBOL TOGGLE */
+button[onclick="toggleTheme()"]{
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  background: var(--card) !important;
+  color: var(--txt) !important;
+
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15) !important;
+}
+
+/* LIGHT MODE — PAKSA PUTIH */
+html[data-theme="light"] button[onclick="toggleTheme()"]{
+  background: #ffffff !important;
+  color: #0f1419 !important;
+  border-color: #e6ecf0 !important;
+  box-shadow: 0 6px 20px rgba(15,20,25,.12) !important;
+}
+
+/* DARK MODE — BENER-BENER GELAP */
+html[data-theme="dark"] button[onclick="toggleTheme()"]{
+  background: #171a21 !important;
+  color: #e6e9ef !important;
+  border-color: #232834 !important;
+}
+/* 👻 THEME PILL AUTO HIDE – SAFE MODE */
+#themePillWrap,
+button[onclick="toggleTheme()"]{
+  transition: opacity .25s ease;
+}
+
+.theme-pill-hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* ===============================
+   📊 LEADERBOARD FILTER BAR
+   =============================== */
+
+.lb-filter-bar{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.lb-filter{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:140px;
+}
+
+.lb-filter label{
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+}
+
+.lb-filter select,
+.lb-filter input{
+  background:var(--field-bg);
+  color:var(--field-text);
+  border:1px solid var(--field-border);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:13px;
+}
+
+.lb-icon{
+  font-size:14px;
+  line-height:1;
+}
+/* 🏆 LEADERBOARD POLISH */
+.lb-user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+}
+
+.lb-rank-icon{
+  font-size:16px;
+  color:#facc15; /* kuning */
+}
+
+.lb-move{
+  margin-left:auto;
+  font-weight:800;
+  font-size:14px;
+}
+
+.lb-up{ color:#2563eb; }    /* biru */
+.lb-down{ color:#dc2626; }  /* merah */
+.lb-stay{ color:#9aa4b2; }  /* abu */
+/* ===============================
+   🔥 HARD FIX SUBMIT BUTTON
+   (NO THEME, NO VARIABLE, NO MERCY)
+   =============================== */
+
+#btnCheckin{
+  background:#1d9bf0 !important;   /* biru */
+  color:#ffffff !important;
+  border:none !important;
+  opacity:1 !important;
+}
+
+/* HOVER */
+#btnCheckin:not(:disabled):hover{
+  background:#1a8cd8 !important;
+}
+
+/* ACTIVE / CLICK */
+#btnCheckin:not(:disabled):active{
+  background:#ef4444 !important;   /* merah */
+  transform:scale(.97);
+}
+
+/* DISABLED */
+#btnCheckin:disabled{
+  background:#93c5fd !important;   /* biru muda */
+  color:#ffffff !important;
+  cursor:not-allowed !important;
+  opacity:1 !important;
+}
+
+/* =====================================================
+   🪪 TITLE CARD ADDON — IG STYLE (AUTO THEME)
+   ===================================================== */
+
+/* ===== CARD ===== */
+.title-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  background:linear-gradient(
+    135deg,
+    var(--green),
+    color-mix(in srgb, var(--green) 60%, #000)
+  );
+
+  border:1px solid var(--line);
+  border-radius:18px;
+
+  padding:18px 20px;
+  margin:14px 0 20px;
+
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ===== LIGHT MODE OVERRIDE ===== */
+html[data-theme="light"] .title-card{
+  background:var(--card);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+/* ===== AVATAR (IG PROFILE FEEL) ===== */
+.title-avatar{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+  background:var(--green);
+  color:#fff;
+
+  box-shadow:0 6px 14px rgba(0,0,0,.35);
+}
+
+/* ===== TEXT ===== */
+#title{
+  margin:0;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:.3px;
+  color:var(--txt);
+}
+
+/* ===== SUBTITLE ===== */
+#title span{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+}
+
+/* ===== DARK MODE TEXT FIX ===== */
+:root:not([data-theme="light"]) #title{
+  color:#ffffff;
+}
+
+:root:not([data-theme="light"]) #title span{
+  color:rgba(255,255,255,.9);
+}
+/* =====================================================
+   🧭 TITLE CARD ALIGNMENT PATCH — LEFT MODE
+   ===================================================== */
+
+.title-card{
+  justify-content:flex-start; /* pastikan ke kiri */
+}
+
+#title{
+  text-align:left;
+}
+
+#title span{
+  text-align:left;
+}
+.title-card{
+  gap:16px;
+}
+
+.title-text{
+  display:flex;
+  flex-direction:column;
+}
+/* =====================================================
+   ❌ REMOVE TITLE UNDERLINE (GREEN BAR)
+   ===================================================== */
+
+#title::after{
+  content:none !important;
+  display:none !important;
+}
+.title-card{
+  border-left:4px solid var(--green);
+}
+  
+/* =====================================================
+   🐦 ADMIN BIRD — FINAL SMOOTH ENGINE
+   ===================================================== */
+
+#adminBird{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+}
+/* ===============================
+   🗨️ BIRD SPEECH BUBBLE
+================================ */
+
+#adminBird .bird-bubble{
+  position:absolute;
+  bottom:110%;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:220px;
+
+  background:#111;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:14px;
+  font-size:13px;
+  line-height:1.3;
+
+  opacity:0;
+  pointer-events:none;
+  white-space:normal;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:opacity .25s ease, transform .25s ease;
+}
+
+#adminBird .bird-bubble.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(-6px);
+}
+
+/* bubble arrow */
+#adminBird .bird-bubble::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:#111;
+}
+
+/* ===============================
+   🌫️ SMOKE COLOR (SVG PART)
+================================ */
+#adminBird[data-mood="angry"] svg circle:first-child{
+  fill:#ef4444;
+}
+#adminBird[data-mood="confused"] svg circle:first-child{
+  fill:#f59e0b;
+}
+#adminBird[data-mood="happy"] svg circle:first-child{
+  fill:#1db954;
+}
+.checkin-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* === Spotify Button === */
+.btn-spotify{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 34px;
+  padding: 0 14px;
+
+  border-radius: 999px;              /* FULL ROUNDED */
+  border: 1px solid rgba(0,0,0,.08);
+
+  background: #ffffff;
+  color: #111;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all .15s ease;
+}
+
+.btn-spotify:hover:not(:disabled){
+  background: #f4f4f4;
+}
+
+.btn-spotify:active:not(:disabled){
+  transform: scale(.97);
+}
+
+/* Icon container */
+.btn-spotify .spotify-icon{
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-spotify svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Disabled state */
+.btn-spotify:disabled{
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+/* Optional: dark mode support */
+body.dark .btn-spotify{
+  background: #1a1a1a;
+  color: #f1f1f1;
+  border-color: rgba(255,255,255,.08);
+}
+
+body.dark .btn-spotify:hover:not(:disabled){
+  background: #222;
+}
+
+/* === Spotify Glow Hover === */
+.btn-spotify:hover:not(:disabled){
+  box-shadow:
+    0 0 0 3px rgba(29,185,84,.15),
+    0 0 12px rgba(29,185,84,.45);
+}
+/* === Spotify Pulse Animation === */
+@keyframes spotifyPulse{
+  0%{
+    box-shadow: 0 0 0 0 rgba(29,185,84,.45);
+  }
+  70%{
+    box-shadow: 0 0 0 10px rgba(29,185,84,0);
+  }
+  100%{
+    box-shadow: 0 0 0 0 rgba(29,185,84,0);
+  }
+}
+
+/* aktif hanya saat ENABLE */
+.btn-spotify:not(:disabled){
+  animation: spotifyPulse 2.2s infinite;
+}
+/* =========================
+   FB-LIKE IMAGE VIEWER
+   ========================= */
+.fbv{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999999;
+  display:none;
+}
+
+/* =========================
+   TOP BAR (FB STYLE)
+   ========================= */
+.fbv-top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+  z-index:10;
+}
+
+/* tombol bulat */
+.fbv-btn{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.fbv-btn:hover{
+  background:rgba(255,255,255,.22);
+}
+
+/* zoom sejajar X */
+.fbv-zoom{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* =========================
+   MAIN WRAP
+   ========================= */
+.fbv-main{
+  display:flex;
+  height:100%;
+  padding-top:48px;
+}
+
+/* =========================
+   FB IMAGE AREA – REAL FIX
+   ========================= */
+.fbv-image{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;          /* ⛔ JANGAN AUTO SCROLL */
+  background:#000;
+
+  cursor: grab;
+}
+.fbv-image:active{
+  cursor: grabbing;
+}
+
+.fbv-image img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+
+  object-fit:contain;
+  object-position:center;
+
+  transform-origin:center center;
+  user-select:none;
+  pointer-events:none;
+}
+
+
+
+/* =========================
+   NAV BUTTONS
+   ========================= */
+.fbv-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  z-index:9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.fbv-nav:hover{
+  background:rgba(255,255,255,.3);
+}
+
+.fbv-left{ left:16px; }
+.fbv-right{ right:376px; }
+
+/* =========================
+   SIDEBAR – FB LIGHT PANEL
+   ========================= */
+.fbv-side{
+  width:360px;
+  background:#fff;
+  color:#050505;
+  padding:16px;
+  overflow-y:auto;
+  border-left:1px solid #dadde1;
+}
+
+/* =========================
+   USER HEADER
+   ========================= */
+.fbv-user{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.fbv-user .avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#d8dadf;
+}
+
+.fbv-user b{
+  font-size:15px;
+  color:#050505;
+}
+
+.muted{
+  color:#65676b;
+  font-size:12px;
+}
+
+/* =========================
+   PLAYLIST CARD
+   ========================= */
+.fbv-playlist{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  background:#f0f2f5;
+  padding:10px;
+  border-radius:8px;
+  margin:12px 0;
+}
+
+.pl-cover{
+  width:48px;
+  height:48px;
+  border-radius:6px;
+  background:#d8dadf;
+}
+
+.pl-info b{
+  font-size:14px;
+  color:#050505;
+}
+
+/* =========================
+   META (TOTAL STREAM)
+   ========================= */
+.fbv-meta{
+  background:#f0f2f5;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:16px;
+}
+
+.fbv-meta b{
+  display:block;
+  font-size:13px;
+  margin-bottom:4px;
+  color:#65676b;
+}
+
+#fbTotal{
+  font-size:18px;
+  font-weight:600;
+  color:#050505;
+}
+
+/* =========================
+   LEADERBOARD MINI
+   ========================= */
+.fbv-leaderboard{
+  margin-bottom:16px;
+}
+
+.fbv-leaderboard b{
+  font-size:14px;
+  display:block;
+  margin-bottom:8px;
+}
+
+.lb-item{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 8px;
+  border-radius:6px;
+  font-size:13px;
+  background:#f0f2f5;
+  margin-bottom:6px;
+}
+
+/* =========================
+   COMMENTS
+   ========================= */
+.fbv-comments b{
+  font-size:14px;
+  margin-bottom:8px;
+  display:block;
+  color:#050505;
+}
+
+.fbv-comments .comment{
+  background:#f0f2f5;
+  padding:8px 12px;
+  border-radius:18px;
+  margin-bottom:8px;
+  font-size:13px;
+  color:#050505;
+}
+
+.fbv-comments .muted{
+  background:none;
+  padding:6px 0;
+  color:#65676b;
+}
+
+/* =========================
+   RESPONSIVE – MOBILE FB
+   ========================= */
+@media (max-width: 768px){
+  .fbv-main{
+    flex-direction:column;
+  }
+
+  .fbv-side{
+    width:100%;
+    border-left:none;
+    border-top:1px solid #dadde1;
+  }
+
+  .fbv-right{
+    right:16px;
+  }
+}
+.toolbar-left{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.sp-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:36px;
+  padding:0 14px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  border:1px solid var(--btn-border);
+  background:var(--btn-bg);
+  color:var(--btn-text);
+  transition:.15s ease;
+}
+
+.sp-btn img{
+  width:16px;
+  height:16px;
+}
+
+.sp-btn:hover{
+  background:var(--btn-hover);
+  transform:scale(1.02);
+}
+
+.sp-btn:active{
+  transform:scale(.96);
+}
+.fbv-image{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+/* ⛔ THUMB ONLY */
+img.thumb{
+  object-fit: cover !important;
+}
+
+/* ✅ FB PREVIEW ONLY */
+.fbv-image img{
+  object-fit: contain !important;
+  max-width:100% !important;
+  max-height:100% !important;
+}
+.lastfm-badge{
+  width:18px;
+  height:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#e31b23;     /* merah Last.fm */
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  line-height:1;
+
+  border-radius:4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+</style>
+</head>
+
+<body>
+ 
+<button
+  onclick="toggleTheme()"
+  style="
+    position:fixed;
+    bottom:14px;
+    left:14px;
+    top:auto;
+    right:auto;
+    z-index:2147483646;
+    width:auto;
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+  "
+>
+ 🌗 Theme
+</button>
+
+<div class="container">
+<!-- ===== MAIN TABS ===== -->
+<div id="mainTabs" style="display:flex;gap:10px;margin:14px 0">
+
+  <button class="tab-btn active" onclick="openMainTab('main')">
+    📝 Main
+  </button>
+
+  <button class="tab-btn" onclick="openMainTab('advance')">
+    🎒 Advance
+  </button>
+
+</div>
+
+<div class="title-card">
+  <div class="title-avatar">🎧</div>
+
+  <div class="title-text">
+    <h2 id="title">
+      BEST STREAM TEAM GLOBAL
+      <span>Daily Stats Submission</span>
+    </h2>
+  </div>
+</div>
+
+<select onchange="setLang(this.value)">
+ <option value="en">🇺🇸 English</option>
+ <option value="id">🇮🇩 Indonesia</option>
+ <option value="es">🇪🇸 Español</option>
+</select>
+  
+<section id<section id="tab-main" class="main-tab">
+
+<div class="card">
+<div class="checkin-header">
+  <h3 id="checkinTitle">📝 Check-In</h3>
+<div class="toolbar-left">
+
+<button class="sp-btn sp-btn-ghost" id="btnRecentTrack">
+  <span class="stats-icon">
+    <img 
+      src="https://www.statsforspotify.com/favicon.ico"
+      alt="Stats for Spotify"
+      width="16"
+      height="16"
+    />
+  </span>
+  <span>Open statsforspotify.com</span>
+</button>
+
+
+<button class="sp-btn sp-btn-ghost" id="btnLastFM">
+  <span class="lastfm-badge">fm</span>
+  Open Last.fm
+</button>
+
+</div>
+
+<button id="openPlaylistBtn" class="btn-spotify" disabled>
+  <span class="spotify-icon">
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg"
+      alt="Spotify"
+      width="18"
+      height="18"
+      loading="lazy"
+      decoding="async"
+    />
+  </span>
+  <span class="spotify-text">Open Playlist</span>
+</button>
+
+
+
+</div>
+
+
+<div class="grid">
+ <input id="teamId" placeholder="Team ID">
+ <input id="username" placeholder="Artist or WhatsAPP User Name">
+</div>
+
+<div class="grid">
+<div>
+  <label
+    style="
+      font-size:12px;
+      color:#9aa4b2;
+      display:block;
+      margin-bottom:4px;
+      font-weight:600;
+    ">
+    🎵 Select Playlist
+  </label>
+
+  <select id="playlistSelect"></select>
+</div>
+
+<div>
+  <label id="countLabel"
+    style="font-size:12px;color:#9aa4b2;display:none;margin-bottom:4px">
+    Stream Count
+  </label>
+
+  <select id="count">
+    <option value="" disabled selected>Select your stream count</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+</div>
+
+<div class="grid">
+ <label id="proofLabel"
+ for="proof"
+ style="
+  display:block;
+  padding:10px;
+  border:1px dashed #232834;
+  border-radius:10px;
+  cursor:pointer;
+  color:#9aa4b2;
+  font-size:13px">
+ 📤 Upload your stats proof from <b>statsforspotify.com</b>
+</label>
+
+<input type="file"
+ id="proof"
+ accept="image/*"
+ multiple
+ style="display:none">
+
+ <input id="lastfm" placeholder="Last.fm profile link">
+</div>
+
+<button id="btnCheckin"
+        class="btn"
+        style="opacity:.5;cursor:not-allowed">
+ SUBMIT YOUR STATS
+</button>
+
+
+ <img id="previewCollage"
+     style="
+      width:100%;
+      max-width:420px;
+      margin-top:12px;
+      border-radius:12px;
+      display:none;
+      border:1px solid #232834">
+</div>
+<div id="clearProofWrap" style="text-align:right; margin-top:6px; display:none;">
+  <button id="btnClearProof"
+          type="button"
+          onclick="clearProof()"
+          class="btn-clear">
+    🗑️ Clear
+  </button>
+</div>
+
+<div class="card">
+  <h3 id="lbTitle">📊 Leaderboard</h3>
+
+  <!-- FILTER BAR -->
+  <div class="lb-filter-bar">
+
+    <!-- PLAYLIST -->
+    <div class="lb-filter">
+      <span class="lb-icon">🎵</span>
+      <label>Playlist</label>
+      <select id="lbPlaylist" onchange="onFilterChange()"></select>
+    </div>
+
+    <!-- DATE FROM -->
+    <div class="lb-filter">
+      <span class="lb-icon">📅</span>
+      <label>From</label>
+      <input type="date" id="lbDateFrom">
+    </div>
+
+    <!-- DATE TO -->
+    <div class="lb-filter">
+      <span class="lb-icon">➡️</span>
+      <label>To</label>
+      <input type="date" id="lbDateTo">
+    </div>
+
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="leader"></tbody>
+  </table>
+</div>
+
+
+<div class="card">
+<h3 id="historyTitle">🕒 History (Last 10)</h3>
+<div class="history-wrap">
+<table>
+<thead>
+<tr>
+ <th>Time</th>
+ <th>User</th>
+ <th>Playlist</th>
+ <th>Count</th>
+ <th>Status</th>
+ <th>Reason</th>
+ <th>Last.fm</th>
+ <th>Proof</th>
+</tr>
+</thead>
+<tbody id="history"></tbody>
+</table>
+</div>
+</div>
+</div>
+  </section>
+  
+<section id="tab-advance" class="main-tab" style="display:none">
+
+  <div class="card">
+    <h3>🎒 Advance Stream (Public)</h3>
+
+    <!-- ================= FILTER BAR ================= -->
+    <div class="adv-filter-bar">
+
+      <!-- PLAYLIST -->
+      <div class="adv-filter">
+        <span class="adv-icon">🎵</span>
+        <label>Playlist</label>
+        <select id="advPlaylist"></select>
+      </div>
+
+      <!-- FROM -->
+      <div class="adv-filter">
+        <span class="adv-icon">📅</span>
+        <label>From</label>
+        <input type="date" id="advFrom">
+      </div>
+
+      <!-- TO -->
+      <div class="adv-filter">
+        <span class="adv-icon">➡️</span>
+        <label>To</label>
+        <input type="date" id="advTo">
+      </div>
+
+    </div>
+
+    <!-- ================= SUMMARY ================= -->
+    <div id="advSummary" class="adv-summary">
+      <div class="adv-box ok">🟢 OK: <b id="advOk">0</b></div>
+      <div class="adv-box using">🟡 USING: <b id="advUsing">0</b></div>
+      <div class="adv-box critical">🔴 CRITICAL: <b id="advCritical">0</b></div>
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Playlist</th>
+          <th>This Week</th>
+          <th>Balance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="advanceBody"></tbody>
+    </table>
+
+  </div>
+
+</section>
+
+<!-- OLD IMAGE MODAL (DISABLED)
+<div id="imgModal">
+ <span onclick="closeImg()">✕</span>
+ <img id="imgBig">
+</div>
+
+<!-- =========================
+     FB-LIKE IMAGE VIEWER (FINAL)
+     ========================= -->
+<div id="fbViewer" class="fbv" style="display:none">
+
+  <!-- TOP BAR -->
+  <div class="fbv-top">
+    <button class="fbv-btn" onclick="closeFB()">✕</button>
+
+    <div class="fbv-zoom">
+      <button class="fbv-btn" onclick="zoomFB(1.2)">＋</button>
+      <button class="fbv-btn" onclick="zoomFB(0.8)">－</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <button class="fbv-nav fbv-left" onclick="prevFB()">❮</button>
+  <button class="fbv-nav fbv-right" onclick="nextFB()">❯</button>
+
+  <!-- MAIN -->
+  <div class="fbv-main">
+
+    <!-- IMAGE AREA -->
+    <div class="fbv-image">
+      <img id="fbImage" draggable="false" alt="Proof image">
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="fbv-side">
+
+      <!-- USER HEADER -->
+      <div class="fbv-user">
+        <div class="avatar"></div>
+        <div class="fbv-user-info">
+          <b id="fbUsername">-</b>
+          <div class="muted">Public post</div>
+        </div>
+      </div>
+
+      <!-- PLAYLIST TARGET -->
+      <div class="fbv-playlist" id="fbPlaylistCard">
+        <div class="pl-cover"></div>
+        <div class="pl-info">
+          <b id="fbPlaylist">-</b>
+          <div class="muted">Playlist destination</div>
+        </div>
+      </div>
+
+      <!-- TOTAL STREAM -->
+      <div class="fbv-meta">
+        <b>Total Stream</b>
+        <div id="fbTotal">0</div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div class="fbv-leaderboard" id="fbLeaderboard">
+        <b>Leaderboard</b>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="fbv-comments" id="fbComments">
+        <b>Comments</b>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- ========================= -->
+
+
+<div id="loadingOverlay"
+ style="position:fixed;inset:0;background:rgba(0,0,0,.85);
+ color:#fff;display:flex;align-items:center;justify-content:center;
+ z-index:9999;font-size:18px;font-weight:700">
+ ⏳ Please wait, loading data...
+</div>
+ 
+<div id="toast"
+ style="
+ position:fixed;
+ bottom:30px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#1db954;
+ color:#04130a;
+ padding:12px 20px;
+ border-radius:999px;
+ font-weight:700;
+ display:none;
+ z-index:99999;">
+ Message copied. Please paste in WA group now and send.
+ <!-- 💻 DESKTOP PASTE MODAL -->
+<div id="waPasteModal"
+ style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100005;
+">
+  <div style="
+    background:#171a21;
+    border:1px solid #232834;
+    border-radius:18px;
+    padding:26px 24px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+    color:#e6e9ef;
+  ">
+    <div style="font-size:22px;font-weight:800;margin-bottom:6px">
+      📋 Message Ready
+    </div>
+
+    <div style="font-size:14px;color:#9aa4b2;margin-bottom:18px">
+      WhatsApp Web is opened.<br>
+      Paste the message and send it to the group.
+    </div>
+
+    <div style="
+      font-size:18px;
+      font-weight:900;
+      background:#0f1218;
+      border-radius:12px;
+      padding:14px;
+      margin-bottom:18px;
+    ">
+      CTRL + V
+    </div>
+
+    <button onclick="closeWaPasteModal()"
+      style="
+        background:#1db954;
+        color:#04130a;
+        border:none;
+        border-radius:999px;
+        padding:12px 26px;
+        font-weight:900;
+        cursor:pointer;
+      ">
+      OK, I’ve sent it
+    </button>
+  </div>
+</div>
+<!-- 🧭 WA JOIN GUIDE MODAL (DESKTOP) -->
+<div id="waGuideModal"
+ style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.88);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100010;
+">
+  <div style="
+    background:#171a21;
+    border:1px solid #232834;
+    border-radius:18px;
+    padding:26px 24px;
+    max-width:420px;
+    width:90%;
+    color:#e6e9ef;
+    text-align:center;
+  ">
+    <div style="font-size:22px;font-weight:900;margin-bottom:8px">
+      🔔 Almost Done
+    </div>
+
+    <div style="font-size:14px;color:#9aa4b2;line-height:1.6">
+      <b>WhatsApp limitation:</b><br>
+      You must <b>Join the group first</b>.
+      <br><br>
+      <b>Steps:</b><br>
+      1️⃣ Click <b>Join Chat</b><br>
+      2️⃣ WhatsApp Web will open<br>
+      3️⃣ Press <b>CTRL + V</b> and send
+      <br><br>
+      ✅ Message already copied
+    </div>
+
+    <button onclick="hideWaGuide()"
+     style="
+      margin-top:18px;
+      background:#1db954;
+      color:#04130a;
+      border:none;
+      border-radius:999px;
+      padding:12px 26px;
+      font-weight:900;
+      cursor:pointer;
+     ">
+      OK, I understand
+    </button>
+  </div>
+</div>
+
+</div>
+<div id="successOverlay"
+ style="
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.92);
+ color:#1db954;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:100000;
+ font-size:20px;
+ font-weight:800;
+ flex-direction:column;
+ text-align:center;
+">
+  ✅ Stats submitted successfully
+  <div style="font-size:14px;color:#9aa4b2;margin-top:8px">
+    Opening WhatsApp in
+  </div>
+  <div class="countdown"
+       style="font-size:42px;margin-top:6px">
+    3
+  </div>
+</div>
+<!-- 🔄 LOADING TOAST (WINDOWS STYLE) -->
+<div id="loadingToast"
+ style="
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ width:92%;
+ max-width:420px;
+ background:#171a21;
+ border:1px solid #232834;
+ border-radius:16px;
+ padding:14px 16px;
+ z-index:100002;
+ display:none;
+ box-shadow:0 12px 35px rgba(0,0,0,.65);
+">
+
+  <div style="display:flex;align-items:center;gap:12px">
+    
+    <!-- SPINNER -->
+    <div id="loadingSpinner"
+     style="
+      width:22px;
+      height:22px;
+      border:3px solid #2a2f3a;
+      border-top-color:#1db954;
+      border-radius:50%;
+      animation:spin .9s linear infinite;
+     ">
+    </div>
+
+    <!-- TEXT -->
+    <div style="flex:1">
+      <div id="loadingText"
+           style="font-size:14px;font-weight:700;color:#e6e9ef">
+        Uploading…
+      </div>
+      <div id="loadingSub"
+           style="font-size:12px;color:#9aa4b2;margin-top:2px">
+        0%
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+</style>
+
+<div id="waStickyModal"
+ style="
+  position:fixed;
+  top:64px;
+  left:0;
+  right:0;
+  display:none;
+  z-index:2147483647;
+  background:linear-gradient(90deg,#0f172a,#020617);
+  border-bottom:1px solid #1f2937;
+  overflow:hidden;
+">
+
+  <div style="
+    display:flex;
+    align-items:center;
+    height:48px;
+    padding-left:16px;
+    color:#22c55e;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+  ">
+
+    <div id="waStickyRun"
+      style="
+        display:inline-block;
+        padding-left:100%;
+        animation:waRun 18s linear infinite;
+      ">
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ===== MAIN TAB SWITCHER ===== */
+function openMainTab(tab){
+  document.querySelectorAll(".main-tab")
+    .forEach(el => el.style.display = "none");
+
+  document.querySelectorAll("#mainTabs .tab-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  document.getElementById("tab-" + tab).style.display = "block";
+  event.target.classList.add("active");
+}
+
+/* ================= ADD ONLY – FETCH TIMEOUT PATCH ================= */
+const __nativeFetch = window.fetch; // ⬅️ SIMPAN FETCH ASLI (INI KUNCI)
+
+function fetchWithTimeout(resource, options = {}) {
+ const { timeout = 20000 } = options;
+ const controller = new AbortController();
+ const id = setTimeout(() => controller.abort(), timeout);
+
+ // ⬇️ WAJIB __nativeFetch, BUKAN fetch
+ return __nativeFetch(resource, {
+  ...options,
+  signal: controller.signal
+ }).finally(() => clearTimeout(id));
+}
+
+window.fetch = function(resource, options){
+ return fetchWithTimeout(resource, options || {});
+};
+
+/* ===== SAFE JSON WRAPPER (ADD ONLY) ===== */
+async function safeJsonFetch(url, options){
+ try{
+  const res = await fetch(url, options);
+  return await res.json();
+ }catch(e){
+  console.warn("⚠️ Fetch JSON error:", url, e);
+  return null;
+ }
+}
+
+/* FAILSAFE GLOBAL */
+window.addEventListener("unhandledrejection",()=>{
+ document.getElementById("loadingOverlay").style.display="none";
+ document.querySelectorAll("button,input,select").forEach(e=>e.disabled=false);
+});
+
+/* ================= CONFIG ================= */
+const API = "/api/stream.php";
+const TOKEN="STREAM_TEAM_2026_SECURE";
+
+  function norm(v){
+  return String(v || "").trim().toLowerCase();
+}
+
+  // ================= PLAYLIST GLOBAL MAP =================
+window.playlistSpotifyMap = {};
+
+
+/* ===== LANGUAGE ===== */
+const LANG={
+ en:{checkin:"📝 Check-In",history:"🕒 History (Last 10)",alertFill:"Please complete all required fields."},
+ id:{checkin:"📝 Check-In",history:"🕒 Riwayat (10 Terakhir)",alertFill:"Harap lengkapi semua data."},
+ es:{checkin:"📝 Registro",history:"🕒 Historial (Últimos 10)",alertFill:"Por favor complete todos los campos."}
+};
+let curLang="en";
+function setLang(l){
+ curLang=l;
+ checkinTitle.innerText=LANG[l].checkin;
+ historyTitle.innerText=LANG[l].history;
+}
+/* =========================================================
+   🌍 WA JOIN UX LANGUAGE
+   ========================================================= */
+const WA_GUIDE_LANG = {
+  en: {
+    title: "Almost done",
+    body: `
+      <b>WhatsApp limitation:</b><br>
+      You must <b>Join the group first</b>.<br><br>
+      <b>Steps:</b><br>
+      1️⃣ Click <b>Join Chat</b><br>
+      2️⃣ WhatsApp Web will open<br>
+      3️⃣ Press <b>CTRL + V</b> then Send<br><br>
+      ✅ Message already copied
+    `,
+    btn: "I’ve joined the group"
+  },
+  id: {
+    title: "Hampir selesai",
+    body: `
+      <b>Batasan WhatsApp:</b><br>
+      Kamu <b>harus Join grup dulu</b>.<br><br>
+      <b>Langkah:</b><br>
+      1️⃣ Klik <b>Join Chat</b><br>
+      2️⃣ WhatsApp Web akan terbuka<br>
+      3️⃣ Tekan <b>CTRL + V</b> lalu Kirim<br><br>
+      ✅ Pesan sudah disalin
+    `,
+    btn: "Saya sudah join"
+  },
+  es: {
+    title: "Casi listo",
+    body: `
+      <b>Limitación de WhatsApp:</b><br>
+      Debes <b>unirte al grupo primero</b>.<br><br>
+      <b>Pasos:</b><br>
+      1️⃣ Haz clic en <b>Join Chat</b><br>
+      2️⃣ WhatsApp Web se abrirá<br>
+      3️⃣ Presiona <b>CTRL + V</b> y envía<br><br>
+      ✅ Mensaje copiado
+    `,
+    btn: "Ya me uní al grupo"
+  }
+};
+
+  // GLOBAL SINGLETON (ANTI RESET)
+  window.fbImages = window.fbImages || [];
+
+
+/* ===== STATE ===== */
+let dataReady=false;
+let rows=[],submitting=false,teamMap={},imgHashToday={};
+let selectedFiles = []; // 🔥 buffer file (APPEND MODE)
+let __lastHash = ""; // 🔥 anti flicker
+let __lastLeaderboardPos = {};
+let __lastLeaderboardTotal = {};
+let playlistSpotifyMap = {};
+
+/* =========================
+   FB VIEWER STATE (FINAL)
+   ========================= */
+window.fbImages = [];
+let fbIndex = 0;
+let fbZoom  = 1;
+let fbWrap = null;
+let fbMoveX = 0;
+let fbMoveY = 0;
+let fbDrag  = false;
+let fbStartX = 0;
+let fbStartY = 0;
+
+
+/* =========================
+   OPEN VIEWER
+   ========================= */
+function openFB(i){
+  const list = window.fbImages;
+
+  if (!Array.isArray(list) || !list[i]) {
+    console.error("❌ openFB FAILED", { index:i, fbImages:list });
+    return;
+  }
+
+  const viewer  = document.getElementById("fbViewer");
+  const imgEl   = document.getElementById("fbImage");
+  const userEl  = document.getElementById("fbUsername");
+  const plEl    = document.getElementById("fbPlaylist");
+  const totalEl = document.getElementById("fbTotal");
+
+  if (!viewer || !imgEl || !userEl || !plEl || !totalEl) {
+    console.error("❌ FB VIEWER DOM NOT READY");
+    return;
+  }
+
+  fbIndex = i;
+  fbZoom  = 1;
+  fbMoveX = 0;
+  fbMoveY = 0;
+
+
+  const d = list[i];
+  console.log("✅ OPEN FB IMAGE", d);
+
+  imgEl.src = d.proof;
+  applyFBTransform();
+  userEl.innerText = d.user || "Unknown";
+
+  const playlistName =
+    d.playlist && String(d.playlist).trim() !== "-" && String(d.playlist).trim() !== ""
+      ? d.playlist
+      : "Unknown Playlist";
+
+  plEl.innerText = playlistName;
+  totalEl.innerText = Number(d.count) || 0;
+
+  renderMiniLeaderboardFinal(playlistName);
+  renderCommentsFinal(d);
+
+  viewer.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+/* =========================
+   CLOSE
+   ========================= */
+function closeFB(){
+  const viewer = document.getElementById("fbViewer");
+  if (!viewer) return;
+  viewer.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+/* =========================
+   ZOOM
+   ========================= */
+function zoomFB(f){
+  fbZoom *= f;
+  fbZoom = Math.min(5, Math.max(0.5, fbZoom));
+  applyFBTransform();
+}
+
+
+/* =========================
+   NEXT / PREV
+   ========================= */
+function nextFB(){
+  if (fbIndex < window.fbImages.length - 1) openFB(fbIndex + 1);
+}
+function prevFB(){
+  if (fbIndex > 0) openFB(fbIndex - 1);
+}
+
+/* =========================
+   LEADERBOARD (PLAYLIST BASED)
+   ========================= */
+function renderMiniLeaderboardFinal(playlist){
+  const box = document.getElementById("fbLeaderboard");
+  if (!box) return;
+
+  box.innerHTML = "<b>Leaderboard</b>";
+  const map = {};
+  const key = playlist.trim().toUpperCase();
+
+  window.fbImages.forEach(d=>{
+    if (!d.playlist) return;
+    if (d.playlist.trim().toUpperCase() !== key) return;
+    if (d.status && d.status !== "APPROVED") return;
+
+    const name = d.user || "Unknown";
+    map[name] = (map[name] || 0) + Number(d.count || 0);
+  });
+
+  const list = Object.entries(map)
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,5);
+
+  if (!list.length){
+    box.innerHTML += `<div class="muted">No leaderboard data</div>`;
+    console.warn("⚠️ Leaderboard empty:", playlist);
+    return;
+  }
+
+  list.forEach((x,i)=>{
+    box.innerHTML += `
+      <div class="lb-item">
+        <span>${i+1}. ${x[0]}</span>
+        <span>${x[1]}</span>
+      </div>`;
+  });
+
+  console.log("✅ Leaderboard OK:", playlist, list);
+}
+
+/* =========================
+   COMMENTS (ADMIN + DUMMY)
+   ========================= */
+function renderCommentsFinal(d){
+  const box = document.getElementById("fbComments");
+  if (!box) return;
+
+  box.innerHTML = "<b>Comments</b>";
+
+  if (d.status === "REJECTED" && d.reason){
+    box.innerHTML += `<div class="comment">❌ Admin: ${d.reason}</div>`;
+  }
+
+  if (d.verified_type === "AUTO"){
+    box.innerHTML += `<div class="comment">🤖 Auto verified by system</div>`;
+  }
+
+  [
+    "🔥 Nice proof",
+    "✅ Stream looks valid",
+    "👍 Good job",
+    "🎧 Playlist confirmed",
+    "📊 Count accepted",
+    "👀 Proof checked"
+  ].forEach(t=>{
+    box.innerHTML += `<div class="comment">${t}</div>`;
+  });
+
+  box.innerHTML += `<div class="comment muted">No more comments</div>`;
+}
+
+/* =========================
+   KEYBOARD
+   ========================= */
+document.addEventListener("keydown", e=>{
+  const viewer = document.getElementById("fbViewer");
+  if (!viewer || viewer.style.display === "none") return;
+  if (e.key === "ArrowRight") nextFB();
+  if (e.key === "ArrowLeft")  prevFB();
+  if (e.key === "Escape")     closeFB();
+});
+
+/* =========================
+   MOBILE SWIPE
+   ========================= */
+let __fbTouchX = 0;
+fbWrap = document.querySelector(".fbv-image");
+
+if (fbWrap){
+  fbWrap.addEventListener("touchstart", e=>{
+    if (e.touches[0]) __fbTouchX = e.touches[0].clientX;
+  },{passive:true});
+
+  fbWrap.addEventListener("touchend", e=>{
+    if (!e.changedTouches[0]) return;
+    const dx = e.changedTouches[0].clientX - __fbTouchX;
+    if (Math.abs(dx) < 60) return;
+    dx < 0 ? nextFB() : prevFB();
+  },{passive:true});
+}
+/* =========================
+   APPLY TRANSFORM (PAN + ZOOM)
+   ========================= */
+function applyFBTransform(){
+  const img = document.getElementById("fbImage");
+  if (!img) return;
+  img.style.transform =
+    `translate(${fbMoveX}px, ${fbMoveY}px) scale(${fbZoom})`;
+}
+/* =========================
+   DRAG / PAN (FB STYLE)
+   ========================= */
+const fbImageWrap = document.querySelector(".fbv-image");
+
+if (fbImageWrap){
+  fbImageWrap.addEventListener("mousedown", e=>{
+    fbDrag = true;
+    fbStartX = e.clientX - fbMoveX;
+    fbStartY = e.clientY - fbMoveY;
+  });
+
+  window.addEventListener("mousemove", e=>{
+    if (!fbDrag) return;
+    fbMoveX = e.clientX - fbStartX;
+    fbMoveY = e.clientY - fbStartY;
+    applyFBTransform();
+  });
+
+  window.addEventListener("mouseup", ()=>{
+    fbDrag = false;
+  });
+
+  /* TOUCH */
+  fbImageWrap.addEventListener("touchstart", e=>{
+    if (!e.touches[0]) return;
+    fbDrag = true;
+    fbStartX = e.touches[0].clientX - fbMoveX;
+    fbStartY = e.touches[0].clientY - fbMoveY;
+  },{passive:true});
+
+  fbImageWrap.addEventListener("touchmove", e=>{
+    if (!fbDrag || !e.touches[0]) return;
+    fbMoveX = e.touches[0].clientX - fbStartX;
+    fbMoveY = e.touches[0].clientY - fbStartY;
+    applyFBTransform();
+  },{passive:true});
+
+  fbImageWrap.addEventListener("touchend", ()=>{
+    fbDrag = false;
+  });
+}
+
+console.log("🔥 FB VIEWER SCRIPT LOADED");
+
+/* ===== DOM ===== */
+const leader=document.getElementById("leader");
+const history=document.getElementById("history");
+const teamId=document.getElementById("teamId");
+const username=document.getElementById("username");
+const proof=document.getElementById("proof");
+const lastfm=document.getElementById("lastfm");
+const count=document.getElementById("count");
+const playlistSelect=document.getElementById("playlistSelect");
+const openPlaylistBtn = document.getElementById("openPlaylistBtn");
+
+playlistSelect.addEventListener("change", () => {
+  const name = playlistSelect.value;
+  openPlaylistBtn.disabled = !playlistSpotifyMap[name];
+});
+
+const lbPlaylist=document.getElementById("lbPlaylist");
+const prog=document.getElementById("prog");
+const bar=document.getElementById("bar");
+const btn=document.getElementById("btnCheckin");
+
+ /* ================= FIX: AUTO MATCH USERNAME BY TEAM ID ================= */
+teamId.addEventListener("input", () => {
+ const id = teamId.value.trim();
+
+ if (id && teamMap[id]) {
+  username.value = teamMap[id];
+  username.disabled = true;   // 🔒 lock kalau ID sudah ada
+ } else {
+  username.disabled = false;  // ✏️ boleh isi kalau ID baru
+ }
+});
+ /* === ADD ONLY: SAFE DATE PARSER === */
+function parseDateSafe(d, t){
+ if(!d) return 0;
+ try{
+  const [y,m,da] = d.split("-").map(Number);
+  const [h=0,mi=0,s=0] = (t||"0:0:0").split(":").map(Number);
+  return new Date(y, m-1, da, h, mi, s).getTime();
+ }catch{
+  return 0;
+ }
+}
+
+
+/* ===== WATERMARK (UNCHANGED) ===== */
+/* ================= RESIZE + MULTI COLLAGE (UNIFIED) ================= */
+async function resizeImage(input){
+ return new Promise(async res=>{
+ const files = Array.isArray(input)
+  ? input.slice(0,9)
+  : input instanceof FileList
+    ? [...input].slice(0,9)
+    : [input];
+
+  // ================= SINGLE IMAGE (MODE LAMA) =================
+  if(files.length === 1){
+   const fr = new FileReader();
+   fr.onload = e=>{
+    const img = new Image();
+    img.onload = ()=>{
+     const c = document.createElement("canvas");
+     c.width = 1000;
+     c.height = img.height * (1000 / img.width);
+     const ctx = c.getContext("2d");
+
+     ctx.drawImage(img,0,0,c.width,c.height);
+
+     // 🔒 WATERMARK ASLI LU
+     ctx.save();
+     ctx.globalAlpha = 0.35;
+     ctx.fillStyle = "#000";
+     ctx.font = "bold 72px Arial";
+     ctx.translate(c.width/2,c.height/2);
+     ctx.rotate(-Math.PI/4);
+     for(let y=-c.height;y<c.height;y+=160){
+      ctx.fillText(
+       `STREAM TEAM • ${teamId.value} • ${username.value}`,
+       -c.width,y
+      );
+     }
+     ctx.restore();
+
+     res(c.toDataURL("image/jpeg",0.85));
+    };
+    img.src = e.target.result;
+   };
+   fr.readAsDataURL(files[0]);
+   return;
+  }
+
+  // ================= MULTI IMAGE COLLAGE =================
+  const imgs = await Promise.all(files.map(loadImage));
+  const grid = Math.ceil(Math.sqrt(imgs.length)); // 2–3
+  const size = 1000;
+  const cell = size / grid;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0,0,size,size);
+
+  imgs.forEach((img,i)=>{
+   const x = (i % grid) * cell;
+   const y = Math.floor(i / grid) * cell;
+
+   const r = Math.min(img.width,img.height);
+   const sx = (img.width - r) / 2;
+   const sy = (img.height - r) / 2;
+
+   ctx.drawImage(img,sx,sy,r,r,x,y,cell,cell);
+  });
+
+  // 🔒 WATERMARK SAMA (SATU KALI AJA)
+  ctx.save();
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "#000";
+  ctx.font = "bold 64px Arial";
+  ctx.translate(size/2,size/2);
+  ctx.rotate(-Math.PI/4);
+  for(let y=-size;y<size;y+=160){
+   ctx.fillText(
+    `STREAM TEAM • ${teamId.value} • ${username.value}`,
+    -size,y
+   );
+  }
+  ctx.restore();
+
+  res(canvas.toDataURL("image/jpeg",0.85));
+ });
+}
+
+function loadImage(file){
+ return new Promise(res=>{
+  const fr = new FileReader();
+  fr.onload = e=>{
+   const img = new Image();
+   img.onload = ()=>res(img);
+   img.src = e.target.result;
+  };
+  fr.readAsDataURL(file);
+ });
+}
+// ================= LOADING TOAST ENGINE =================
+let __loadingTimer = null;
+let __loadingPercent = 0;
+
+function showLoading(text){
+  const box = document.getElementById("loadingToast");
+  const t   = document.getElementById("loadingText");
+  const s   = document.getElementById("loadingSub");
+  box.style.display = "block";
+  t.innerText = text;
+  s.innerText = "Message copied • Click JOIN CHAT in WhatsApp";
+
+  __loadingPercent = 0;
+  box.style.display = "block";
+  t.innerText = text;
+  s.innerText = "0%";
+
+  clearInterval(__loadingTimer);
+
+  __loadingTimer = setInterval(()=>{
+    if (__loadingPercent < 92) {
+      __loadingPercent += Math.random() * 4 + 1;
+      __loadingPercent = Math.min(__loadingPercent, 92);
+      s.innerText = Math.floor(__loadingPercent) + "%";
+    }
+  }, 220);
+}
+
+function updateLoading(text, percent){
+  const t = document.getElementById("loadingText");
+  const s = document.getElementById("loadingSub");
+
+  if (text) t.innerText = text;
+  if (percent != null){
+    __loadingPercent = percent;
+    s.innerText = percent + "%";
+  }
+}
+
+function finishLoading(text){
+  const t = document.getElementById("loadingText");
+  const s = document.getElementById("loadingSub");
+
+  clearInterval(__loadingTimer);
+  if (text) t.innerText = text;
+
+  __loadingPercent = 100;
+  s.innerText = "100%";
+}
+
+function hideLoading(){
+  clearInterval(__loadingTimer);
+  const box = document.getElementById("loadingToast");
+  if (box) box.style.display = "none";
+}
+
+/* ===== CHECKIN (FINAL & FIXED) ===== */
+async function checkIn(){
+  if (window.__CHECKIN_LOCK__) return;
+  window.__CHECKIN_LOCK__ = true;
+  if (btn.disabled) return;
+  if (submitting) return;
+
+// 🔒 VALIDASI WAJIB
+if (
+  !teamId.value ||
+  !username.value ||
+  !playlistSelect.value ||
+  !count.value ||                // ⬅️ STREAM COUNT WAJIB
+  Number(count.value) <= 0 ||     // ⬅️ TIDAK BOLEH 0
+  (!selectedFiles.length && !lastfm.value)
+){
+  alert(
+    curLang === "id"
+      ? "Silakan pilih jumlah stream terlebih dahulu."
+      : curLang === "es"
+        ? "Por favor selecciona la cantidad de streams primero."
+        : "Please select your stream count first."
+  );
+ // 🔓 BUKA LOCK LAGI (INI KUNCI FIX)
+  window.__CHECKIN_LOCK__ = false;
+
+  count.focus();
+  count.scrollIntoView({ behavior: "smooth", block: "center" });
+  return;
+}
+
+  submitting = true;
+  btn.disabled = true;
+ // 🔒 LOCK SCROLL TOTAL
+ document.body.classList.add("lock-scroll");
+ showLoading("Uploading images…");
+
+  // 🖼️ BUILD IMAGE (COLLAGE / SINGLE)
+  let img = "";
+  if (selectedFiles.length) {
+    img = await resizeImage(selectedFiles);
+  }
+   
+  // 📦 PAYLOAD
+  const fd = new URLSearchParams({
+    type: "checkin",
+    token: TOKEN,
+    team_id: teamId.value,
+    username: username.value,
+    playlist: playlistSelect.value,
+    count: count.value,
+    lastfm: lastfm.value,
+    proof_base64: img,
+    lang: curLang
+  });
+
+  let out;
+  try {
+    out = await safeJsonFetch(API, { method: "POST", body: fd });
+  } catch {
+    out = null;
+  }
+ // ===============================
+// ❌ REJECTED DARI SERVER (ANTI DUPLICATE IMAGE)
+// ===============================
+if (out && out.status === "REJECTED") {
+  hideLoading();
+  document.body.classList.remove("lock-scroll");
+  submitting = false;
+  btn.disabled = false;
+  window.__CHECKIN_LOCK__ = false;
+
+  alert(
+    out.message === "Duplicate image detected"
+      ? (
+          curLang === "id"
+            ? "❌ Gambar ini sudah pernah digunakan.\nSilakan upload screenshot yang berbeda."
+            : curLang === "es"
+              ? "❌ Esta imagen ya fue utilizada.\nPor favor sube una captura diferente."
+              : "❌ This image has already been used.\nPlease upload a different screenshot."
+        )
+      : ("❌ " + (out.message || "Submission rejected"))
+  );
+
+  return; // ⛔ STOP TOTAL, JANGAN LANJUT KE WA
+}
+
+// ❌ GAGAL
+if (!out) {
+  hideLoading();
+  document.body.classList.remove("lock-scroll");
+  alert("Failed to submit. Please try again.");
+} else {
+
+  // 📋 COPY WA TEXT
+  if (out.wa_text) {
+    navigator.clipboard.writeText(out.wa_text);
+    toast.style.display = "block";
+    setTimeout(()=>toast.style.display="none",3500);
+
+    // 🔄 UPDATE LOADING
+    updateLoading("Preparing WhatsApp…", 85);
+  }
+// 🧭 SHOW WA JOIN GUIDE (DESKTOP ONLY)
+if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  setTimeout(showWaStickyModal, 300);
+}
+
+// 🚀 OPEN WHATSAPP GROUP – FINAL (NO POPUP BLOCK)
+if (out.wa) {
+
+  // 🔄 FINAL LOADING
+  finishLoading("Opening WhatsApp…");
+
+  // ⏳ BIAR UI KESEMPATAN UPDATE
+  setTimeout(() => {
+
+    // ✅ SHOW SUCCESS OVERLAY
+    const ok = document.getElementById("successOverlay");
+    if (ok) ok.style.display = "flex";
+
+// ===============================
+// 🕒 COUNTDOWN (10 DETIK) — FINAL AMAN
+// ===============================
+let cd = 10;
+
+const cdText = ok ? ok.querySelector(".countdown") : null;
+if (cdText) cdText.innerText = cd;
+
+// 🔔 RUNNING TEXT (STICKY BAR)
+const run = document.getElementById("waStickyRun");
+
+const timer = setInterval(function () {
+  cd--;
+
+  if (cdText) cdText.innerText = cd;
+
+  if (run) {
+    if (curLang === "id") {
+      run.innerText =
+        "🔔 Hampir selesai — WhatsApp akan dibuka dalam " +
+        cd +
+        " detik — Join grup → CTRL + V → Kirim";
+    } else if (curLang === "es") {
+      run.innerText =
+        "🔔 Casi listo — WhatsApp se abrirá en " +
+        cd +
+        "s — Únete → CTRL + V → Enviar";
+    } else {
+      run.innerText =
+        "🔔 Almost done — WhatsApp opens in " +
+        cd +
+        "s — Join group → CTRL + V → Send";
+    }
+  }
+
+  if (cd <= 0) {
+    clearInterval(timer);
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      location.href = out.wa;
+
+      setTimeout(function () {
+        if (typeof showWaPasteModal === "function") {
+          showWaPasteModal();
+        }
+      }, 700);
+
+      // ✅ MOBILE BOLEH RELOAD
+      setTimeout(function () {
+        location.reload();
+      }, 1500);
+    } else {
+      // 💻 DESKTOP TANPA RELOAD
+      window.location.href = out.wa;
+
+      setTimeout(function () {
+        if (typeof showWaPasteModal === "function") {
+          showWaPasteModal();
+        }
+      }, 900);
+    }
+  }
+  }, 1000); // END setInterval
+        // === END setInterval ===
+      }, 300);        // 🔒 END setTimeout
+
+    }                 // 🔒 END if (out.wa)
+
+  }                   // 🔒 END else (out)
+window.__CHECKIN_LOCK__ = false;
+}                     // 🔒 END checkIn()
+ document.getElementById("btnCheckin").addEventListener("click", checkIn);
+  openPlaylistBtn.addEventListener("click", () => {
+  const name = playlistSelect.value;
+  const url  = playlistSpotifyMap[name];
+  if (!url) return;
+  window.open(url, "_blank", "noopener");
+});
+
+
+function waitForPlaylistSelect(cb, retry = 0){
+  const el = document.querySelector('select[name="playlist"], select#playlistSelect, #checkin select');
+  if(el) return cb(el);
+
+  if(retry > 20){
+    console.error("Playlist select STILL NOT FOUND");
+    return;
+  }
+
+  setTimeout(()=>waitForPlaylistSelect(cb, retry+1), 100);
+}
+
+/* ===== LOAD ===== */
+async function loadPlaylists(){
+  console.log("loadPlaylists() CALLED");
+
+  const data = await safeJsonFetch(API + "?type=playlist&token=" + TOKEN);
+  console.log("PLAYLIST RAW:", data);
+
+  const sel = document.getElementById("playlistSelect");
+  const lb  = document.getElementById("lbPlaylist");
+
+  if (!sel) {
+    console.error("playlistSelect NOT FOUND");
+    return;
+  }
+
+  // reset dropdown
+  sel.innerHTML = `<option value="">Select Playlist</option>`;
+  if (lb) lb.innerHTML = `<option value="">ALL</option>`;
+
+  // reset map (GLOBAL)
+  window.playlistSpotifyMap = {};
+
+  if (!Array.isArray(data)) {
+    console.error("PLAYLIST DATA NOT ARRAY");
+    return;
+  }
+
+  data.forEach(x => {
+    // ✅ FIELD SESUAI GAS
+    const name = x.name;
+    const link = x.spotify;
+
+    if (!name || !link) return;
+
+    // dropdown check-in
+    sel.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${name}">${name}</option>`
+    );
+
+    // dropdown leaderboard (kalau ada)
+    if (lb) {
+      lb.insertAdjacentHTML(
+        "beforeend",
+        `<option value="${name}">${name}</option>`
+      );
+    }
+
+    // map: KEY = VALUE DROPDOWN (MENTAH)
+    window.playlistSpotifyMap[name] = link;
+  });
+
+  console.log("PLAYLIST MAP READY:", window.playlistSpotifyMap);
+}
+
+async function loadAll(){
+ const r = await safeJsonFetch(API+"?type=checkin&token=" + TOKEN);
+ if (!Array.isArray(r)) return;
+
+ // 🔒 HASH DATA → CEK PERUBAHAN
+ const hash = JSON.stringify(r.map(x=>[
+   x.team_id,x.user,x.username,x.playlist,
+   x.count,x.status,x.reason,x.time,x.date
+ ]));
+
+ if (hash === __lastHash) return; // ⛔️ TIDAK ADA PERUBAHAN
+
+ __lastHash = hash;
+ rows = r;
+ 
+/* === ADD ONLY: BUILD TEAM ID → USERNAME MAP === */
+teamMap = {};
+rows.forEach(r=>{
+ if(r.team_id && (r.user || r.username)){
+  if(!teamMap[r.team_id]){
+   teamMap[r.team_id] = r.user || r.username;
+  }
+ }
+});
+
+ renderLeaderboard();
+ renderHistory();
+
+ if(!dataReady){
+  loadingOverlay.style.display="none";
+  lockInput(false);
+  dataReady=true;
+ }
+}
+
+
+/* === FAILSAFE UNLOCK (UNCHANGED) === */
+setTimeout(()=>{
+ if(!dataReady){
+  loadingOverlay.style.display="none";
+  lockInput(false);
+  dataReady=true;
+ }
+},8000);
+
+function renderLeaderboard(){
+  leader.innerHTML = "";
+  const f = lbPlaylist.value;
+  const acc = {};
+
+  rows.forEach(r=>{
+    if (r.status !== "APPROVED") return;
+    if (f && r.playlist !== f) return;
+    if (!inLBDateRange(r.timestamp || r.date)) return;
+
+    const u = teamMap[r.team_id] || r.user || r.username || r.team_id;
+    acc[u] = (acc[u] || 0) + Number(r.count || 0);
+  });
+
+  const sorted = Object.entries(acc)
+    .sort((a,b)=>b[1]-a[1]);
+
+  const newPos = {};
+
+  sorted.forEach((r,i)=>{
+    const pos  = i + 1;
+    const user = r[0];
+    const total = r[1];
+
+    newPos[user] = pos;
+
+    let rankIcon = "";
+    if (pos === 1) rankIcon = "👑";
+    else if (pos === 2) rankIcon = "👸";
+    else if (pos === 3) rankIcon = "🥉";
+
+    let moveIcon = `<span class="lb-move lb-stay">⏺</span>`;
+
+    if (__lastLeaderboardPos[user] !== undefined) {
+      if (pos < __lastLeaderboardPos[user]) {
+        moveIcon = `<span class="lb-move lb-up">▲</span>`;
+      } else if (pos > __lastLeaderboardPos[user]) {
+        moveIcon = `<span class="lb-move lb-down">▼</span>`;
+      }
+    } else if (__lastLeaderboardTotal[user] != null) {
+      if (total > __lastLeaderboardTotal[user]) {
+        moveIcon = `<span class="lb-move lb-up">▲</span>`;
+      } else if (total < __lastLeaderboardTotal[user]) {
+        moveIcon = `<span class="lb-move lb-down">▼</span>`;
+      }
+    }
+
+    leader.innerHTML += `
+      <tr>
+        <td>${pos}</td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;font-weight:600">
+            <span style="color:#facc15">${rankIcon}</span>
+            <span>${user}</span>
+            ${moveIcon}
+          </div>
+        </td>
+        <td>${total}</td>
+      </tr>
+    `;
+  });
+
+  __lastLeaderboardPos = newPos;
+  __lastLeaderboardTotal = Object.fromEntries(
+    sorted.map(([u,t])=>[u,t])
+  );
+}
+
+function renderHistory(){
+  history.innerHTML = "";
+
+  const f = lbPlaylist.value || "";
+
+  // 🔥 RESET SEKALI DI AWAL (WAJIB)
+  window.fbImages = [];
+
+  rows
+    .filter(r => !f || r.playlist === f)
+    .slice(0, 10)
+    .forEach(r => {
+
+      const ts = Date.parse(r.timestamp || r.date || "");
+      const dt = ts ? new Date(ts).toLocaleString("id-ID") : "-";
+
+      let fbIdx = -1;
+
+      /* =========================
+         PUSH KE FB VIEWER (AMAN)
+         ========================= */
+      if (r.proof) {
+        fbIdx = window.fbImages.length;
+
+        window.fbImages.push({
+          proof: r.proof,
+          user: r.user || r.username || "-",
+          playlist: (r.playlist || "-").trim(),
+          count: Number(r.count) || 0,
+          status: r.status || "",
+          reason: r.reason || "",
+          verified_type: r.verified_type || ""
+        });
+      }
+
+      /* =========================
+         RENDER ROW
+         ========================= */
+      history.innerHTML += `
+        <tr>
+          <td>${dt}</td>
+          <td>${teamMap[r.team_id] || r.user || r.username || "-"}</td>
+          <td>${r.playlist || "-"}</td>
+          <td>${r.count || 0}</td>
+          <td>
+            <span class="status ${r.status || "PENDING"}">
+              ${r.status || "PENDING"}
+            </span>
+            ${
+              r.verified_type === "AUTO"
+                ? `<span class="status AUTO">AUTO VERIFIED</span>`
+                : ""
+            }
+          </td>
+          <td>${r.reason || "-"}</td>
+          <td>
+            ${
+              r.lastfm
+                ? `<a href="${r.lastfm}"
+                     target="_blank"
+                     style="color:#1db954;font-weight:700">
+                     Last.fm
+                   </a>`
+                : "-"
+            }
+          </td>
+          <td>
+            ${
+              fbIdx >= 0
+                ? `<div class="thumb-wrap">
+                    <img class="thumb"
+                         src="${r.proof}"
+                         loading="lazy"
+                         onclick="openFB(${fbIdx})">
+                    <span class="thumb-badge">UPLOADED</span>
+                   </div>`
+                : "-"
+            }
+          </td>
+        </tr>`;
+    });
+
+  console.log("✅ FB IMAGES READY:", window.fbImages.length, window.fbImages);
+}
+
+
+
+
+function parseDateSafe(d, t){
+ if(!d) return 0;
+ try{
+  const [y,m,da] = d.split("-").map(Number);
+  const [h=0,mi=0,s=0] = (t||"0:0:0").split(":").map(Number);
+  return new Date(y, m-1, da, h, mi, s).getTime();
+ }catch{
+  return 0;
+ }
+}
+
+
+function lockInput(lock){
+ document.querySelectorAll("#teamId,#username,#playlistSelect,#count,#proof,#lastfm,#btnCheckin")
+ .forEach(el=>el.disabled=lock);
+}
+ 
+function setCheckinEnabled(on){
+ btn.disabled = !on;
+ btn.style.opacity = on ? "1" : ".5";
+ btn.style.cursor = on ? "pointer" : "not-allowed";
+}
+
+function onFilterChange(){
+ renderLeaderboard();
+ renderHistory();
+}
+
+const imgModal=document.getElementById("imgModal");
+const imgBig=document.getElementById("imgBig");
+let __zoomImg = 1;
+let __startDist = 0;
+let __startZoom = 1;
+
+/* ===== INIT (URUTAN FIX) ===== */
+window.addEventListener("load", async () => {
+  lockInput(true);
+
+  await loadPlaylists();   // ⬅️ sekarang DOM SUDAH ADA
+  await loadAll();
+
+  setTimeout(validateSubmitReady, 500);
+  setInterval(loadAll,15000);
+});
+
+
+if (playlistSelect && openPlaylistBtn) {
+
+  playlistSelect.addEventListener("change", () => {
+  const name = playlistSelect.value;
+
+  const link = window.playlistSpotifyMap[name] || "";
+
+  console.log("SELECTED PLAYLIST:", name, link);
+
+  const btn = document.getElementById("openPlaylistBtn");
+  if (btn) {
+    btn.disabled = !link;
+  }
+});
+
+
+  openPlaylistBtn.addEventListener("click", () => {
+    const name = playlistSelect.value;
+    const link = window.playlistSpotifyMap[name];
+
+
+    console.log("OPEN PLAYLIST CLICK:", name, link);
+
+    if (!link) {
+      alert("Playlist link not found");
+      return;
+    }
+
+    window.open(link, "_blank", "noopener");
+  });
+
+} else {
+  console.error("playlistSelect / openPlaylistBtn NOT FOUND");
+}
+
+ 
+/* ================= FINAL: PROOF HANDLER (APPEND MODE + BORDER) ================= */
+proof.addEventListener("change", async ()=>{
+  const lbl  = document.getElementById("proofLabel");
+  const prev = document.getElementById("previewCollage");
+
+  // tidak ada file baru
+  if (!proof.files.length) return;
+
+  // append file baru
+  for (const f of proof.files) {
+    if (selectedFiles.length >= 9) {
+      alert("Max 9 images allowed");
+      break;
+    }
+    selectedFiles.push(f);
+  }
+
+  // reset input supaya bisa pilih file yg sama lagi
+  proof.value = "";
+
+  // kosong total (harusnya jarang kejadian)
+  if (!selectedFiles.length) {
+    lbl.classList.remove("has-file");
+    lbl.innerHTML = `📤 Upload your stats proof from <b>statsforspotify.com</b>`;
+    prev.style.display = "none";
+    setCheckinEnabled(false);
+    return;
+  }
+
+  // 🔥 BORDER ORANGE SOLID (ADA FILE)
+  lbl.classList.add("has-file");
+
+  // update label
+  lbl.innerHTML =
+    selectedFiles.length === 1
+      ? "📤 1 file selected"
+      : `📤 ${selectedFiles.length} files selected`;
+
+  // build preview dari SEMUA file
+  const img = await resizeImage(selectedFiles);
+prev.src = img;
+prev.style.display = "block";
+prev.style.opacity = "1";
+prev.style.transform = "none";
+
+ // enable submit
+  setCheckinEnabled(true);
+  document.getElementById("clearProofWrap").style.display = "block";
+});
+
+function clearProof(){
+  const lbl  = document.getElementById("proofLabel");
+  const prev = document.getElementById("previewCollage");
+
+  // reset data
+  selectedFiles = [];
+  proof.value = "";
+
+  // reset UI
+  prev.src = "";
+  prev.style.display = "none";
+
+  lbl.classList.remove("has-file");
+  lbl.innerHTML = `📤 Upload your stats proof from <b>statsforspotify.com</b>`;
+
+  document.getElementById("clearProofWrap").style.display = "none";
+
+  // disable submit lagi
+  setCheckinEnabled(false);
+}
+
+/* ===== STREAM COUNT LABEL TOGGLE + VALIDATION COLOR ===== */
+count.addEventListener("change", ()=>{
+  // toggle label
+  countLabel.style.display = count.value ? "block" : "none";
+
+  // 🔴🟢 border color
+  if (!count.value || Number(count.value) <= 0) {
+    count.style.borderColor = "#e5533d"; // merah
+  } else {
+    count.style.borderColor = "#1db954"; // hijau
+  }
+});
+
+function validateSubmitReady(){
+  const ready =
+    teamId.value.trim() !== "" &&
+    username.value.trim() !== "" &&
+    playlistSelect.value !== "" &&
+    count.value !== "" &&
+    Number(count.value) > 0 &&
+    (selectedFiles.length > 0 || lastfm.value.trim() !== "");
+
+  setCheckinEnabled(ready);
+}
+
+["input","change"].forEach(evt=>{
+  teamId.addEventListener(evt, validateSubmitReady);
+  username.addEventListener(evt, validateSubmitReady);
+  playlistSelect.addEventListener(evt, validateSubmitReady);
+  count.addEventListener(evt, validateSubmitReady);
+  lastfm.addEventListener(evt, validateSubmitReady);
+});
+
+
+/* =========================================================
+   🔒 WHATSAPP HELPER – FINAL FIXED
+   - Mobile: WA / WA Business (system picker)
+   - Desktop: FORCE WhatsApp Web (group)
+   - Clipboard auto copy
+   - Modal multi-language
+   - No popup blocked
+   ========================================================= */
+
+(function(){
+  if (window.__WA_HELPER_LOCKED__) return;
+  window.__WA_HELPER_LOCKED__ = true;
+
+  /* ============ DEVICE ============ */
+  function isMobile(){
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  function extractGroupCode(url){
+    const m = url.match(/chat\.whatsapp\.com\/([A-Za-z0-9]+)/);
+    return m ? m[1] : "";
+  }
+
+  /* ============ LANGUAGE ============ */
+  function getText(){
+    const L = (window.curLang || "en").toLowerCase();
+    const mob = isMobile();
+
+    const map = {
+      en: {
+        title: "Message ready",
+        body: mob
+          ? "WhatsApp opened. Paste the message in the group and send."
+          : "WhatsApp Web opened. Click Join, paste the message, then send."
+      },
+      id: {
+        title: "Pesan siap",
+        body: mob
+          ? "WhatsApp terbuka. Paste pesan ke grup lalu kirim."
+          : "WhatsApp Web terbuka. Klik Join, paste pesan lalu kirim."
+      },
+      es: {
+        title: "Mensaje listo",
+        body: mob
+          ? "WhatsApp abierto. Pega el mensaje en el grupo y envía."
+          : "WhatsApp Web abierto. Haz clic en Unirse, pega el mensaje y envía."
+      }
+    };
+    return map[L] || map.en;
+  }
+
+  /* ============ MODAL ============ */
+  function showModal(){
+    let m = document.getElementById("waPasteModal");
+    if (!m) {
+      m = document.createElement("div");
+      m.id = "waPasteModal";
+      m.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.88);
+        z-index:999999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        color:#fff;
+      `;
+      m.innerHTML = `
+        <div style="max-width:340px;padding:20px">
+          <div id="waTitle" style="font-size:20px;font-weight:800"></div>
+          <div id="waBody" style="font-size:14px;color:#9aa4b2;margin:12px 0"></div>
+          <button onclick="hideModal()"
+            style="background:#1db954;color:#04130a;
+                   border:none;padding:10px 24px;
+                   border-radius:999px;font-weight:800">
+            OK
+          </button>
+        </div>
+      `;
+      document.body.appendChild(m);
+    }
+
+    const t = getText();
+    document.getElementById("waTitle").innerText = t.title;
+    document.getElementById("waBody").innerText  = t.body;
+    m.style.display = "flex";
+  }
+
+  window.hideModal = function(){
+    const m = document.getElementById("waPasteModal");
+    if (m) m.style.display = "none";
+  };
+
+  document.addEventListener("visibilitychange", ()=>{
+    if (!document.hidden) hideModal();
+  });
+  window.addEventListener("focus", hideModal);
+
+  /* ============ MAIN API ============ */
+  window.openWhatsApp = function(groupLink, text){
+    if (!groupLink) return;
+
+    // 📋 COPY TEXT FIRST
+    if (text) {
+      try { navigator.clipboard.writeText(text); } catch(e){}
+    }
+
+    const mobile = isMobile();
+
+    /* ===== MOBILE ===== */
+    if (mobile) {
+      // OS picker: WA / WA Business
+      location.href = groupLink;
+      setTimeout(showModal, 600);
+      return;
+    }
+
+    /* ===== DESKTOP ===== */
+    const code = extractGroupCode(groupLink);
+    const waWeb = code
+      ? `https://web.whatsapp.com/accept?code=${code}`
+      : "https://web.whatsapp.com/";
+
+    location.href = waWeb;
+    setTimeout(showModal, 900);
+  };
+
+})();
+/* =========================================================
+   🧭 WA JOIN UX DETECTOR (DESKTOP ONLY)
+   ========================================================= */
+
+function isDesktop(){
+  return !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function isWhatsAppInvitePage(){
+  return location.hostname.includes("chat.whatsapp.com");
+}
+
+function showWaGuide(){
+  const m = document.getElementById("waGuideModal");
+  if (m) m.style.display = "flex";
+}
+
+function hideWaGuide(){
+  const m = document.getElementById("waGuideModal");
+  if (m) m.style.display = "none";
+}
+
+/* 🔥 AUTO SHOW GUIDE SAAT REDIRECT KE INVITE PAGE */
+if (isDesktop() && isWhatsAppInvitePage()) {
+  setTimeout(showWaGuide, 600);
+}
+
+/* 🔄 AUTO CLOSE SAAT BALIK KE TAB */
+document.addEventListener("visibilitychange", ()=>{
+  if (!document.hidden) hideWaGuide();
+});
+window.addEventListener("focus", hideWaGuide);
+
+
+function showWaStickyModal(){
+  const L = WA_GUIDE_LANG[curLang] || WA_GUIDE_LANG.en;
+  const m = document.getElementById("waStickyModal");
+  const run = document.getElementById("waStickyRun");
+  if (!m || !run) return;
+
+  // ======================
+  // TEXT (MULTI LANG)
+  // ======================
+  const text =
+    curLang === "id"
+      ? "🔔 Hampir selesai — Join grup WhatsApp → Klik Join Chat → Tekan CTRL + V lalu Kirim"
+      : curLang === "es"
+        ? "🔔 Casi listo — Únete al grupo WhatsApp → Join Chat → CTRL + V y Enviar"
+        : "🔔 Almost done — Join WhatsApp group → Click Join Chat → Press CTRL + V then Send";
+
+  run.innerText = text;
+
+  // ======================
+  // POSISI DI BAWAH PROGRESS BAR
+  // ======================
+  const prog = document.getElementById("loadingToast");
+  const offset = prog ? prog.offsetHeight : 64;
+  m.style.top = offset + "px";
+
+  // ======================
+  // PAKSA PALING DEPAN
+  // ======================
+  m.style.display = "block";
+  m.style.zIndex = "2147483647";
+
+  // TURUNKAN OVERLAY LAIN
+  const success = document.getElementById("successOverlay");
+  if (success) success.style.zIndex = "1000";
+
+  const loading = document.getElementById("loadingToast");
+  if (loading) loading.style.zIndex = "1000";
+
+  const overlay = document.getElementById("loadingOverlay");
+  if (overlay) overlay.style.zIndex = "1000";
+}
+
+function hideWaStickyModal(){
+  const m = document.getElementById("waStickyModal");
+  if (m) m.style.display = "none";
+}
+
+/* ===== JOIN FLAG (SESSION) ===== */
+function markJoined(){
+  sessionStorage.setItem("WA_JOIN_DONE", "1");
+}
+
+function hasJoined(){
+  return sessionStorage.getItem("WA_JOIN_DONE") === "1";
+}
+
+/* ===== AUTO SHOW ===== */
+if (isDesktop() && isWhatsAppInvitePage() && !hasJoined()) {
+  setTimeout(showWaStickyModal, 600);
+}
+/* =========================================================
+   🔄 AUTO RELOAD SAAT BALIK DARI WHATSAPP
+   ========================================================= */
+document.addEventListener("visibilitychange", ()=>{
+  if (!document.hidden && hasJoined()) {
+    sessionStorage.removeItem("WA_JOIN_DONE");
+    location.reload();
+  }
+});
+
+window.addEventListener("focus", ()=>{
+  if (hasJoined()) {
+    sessionStorage.removeItem("WA_JOIN_DONE");
+    location.reload();
+  }
+});
+/* ===============================
+   🐦 ADMIN BIRD AI GUIDE
+   ADD-ON ONLY (NO REPLACE)
+   =============================== */
+
+(function(){
+
+/* ===== SVG BIRD ===== */
+const birdHTML = `
+<div id="adminBird">
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="70" fill="#1db954"/>
+    <circle cx="80" cy="90" r="10" fill="#000"/>
+    <circle cx="120" cy="90" r="10" fill="#000"/>
+    <path d="M70 120 Q100 140 130 120" stroke="#000" stroke-width="6" fill="none"/>
+    <!-- Headset -->
+    <path d="M40 90 Q100 20 160 90" stroke="#000" stroke-width="8" fill="none"/>
+    <rect x="30" y="90" width="18" height="36" rx="6" fill="#000"/>
+    <rect x="152" y="90" width="18" height="36" rx="6" fill="#000"/>
+    <!-- Music -->
+    <text x="90" y="30" font-size="24">🎵</text>
+  </svg>
+  <div id="birdBubble"></div>
+</div>
+`;
+document.body.insertAdjacentHTML("beforeend", birdHTML);
+
+const bird = document.getElementById("adminBird");
+const bubble = document.getElementById("birdBubble");
+
+/* ===== LANGUAGE ===== */
+const BIRD_LANG = {
+  en:{
+    hi:u=>`Hi ${u}! I'm Admin Bird 🐦<br>I'll guide you step by step.`,
+    id:`Please enter your Team ID first.`,
+    count:`Nice! Now select your stream count.`,
+    proof:`You can upload Spotify stats OR paste Last.fm link.<br>Both? Even better 😉`,
+    submit:`Everything ready! Click SUBMIT once, my friend.`,
+    cheat:`🛑 Are you trying to cheat, my friend?`,
+    idle:p=>`🎶 Streaming "${p}"… stay active, buddy.`,
+    ok:`Thanks for being active! 🫶`
+  },
+  id:{
+    hi:u=>`Hai ${u}! Aku Admin Bird 🐦<br>Aku bantu kamu ya.`,
+    id:`Isi Team ID dulu ya.`,
+    count:`Mantap! Sekarang pilih jumlah stream.`,
+    proof:`Upload screenshot stats Spotify ATAU isi Last.fm.<br>Dua-duanya lebih bagus 😉`,
+    submit:`Semua siap! Klik SUBMIT sekali saja ya.`,
+    cheat:`🛑 Kamu mau curang ya, kawan?`,
+    idle:p=>`🎶 Lagi muter "${p}"… tetap aktif ya kawan.`,
+    ok:`Terima kasih sudah aktif! 🫶`
+  },
+  es:{
+    hi:u=>`Hola ${u}! Soy Admin Bird 🐦`,
+    id:`Primero ingresa tu Team ID.`,
+    count:`Genial! Ahora elige la cantidad de streams.`,
+    proof:`Sube stats de Spotify O pega Last.fm.<br>Ambos mejor 😉`,
+    submit:`Todo listo! Presiona SUBMIT una vez.`,
+    cheat:`🛑 ¿Intentas hacer trampa, amigo?`,
+    idle:p=>`🎶 Reproduciendo "${p}"… sigue activo.`,
+    ok:`Gracias por estar activo! 🫶`
+  }
+};
+
+function say(key,arg){
+  const L = BIRD_LANG[curLang] || BIRD_LANG.en;
+  bubble.innerHTML = typeof L[key]==="function" ? L[key](arg) : L[key];
+  bird.classList.add("show-bubble");
+  setTimeout(()=>bird.classList.remove("show-bubble"),5000);
+}
+
+/* ===== MEMORY ===== */
+let memUser = localStorage.getItem("BIRD_USER") || "";
+
+/* ===== START ===== */
+setTimeout(()=>{
+  const u = username.value || memUser || "friend";
+  if(username.value) localStorage.setItem("BIRD_USER",username.value);
+  say("hi",u);
+},1200);
+
+/* ===== STEP GUIDE ===== */
+teamId.addEventListener("input",()=>{
+  if(teamId.value){
+    say("count");
+    count.classList.add("ai-highlight");
+  }
+});
+
+count.addEventListener("change",()=>{
+  count.classList.remove("ai-highlight");
+  say("proof");
+  proofLabel.classList.add("ai-highlight");
+});
+
+proof.addEventListener("change",()=>{
+  proofLabel.classList.remove("ai-highlight");
+  say("submit");
+});
+
+lastfm.addEventListener("input",()=>{
+  say("submit");
+});
+
+/* ===== SUBMIT RESULT ===== */
+const _alert = window.alert;
+window.alert = function(msg){
+  if(String(msg).includes("image")){
+    bird.classList.add("big");
+    say("cheat");
+    setTimeout(()=>bird.classList.remove("big"),4000);
+  }
+  _alert(msg);
+};
+
+/* ===== SUCCESS ===== */
+document.getElementById("btnCheckin").addEventListener("click",()=>{
+  setTimeout(()=>say("ok"),2000);
+});
+
+/* ===== IDLE MODE ===== */
+setInterval(()=>{
+  if(!document.hidden){
+    const p = playlistSelect.value || "music";
+    say("idle",p);
+  }
+},30000);
+
+/* ===== FOLLOW POINTER ===== */
+document.addEventListener("mousemove",e=>{
+  bird.style.left = e.clientX + 20 + "px";
+  bird.style.top  = e.clientY + 20 + "px";
+  bird.style.right="auto";
+  bird.style.bottom="auto";
+  bird.classList.add("fly");
+});
+
+})();
+/* ===============================
+   🐦 ADMIN BIRD – RANDOM BRAIN ADDON
+   (SAFE – ADD ONLY)
+   =============================== */
+
+(function(){
+
+if (!window.__ADMIN_BIRD__) window.__ADMIN_BIRD__ = {};
+const bird = document.getElementById("adminBird");
+if (!bird) return;
+
+/* ===== RANDOM ANIMATION ENGINE ===== */
+const anims = ["anim-flap","anim-hop","anim-tilt","anim-spin"];
+
+function randomAnim(){
+  const a = anims[Math.floor(Math.random()*anims.length)];
+  bird.classList.add(a);
+  setTimeout(()=>bird.classList.remove(a),900);
+}
+
+/* ===== BLINK ===== */
+setInterval(()=>{
+  bird.classList.add("blink");
+  setTimeout(()=>bird.classList.remove("blink"),180);
+}, Math.random()*4000 + 3000);
+
+/* ===== RANDOM IDLE MOVE ===== */
+setInterval(()=>{
+  if (document.hidden) return;
+
+  // 60% anim, 40% diem
+  if (Math.random() < 0.6) randomAnim();
+
+  // kadang pindah posisi dikit
+  if (Math.random() < 0.3){
+    bird.style.left = Math.random()*70 + 10 + "vw";
+    bird.style.top  = Math.random()*70 + 10 + "vh";
+    bird.style.right="auto";
+    bird.style.bottom="auto";
+  }
+}, 8000);
+
+/* ===== PERCH MODE (LAGI IDLE LAMA) ===== */
+let idleTimer = Date.now();
+
+["mousemove","keydown","click","touchstart"].forEach(evt=>{
+  document.addEventListener(evt,()=> idleTimer = Date.now());
+});
+
+setInterval(()=>{
+  if (Date.now() - idleTimer > 25000){
+    bird.classList.add("perch");
+  } else {
+    bird.classList.remove("perch");
+  }
+},3000);
+
+/* ===== REACT TO IMPORTANT EVENTS ===== */
+
+// saat submit ditekan → excited
+document.getElementById("btnCheckin")?.addEventListener("click",()=>{
+  randomAnim();
+});
+
+// saat ganti playlist → joget kecil
+playlistSelect?.addEventListener("change",()=>{
+  bird.classList.add("anim-flap");
+  setTimeout(()=>bird.classList.remove("anim-flap"),700);
+});
+
+// saat buka history (scroll) → melirik
+document.querySelector(".history-wrap")?.addEventListener("scroll",()=>{
+  bird.classList.add("anim-tilt");
+  setTimeout(()=>bird.classList.remove("anim-tilt"),600);
+});
+
+})();
+/* ===============================
+   🐦 ADMIN BIRD – GOD LEVEL BRAIN
+   ADD-ON ONLY (SAFE)
+   =============================== */
+
+(function(){
+const bird = document.getElementById("adminBird");
+if (!bird) return;
+
+/* ===== inject eye + eq (AMAN) ===== */
+const svg = bird.querySelector("svg");
+if (svg && !svg.querySelector(".eye")) {
+  // tandai mata
+  const eyes = svg.querySelectorAll("circle");
+  if (eyes[1]) eyes[1].classList.add("eye");
+  if (eyes[2]) eyes[2].classList.add("eye");
+
+  // equalizer
+  svg.insertAdjacentHTML("beforeend",`
+    <g class="eq" transform="translate(70 150)">
+      <rect x="0"  y="0" width="6" height="24" fill="#000"/>
+      <rect x="10" y="0" width="6" height="24" fill="#000"/>
+      <rect x="20" y="0" width="6" height="24" fill="#000"/>
+      <rect x="30" y="0" width="6" height="24" fill="#000"/>
+    </g>
+  `);
+}
+
+/* ===== 👀 EYE TRACKING ===== */
+document.addEventListener("mousemove",e=>{
+  const eyes = bird.querySelectorAll(".eye");
+  const r = bird.getBoundingClientRect();
+  const dx = (e.clientX - (r.left+r.width/2)) / 80;
+  const dy = (e.clientY - (r.top+r.height/2)) / 80;
+  eyes.forEach(el=>{
+    el.style.transform = `translate(${dx}px,${dy}px)`;
+  });
+});
+
+/* ===== 🧠 MOOD ENGINE ===== */
+let mood="happy";
+function setMood(m){
+  bird.classList.remove("mood-happy","mood-focus","mood-angry");
+  bird.classList.add("mood-"+m);
+  mood=m;
+}
+setMood("happy");
+
+/* ===== 🗣️ TALK VISUAL ===== */
+function talkOn(){
+  bird.classList.add("talk");
+  setTimeout(()=>bird.classList.remove("talk"),1200);
+}
+
+/* hook ke say() tanpa replace */
+const _say = window.say;
+if (typeof _say === "function"){
+  window.say = function(){
+    talkOn();
+    setMood("focus");
+    return _say.apply(this,arguments);
+  };
+}
+
+/* ===== 😈 BOSS MODE (CHEAT) ===== */
+const _alert = window.alert;
+window.alert = function(msg){
+  if(String(msg).toLowerCase().includes("image")){
+    bird.classList.add("boss","mood-angry");
+    setTimeout(()=>bird.classList.remove("boss"),3000);
+  }
+  return _alert(msg);
+};
+
+/* ===== 🎧 MUSIC VIBE ===== */
+setInterval(()=>{
+  if(document.hidden) return;
+  if(Math.random()<0.4) talkOn();
+},12000);
+
+/* ===== 🧘 AUTO RELAX ===== */
+setInterval(()=>{
+  if(mood!=="happy") setMood("happy");
+},20000);
+
+})();
+/* ===============================
+   🐦 ADMIN BIRD – TITAN BRAIN
+   ADD-ON ONLY (SAFE, NO REPLACE)
+   =============================== */
+
+(function(){
+const bird = document.getElementById("adminBird");
+if (!bird) return;
+
+/* ===============================
+   ⏱️ THROTTLE (ANTI SPAM)
+   =============================== */
+let lastSpeak = 0;
+function canSpeak(ms=4000){
+  const now = Date.now();
+  if (now - lastSpeak < ms) return false;
+  lastSpeak = now;
+  return true;
+}
+
+/* ===============================
+   🧿 PARALLAX AURA (DEPTH)
+   =============================== */
+document.addEventListener("mousemove",e=>{
+  const r = bird.getBoundingClientRect();
+  const dx = (e.clientX - (r.left + r.width/2)) / 40;
+  const dy = (e.clientY - (r.top  + r.height/2)) / 40;
+  bird.style.setProperty("--px", dx+"px");
+  bird.style.setProperty("--py", dy+"px");
+  bird.style.transform = `translate(${dx}px,${dy}px)`;
+});
+
+/* ===============================
+   🧠 CONTEXT AWARENESS
+   =============================== */
+const ctx = {
+  team: document.getElementById("teamId"),
+  user: document.getElementById("username"),
+  count: document.getElementById("count"),
+  proof: document.getElementById("proof"),
+  lastfm: document.getElementById("lastfm"),
+  submit: document.getElementById("btnCheckin")
+};
+
+function ctxHint(msgKey){
+  if (!window.say || !canSpeak()) return;
+  say(msgKey);
+}
+
+/* fokus field → burung paham konteks */
+Object.values(ctx).forEach(el=>{
+  if(!el) return;
+  el.addEventListener("focus",()=>{
+    bird.classList.add("focus-mode");
+  });
+  el.addEventListener("blur",()=>{
+    bird.classList.remove("focus-mode");
+  });
+});
+
+/* ===============================
+   📊 OBSERVER LEADERBOARD & HISTORY
+   (READ-ONLY)
+   =============================== */
+function observeTable(selector, cb){
+  const el = document.querySelector(selector);
+  if (!el) return;
+  const mo = new MutationObserver(()=>cb(el));
+  mo.observe(el,{childList:true,subtree:true});
+}
+
+/* Leaderboard berubah */
+observeTable("#leader",()=>{
+  if (window.say && canSpeak(8000)){
+    const rows = document.querySelectorAll("#leader tr").length;
+    if (rows>0) say("idle", "Leaderboard updated");
+  }
+});
+
+/* History scroll */
+const historyWrap = document.querySelector(".history-wrap");
+if (historyWrap){
+  historyWrap.addEventListener("scroll",()=>{
+    if (window.say && canSpeak(7000)){
+      say("idle","History looks active");
+    }
+  });
+}
+
+/* ===============================
+   🕶️ AUTO SILENT MODE (NGETIK)
+   =============================== */
+let typing = false;
+["input","keydown"].forEach(evt=>{
+  document.addEventListener(evt,()=>{
+    typing = true;
+    bird.classList.add("focus-mode");
+    clearTimeout(window.__typingTimer);
+    window.__typingTimer = setTimeout(()=>{
+      typing=false;
+      bird.classList.remove("focus-mode");
+    },1200);
+  });
+});
+
+/* ===============================
+   🎮 EASTER EGG – KLIK BURUNG 5x
+   =============================== */
+let clickCount = 0;
+bird.addEventListener("click",()=>{
+  clickCount++;
+  if (clickCount>=5){
+    clickCount=0;
+    bird.classList.add("titan-glow");
+    if (window.say) say("ok");
+    setTimeout(()=>bird.classList.remove("titan-glow"),5000);
+  }
+});
+
+/* ===============================
+   🧠 SMART IDLE BEHAVIOR
+   =============================== */
+setInterval(()=>{
+  if (document.hidden || typing) return;
+  if (window.say && canSpeak(15000)){
+    const p = (window.playlistSelect && playlistSelect.value) || "music";
+    say("idle", p);
+  }
+},18000);
+
+})();
+/* ===============================
+   🐦 ADMIN BIRD — GOD TITAN++ BRAIN
+   ADD-ON ONLY (SAFE, NO REPLACE)
+   =============================== */
+
+(function(){
+const bird = document.getElementById("adminBird");
+if (!bird) return;
+
+/* ===== HUD (DEV) ===== */
+const hud = document.createElement("div");
+hud.id="birdHUD";
+hud.innerHTML = `<b>Admin Bird</b><br>state: <span id="hudState">idle</span><br>mood: <span id="hudMood">happy</span>`;
+document.body.appendChild(hud);
+let hudOn=false;
+document.addEventListener("keydown",e=>{
+  if(e.key==="`"){ hudOn=!hudOn; hud.style.display=hudOn?"block":"none"; }
+});
+
+/* ===== TRAIL ===== */
+if(!bird.querySelector(".trail")){
+  const t=document.createElement("div");
+  t.className="trail";
+  bird.appendChild(t);
+}
+
+/* ===============================
+   🧠 FSM — FINITE STATE MACHINE
+   =============================== */
+const FSM = {
+  state:"idle",
+  set(s){
+    this.state=s;
+    document.getElementById("hudState").innerText=s;
+  }
+};
+
+/* ===============================
+   ⏳ GLOBAL SCHEDULER (ANTI SPAM)
+   =============================== */
+let lastTick=0;
+function can(ms){ const n=Date.now(); if(n-lastTick<ms) return false; lastTick=n; return true; }
+
+/* ===============================
+   🗺️ PATH-FINDING TERBANG (Bezier)
+   =============================== */
+function flyTo(x,y,dur=1200){
+  const r=bird.getBoundingClientRect();
+  const sx=r.left, sy=r.top;
+  const cx=sx+(Math.random()*200-100);
+  const cy=sy+(Math.random()*200-100);
+  const start=performance.now();
+  function step(t){
+    const p=Math.min(1,(t-start)/dur);
+    const bx=(1-p)*(1-p)*sx+2*(1-p)*p*cx+p*p*x;
+    const by=(1-p)*(1-p)*sy+2*(1-p)*p*cy+p*p*y;
+    bird.style.left=bx+"px";
+    bird.style.top =by+"px";
+    bird.style.right="auto"; bird.style.bottom="auto";
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ===============================
+   🧩 EMOTION PLUGINS
+   =============================== */
+const Plugins=[];
+function use(fn){ Plugins.push(fn); }
+function emit(evt,payload){
+  Plugins.forEach(fn=>fn(evt,payload));
+}
+
+/* plugin default */
+use((evt)=>{
+  if(evt==="success"){ FSM.set("celebrate"); }
+  if(evt==="alert"){ FSM.set("alert"); }
+  if(evt==="idle"){ FSM.set("idle"); }
+});
+
+/* ===============================
+   🔕 SMART MUTE (ngetik/scroll cepat)
+   =============================== */
+let mute=false, muteT=null;
+["input","keydown","wheel","scroll"].forEach(e=>{
+  document.addEventListener(e,()=>{
+    mute=true; bird.classList.add("muted");
+    clearTimeout(muteT);
+    muteT=setTimeout(()=>{ mute=false; bird.classList.remove("muted"); },1200);
+  },{passive:true});
+});
+
+/* ===============================
+   🧠 CONTEXT AWARE (READ-ONLY)
+   =============================== */
+const ctxEls=["teamId","username","count","proof","lastfm","btnCheckin"]
+  .map(id=>document.getElementById(id)).filter(Boolean);
+ctxEls.forEach(el=>{
+  el.addEventListener("focus",()=>FSM.set("guide"));
+  el.addEventListener("blur", ()=>FSM.set("idle"));
+});
+
+/* ===============================
+   🔔 EVENT HOOKS (SAFE)
+   =============================== */
+// submit
+document.getElementById("btnCheckin")?.addEventListener("click",()=>{
+  emit("success");
+});
+
+// alert hook (duplicate, dll)
+const _alert=window.alert;
+window.alert=function(msg){
+  emit("alert",msg);
+  return _alert(msg);
+};
+
+/* ===============================
+   🧠 IDLE BRAIN LOOP
+   =============================== */
+setInterval(()=>{
+  if(document.hidden||mute) return;
+  if(!can(12000)) return;
+
+  if(FSM.state==="idle"){
+    emit("idle");
+    // pindah spot halus
+    flyTo(Math.random()*window.innerWidth*0.7+50,
+          Math.random()*window.innerHeight*0.7+50, 1400);
+    if(window.say) say("idle",(window.playlistSelect&&playlistSelect.value)||"music");
+  }
+
+  if(FSM.state==="celebrate"){
+    flyTo(window.innerWidth/2, window.innerHeight/2, 900);
+    if(window.say) say("ok");
+    FSM.set("idle");
+  }
+
+  if(FSM.state==="alert"){
+    flyTo(window.innerWidth/2, window.innerHeight/2, 600);
+    FSM.set("idle");
+  }
+},3000);
+
+/* ===============================
+   🧠 READ LEADERBOARD (OBSERVER)
+   =============================== */
+const leader=document.getElementById("leader");
+if(leader){
+  new MutationObserver(()=>{
+    if(!mute && can(15000) && window.say){
+      say("idle","Leaderboard updated");
+    }
+  }).observe(leader,{childList:true,subtree:true});
+}
+
+})();
+ /* ===============================
+   👀 ADMIN BIRD EYE LIFE ENGINE
+   ADD-ON ONLY – SAFE
+   =============================== */
+(function(){
+const bird = document.getElementById("adminBird");
+if(!bird) return;
+
+const svg = bird.querySelector("svg");
+if(!svg) return;
+
+const eyes = svg.querySelectorAll("circle");
+if(eyes.length < 3) return;
+
+// inject pupil kecil
+eyes[1].insertAdjacentHTML("afterend",
+  `<circle class="eye-pupil" cx="${eyes[1].getAttribute("cx")}" cy="${eyes[1].getAttribute("cy")}" r="4" fill="#000"/>`
+);
+eyes[2].insertAdjacentHTML("afterend",
+  `<circle class="eye-pupil" cx="${eyes[2].getAttribute("cx")}" cy="${eyes[2].getAttribute("cy")}" r="4" fill="#000"/>`
+);
+
+const pupils = svg.querySelectorAll(".eye-pupil");
+
+// pupil follow mouse
+document.addEventListener("mousemove",e=>{
+  const r = bird.getBoundingClientRect();
+  const dx = (e.clientX - (r.left+r.width/2)) / 120;
+  const dy = (e.clientY - (r.top+r.height/2)) / 120;
+  pupils.forEach(p=>{
+    p.style.transform = `translate(${dx}px,${dy}px)`;
+  });
+});
+
+// blink
+setInterval(()=>{
+  eyes[1].style.opacity = 0.2;
+  eyes[2].style.opacity = 0.2;
+  setTimeout(()=>{
+    eyes[1].style.opacity = 1;
+    eyes[2].style.opacity = 1;
+  },140);
+}, Math.random()*4000 + 2500);
+
+})();
+
+/* ===============================
+   🌗 SUPER SIMPLE THEME TOGGLE
+   =============================== */
+(function(){
+  const KEY = "BST_THEME";
+
+  function setTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem(KEY, t);
+  }
+
+  const saved = localStorage.getItem(KEY);
+  setTheme(saved || "dark");
+
+  window.toggleTheme = function(){
+    const cur = document.documentElement.getAttribute("data-theme");
+    setTheme(cur === "dark" ? "light" : "dark");
+  };
+})();
+
+
+/* 👻 AUTO HIDE THEME PILL – FINAL FIX */
+(function(){
+
+  // fallback selector (AMAN)
+  const pill =
+    document.getElementById("themePillWrap") ||
+    document.querySelector('button[onclick="toggleTheme()"]');
+
+  if(!pill){
+    console.warn("Theme pill not found");
+    return;
+  }
+
+  let lastScroll = window.pageYOffset;
+  let hideTimer = null;
+
+  window.addEventListener("scroll", function(){
+    const cur = window.pageYOffset;
+
+    // SCROLL KE BAWAH
+    if(cur > lastScroll && cur > 60){
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(()=>{
+        pill.classList.add("theme-pill-hide");
+      }, 80);
+    }
+    // SCROLL KE ATAS
+    else{
+      pill.classList.remove("theme-pill-hide");
+    }
+
+    lastScroll = cur;
+  }, { passive:true });
+
+})();
+
+
+/* ===============================
+   📅 LEADERBOARD DATE FILTER
+   =============================== */
+
+const lbDateFrom = document.getElementById("lbDateFrom");
+const lbDateTo   = document.getElementById("lbDateTo");
+
+function inLBDateRange(ts){
+  if(!ts) return true;
+
+  const t = new Date(ts).getTime();
+
+  if(lbDateFrom.value){
+    const from = new Date(lbDateFrom.value).getTime();
+    if(t < from) return false;
+  }
+
+  if(lbDateTo.value){
+    const to = new Date(lbDateTo.value).getTime() + 86400000;
+    if(t > to) return false;
+  }
+
+  return true;
+}
+
+/* AUTO REFRESH */
+["change"].forEach(e=>{
+  lbDateFrom.addEventListener(e,onFilterChange);
+  lbDateTo.addEventListener(e,onFilterChange);
+});
+
+/* ===============================
+   ADVANCE STREAM – REALTIME GAS
+   READ ONLY – NO MOCK – FINAL
+   =============================== */
+
+const API_ADVANCE = "/api/stream.php?type=advance&token=STREAM_TEAM_2026_SECURE";
+
+let advanceData = [];
+
+/* ===============================
+   LOAD DATA FROM GAS
+   =============================== */
+async function loadAdvance(){
+  try{
+    const r = await fetch(API_ADVANCE);
+    const j = await r.json();
+    advanceData = Array.isArray(j) ? j : [];
+    console.log("ADVANCE DATA (REAL):", advanceData);
+  }catch(err){
+    console.error("ADVANCE LOAD ERROR", err);
+    advanceData = [];
+  }
+}
+
+/* ===============================
+   BUILD PLAYLIST FILTER (REAL)
+   =============================== */
+function buildAdvPlaylist(){
+  const sel = document.getElementById("advPlaylist");
+  if(!sel) return;
+
+  const pls = [...new Set(advanceData.map(x=>x.playlist))];
+  sel.innerHTML = `<option value="">ALL</option>`;
+  pls.forEach(p=>{
+    sel.innerHTML += `<option value="${p}">${p}</option>`;
+  });
+}
+
+/* ===============================
+   RENDER TABLE + SUMMARY
+   =============================== */
+function renderAdvance(){
+  const body = document.getElementById("advanceBody");
+  if (!body) return;
+
+  const fPl = advPlaylist.value;
+
+  body.innerHTML = "";
+  let ok=0, using=0, critical=0;
+
+  advanceData.forEach(r=>{
+    if (fPl && r.playlist !== fPl) return;
+
+    const s = r.status;
+
+    if(s === "OK") ok++;
+    if(s === "USING") using++;
+    if(s === "CRITICAL") critical++;
+
+    body.innerHTML += `
+      <tr>
+        <td>${r.username}</td>
+        <td>${r.playlist}</td>
+        <td>${r.weekly_stream}</td>
+        <td>${r.balance}</td>
+        <td><span class="adv-status ${s}">${s}</span></td>
+      </tr>
+    `;
+  });
+
+  advOk.innerText = ok;
+  advUsing.innerText = using;
+  advCritical.innerText = critical;
+}
+
+/* ===============================
+   FILTER EVENT (PLAYLIST ONLY)
+   =============================== */
+advPlaylist.addEventListener("change", renderAdvance);
+
+/* ===============================
+   HOOK TO MAIN TAB (SAFE OVERRIDE)
+   =============================== */
+const __openMainTab = window.openMainTab;
+window.openMainTab = function(tab){
+  __openMainTab(tab);
+  if(tab === "advance"){
+    loadAdvance().then(()=>{
+      buildAdvPlaylist();
+      renderAdvance();
+    });
+  }
+};
+
+(() => {
+
+  const bird = document.getElementById("adminBird");
+  if(!bird){
+    console.error("adminBird not found");
+    return;
+  }
+
+  /* =========================
+     STATE
+  ========================= */
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+
+  let currentX = targetX;
+  let currentY = targetY;
+
+  let velX = 0;
+  let velY = 0;
+
+  let bounceY = 0;
+
+  let scrollMode = false;
+  let scrollTimeout = null;
+
+  /* =========================
+     CONFIG (TUNING)
+  ========================= */
+  const STIFFNESS = 0.18;        // smoothness
+  const DAMPING   = 0.78;        // anti reg-reg
+  const BOUNCE_FORCE = -0.9;     // loncat scroll
+  const SCROLL_X_OFFSET = 120;   // jarak dari kanan (lebih ke kiri)
+
+  /* =========================
+     CURSOR FOLLOW
+  ========================= */
+  document.addEventListener("mousemove", e=>{
+    if(window.__CUTSCENE_ACTIVE__) return;
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+
+  /* =========================
+     SCROLL → BOUNCE
+  ========================= */
+  window.addEventListener("wheel", e=>{
+    if(window.__CUTSCENE_ACTIVE__) return;
+   
+    targetX = window.innerWidth - SCROLL_X_OFFSET;
+    bounceY += e.deltaY * BOUNCE_FORCE;
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(()=>{
+      
+    }, 260);
+  }, { passive:true });
+
+  /* =========================
+     ANIMATION LOOP
+  ========================= */
+  function animate(){
+
+    /* spring follow (HALUS) */
+    velX += (targetX - currentX) * STIFFNESS;
+    velY += (targetY - currentY) * STIFFNESS;
+
+    velX *= DAMPING;
+    velY *= DAMPING;
+
+    currentX += velX;
+    currentY += velY;
+
+    /* bounce scroll */
+    bounceY *= 0.72;
+    currentY += bounceY;
+
+    /* clamp layar */
+    currentY = Math.max(70, Math.min(currentY, window.innerHeight - 70));
+
+    bird.style.left = currentX + "px";
+    bird.style.top  = currentY + "px";
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+})();
+
+
+(() => {
+
+  const bird = document.getElementById("adminBird");
+  if(!bird) return;
+
+  /* ===============================
+     SPEECH DATA (MULTI BAHASA)
+     ID / EN / AR / JP
+  ================================ */
+  const speechPool = [
+    // 🇮🇩 Indonesia
+    "Klik apa kau kawan? 😤",
+    "Pakai mata dong 😒",
+    "Kliklah pada tempatnya",
+    "Fokus dulu ya 😐",
+    "Ini bukan game 😅",
+
+    // 🇬🇧 English
+    "Hey! Use your eyes 👀",
+    "Don't click randomly, bro",
+    "Please click properly 🙏",
+    "Focus first, okay?",
+    "This is not a game 😅",
+
+    // 🇸🇦 Arabic
+    "لماذا تنقر هنا؟ 😤",
+    "انتبه من فضلك 👀",
+    "انقر في المكان الصحيح",
+    "ركز قليلاً 😐",
+    "هذا ليس لعبة 😅",
+
+    // 🇯🇵 Japanese
+    "どこをクリックしてるの？😤",
+    "ちゃんと見て 👀",
+    "正しい場所をクリックして",
+    "集中して 😐",
+    "これはゲームじゃないよ 😅"
+  ];
+
+  const moods = ["angry","confused","happy"];
+
+  /* ===============================
+     BUBBLE ELEMENT
+  ================================ */
+  const bubble = document.createElement("div");
+  bubble.className = "bird-bubble";
+  bird.appendChild(bubble);
+
+  /* ===============================
+     SMART CLICK HANDLER
+     ❌ DIAM SAAT INPUT
+     ✅ NGOMONG SAAT AREA KOSONG
+  ================================ */
+  document.addEventListener("click", e=>{
+
+    const t = e.target;
+
+    /* -------------------------------
+       🚫 JANGAN NGOMONG DI FORM
+    -------------------------------- */
+    if(
+      t.closest("input") ||
+      t.closest("select") ||
+      t.closest("textarea") ||
+      t.closest("button") ||
+      t.closest("label") ||
+      t.closest("form") ||
+      t.closest(".checkin") ||        // section Check-In
+      t.closest(".leaderboard") ||    // tabel
+      t.closest("#submitBtn")
+    ){
+      return; // DIAM TOTAL
+    }
+
+    /* -------------------------------
+       ✅ AREA KOSONG → BOLEH NGOMONG
+    -------------------------------- */
+    const text =
+      speechPool[Math.floor(Math.random() * speechPool.length)];
+
+    bubble.textContent = text;
+    bubble.classList.add("show");
+
+    const mood =
+      moods[Math.floor(Math.random() * moods.length)];
+    bird.setAttribute("data-mood", mood);
+
+    /* loncat kecil (kalau engine bounce ada) */
+    if(typeof bounceY !== "undefined"){
+      bounceY += -18 - Math.random() * 15;
+    }
+
+    /* hide bubble */
+    setTimeout(()=>{
+      bubble.classList.remove("show");
+    }, 2200);
+
+  });
+
+})();
+
+/* =========================
+   USER DETECTION
+   ========================= */
+
+// PRIORITAS:
+// 1. window.currentUser
+// 2. localStorage
+// 3. fallback prompt (sekali)
+
+function getLastFMUser(){
+  return window.currentUser
+    || localStorage.getItem("lastfm_user")
+    || (() => {
+        const u = prompt("Masukkan username Last.fm kamu:");
+        if(u) localStorage.setItem("lastfm_user", u);
+        return u;
+    })();
+}
+
+/* =========================
+   BUTTON ACTION
+   ========================= */
+
+document.getElementById("btnRecentTrack").onclick = () => {
+  window.open(
+    "https://www.statsforspotify.com/track/recent",
+    "_blank",
+    "noopener"
+  );
+};
+
+document.getElementById("btnLastFM").onclick = () => {
+  const user = getLastFMUser();
+  if(!user) return;
+
+  window.open(
+    `https://www.last.fm/user/${user}/library`,
+    "_blank",
+    "noopener"
+  );
+};
+
+/* =========================
+   FB PINCH ZOOM (MOBILE)
+   ========================= */
+(function(){
+  const viewer = document.getElementById("fbViewer");
+  const img    = document.getElementById("fbImage");
+  if(!viewer || !img) return;
+
+  let startDist = 0;
+  let startZoom = 1;
+
+  function getDist(t1, t2){
+    const dx = t2.clientX - t1.clientX;
+    const dy = t2.clientY - t1.clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  viewer.addEventListener("touchstart", e=>{
+    if(e.touches.length === 2){
+      startDist = getDist(e.touches[0], e.touches[1]);
+      startZoom = fbZoom;
+    }
+  }, { passive:true });
+
+  viewer.addEventListener("touchmove", e=>{
+    if(e.touches.length === 2){
+      const dist = getDist(e.touches[0], e.touches[1]);
+      const scale = dist / startDist;
+      fbZoom = Math.min(5, Math.max(0.5, startZoom * scale));
+      img.style.transform = `scale(${fbZoom})`;
+    }
+  }, { passive:true });
+})();
+
+/* =========================
+   FB DOUBLE CLICK / TAP ZOOM
+   ========================= */
+(function(){
+  const img = document.getElementById("fbImage");
+  if(!img) return;
+
+  let lastTap = 0;
+
+  function toggleZoom(){
+    if (fbZoom > 1){
+      fbZoom = 1;
+    } else {
+      fbZoom = 2.5;
+    }
+    img.style.transform = `scale(${fbZoom})`;
+  }
+
+  // Desktop double click
+  img.addEventListener("dblclick", e=>{
+    e.preventDefault();
+    toggleZoom();
+  });
+
+  // Mobile double tap
+  img.addEventListener("touchend", e=>{
+    const now = Date.now();
+    if (now - lastTap < 280){
+      toggleZoom();
+      e.preventDefault();
+    }
+    lastTap = now;
+  });
+})();
+
+let fbImg;
+let isDrag = false;
+let startX = 0, startY = 0;
+let moveX = 0, moveY = 0;
+let scale = 1;
+
+function initFBViewer(){
+  fbWrap = document.querySelector(".fbv-image");
+  fbImg  = fbWrap.querySelector("img");
+
+  /* RESET */
+  scale = 1;
+  moveX = 0;
+  moveY = 0;
+  applyTransform();
+
+  /* ===== DRAG ===== */
+  fbWrap.addEventListener("mousedown", e=>{
+    isDrag = true;
+    startX = e.clientX - moveX;
+    startY = e.clientY - moveY;
+  });
+
+  window.addEventListener("mousemove", e=>{
+    if(!isDrag) return;
+    moveX = e.clientX - startX;
+    moveY = e.clientY - startY;
+    applyTransform();
+  });
+
+  window.addEventListener("mouseup", ()=>{
+    isDrag = false;
+  });
+
+  /* ===== TOUCH ===== */
+  fbWrap.addEventListener("touchstart", e=>{
+    if(e.touches.length!==1) return;
+    isDrag = true;
+    startX = e.touches[0].clientX - moveX;
+    startY = e.touches[0].clientY - moveY;
+  });
+
+  fbWrap.addEventListener("touchmove", e=>{
+    if(!isDrag) return;
+    moveX = e.touches[0].clientX - startX;
+    moveY = e.touches[0].clientY - startY;
+    applyTransform();
+  });
+
+  fbWrap.addEventListener("touchend", ()=>{
+    isDrag = false;
+  });
+
+  /* ===== ZOOM SCROLL ===== */
+  fbWrap.addEventListener("wheel", e=>{
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+    scale += delta;
+    scale = Math.min(Math.max(1, scale), 5);
+    applyTransform();
+  }, { passive:false });
+}
+
+function applyTransform(){
+  fbImg.style.transform =
+    `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+}
+
+
+</script>
+</body>
+</html>
