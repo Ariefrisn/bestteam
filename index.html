@@ -1684,7 +1684,7 @@ img.thumb{
  <option value="es">🇪🇸 Español</option>
 </select>
   
-<section id<section id="tab-main" class="main-tab">
+<section id="tab-main" class="main-tab">
 
 <div class="card">
 <div class="checkin-header">
@@ -3250,14 +3250,15 @@ function renderHistory(){
         fbIdx = window.fbImages.length;
 
         window.fbImages.push({
-          proof: r.proof,
-          user: r.user || r.username || teamMap[r.team_id] || "-"
-          playlist: (r.playlist || "-").trim(),
-          count: Number(r.count) || 0,
-          status: r.status || "",
-          reason: r.reason || "",
-          verified_type: r.verified_type || ""
-        });
+  proof: r.proof,
+  user: r.user || r.username || teamMap[r.team_id] || "-",
+  playlist: (r.playlist || "-").trim(),
+  count: Number(r.count) || 0,
+  status: r.status || "",
+  reason: r.reason || "",
+  verified_type: r.verified_type || ""
+});
+
       }
 
       /* =========================
