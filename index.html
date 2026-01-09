@@ -3113,7 +3113,7 @@ async function loadPlaylists(){
 }
 
 async function loadAll(){
- const r = await safeJsonFetch(API+"?type=checkin&token=" + TOKEN);
+ const r = await safeJsonFetch(API+"?type=checkin_list&token=" + TOKEN);
  if (!Array.isArray(r)) return;
 
  // 🔒 HASH DATA → CEK PERUBAHAN
@@ -3251,7 +3251,7 @@ function renderHistory(){
 
         window.fbImages.push({
           proof: r.proof,
-          user: r.user || r.username || "-",
+          user: r.user || r.username || teamMap[r.team_id] || "-"
           playlist: (r.playlist || "-").trim(),
           count: Number(r.count) || 0,
           status: r.status || "",
@@ -3274,7 +3274,7 @@ function renderHistory(){
               ${r.status || "PENDING"}
             </span>
             ${
-              r.verified_type === "AUTO"
+              r.verified_type && r.verified_type !== ""
                 ? `<span class="status AUTO">AUTO VERIFIED</span>`
                 : ""
             }
@@ -4546,7 +4546,9 @@ advPlaylist.addEventListener("change", renderAdvance);
 /* ===============================
    HOOK TO MAIN TAB (SAFE OVERRIDE)
    =============================== */
-const __openMainTab = window.openMainTab;
+if(tab === "advance"){
+  loadAdvance?.();
+}
 window.openMainTab = function(tab){
   __openMainTab(tab);
   if(tab === "advance"){
