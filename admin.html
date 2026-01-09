@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Stream Team – Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ======================
+   THEME VARIABLES
+   ====================== */
+
+:root{
+  /* Twitter Blue */
+  --blue:#1d9bf0;
+  --blue-dark:#1a8cd8;
+
+  /* Status */
+  --green:#1db954;
+  --yellow:#ffad1f;
+  --red:#f4212e;
+}
+
+/* ======================
+   LIGHT MODE (IG STYLE)
+   ====================== */
+
+body[data-theme="light"]{
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --line:#dfe3ea;
+
+  --text:#0f1419;
+  --muted:#657786;
+
+  --input:#ffffff;
+  --input-border:#cfd9de;
+}
+
+/* ======================
+   DARK MODE (TWITTER)
+   ====================== */
+
+body[data-theme="dark"]{
+  --bg:#0a0f14;
+  --card:#171a21;
+  --line:#232834;
+
+  --text:#e7e9ea;
+  --muted:#9aa4b2;
+
+  --input:#0f1218;
+  --input-border:#232834;
+}
+
+/* ======================
+   BASE STYLE (UNCHANGED STRUCTURE)
+   ====================== */
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial;
+  transition:background .25s,color .25s;
+}
+
+.container{
+  max-width:1300px;
+  margin:20px auto;
+  padding:16px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+  transition:background .25s,border .25s;
+}
+
+/* ================= INPUT ================= */
+
+input,select,button{
+  background:var(--input);
+  color:var(--text);
+  border:1px solid var(--input-border);
+  border-radius:999px;
+  padding:8px 12px;
+  transition:.2s ease;
+}
+
+input::placeholder{
+  color:var(--muted);
+}
+
+button{
+  cursor:pointer;
+  font-weight:700;
+}
+
+button:hover{
+  transform:translateY(-1px);
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  background:var(--blue);
+  color:#fff;
+  border:0;
+}
+
+.btn:hover{ background:var(--blue-dark) }
+
+.btn-yellow{
+  background:var(--yellow);
+  color:#1b1405;
+  border:0;
+}
+
+.btn-red{
+  background:var(--red);
+  color:#fff;
+  border:0;
+}
+
+/* ================= TABS ================= */
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.tab{
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(0,0,0,.05);
+  cursor:pointer;
+  color:var(--muted);
+}
+
+body[data-theme="dark"] .tab{
+  background:#111;
+}
+
+.tab.active{
+  background:var(--blue);
+  color:#fff;
+}
+
+/* ================= TABLE ================= */
+
+table{width:100%;border-collapse:collapse}
+
+th,td{
+  padding:8px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+th{
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+/* ================= BADGE ================= */
+
+.badge{
+  padding:4px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+}
+
+.APPROVED{background:var(--green);color:#04130a}
+.PENDING{background:var(--yellow);color:#1b1405}
+.REJECTED{background:var(--red);color:#fff}
+
+/* ================= IMAGE ================= */
+
+img.thumb{
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  object-fit:cover;
+  cursor:pointer;
+}
+
+/* ================= UTIL ================= */
+
+.hidden{display:none}
+
+.progress{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+pre{
+  background:var(--input);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  white-space:pre-wrap;
+  font-size:13px;
+  line-height:1.4;
+  max-height:360px;
+  overflow:auto;
+}
+
+
+/* ======================
+   POLISH ADD-ON (SAFE)
+   ====================== */
+/* ===== ROW DEPTH & FOCUS ===== */
+tbody tr{
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+tbody tr:hover{
+  background:#202535;
+  box-shadow: inset 0 0 0 1px rgba(29,185,84,.15);
+}
+/* ===== STATUS BADGE ALIGNMENT ===== */
+td[data-label="Status"]{
+  text-align:center;
+}
+
+td[data-label="Status"] .badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:90px;
+}
+/* ===== REASON READABILITY ===== */
+td[data-label="Reason"]{
+  line-height:1.35;
+  color:#d0d6e0;
+}
+/* ===== LAST.FM ACTION STYLE ===== */
+td[data-label="Last.fm"] a{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(29,185,84,.12);
+  border:1px solid rgba(29,185,84,.35);
+  color:#1db954;
+  font-size:12px;
+}
+
+td[data-label="Last.fm"] a:hover{
+  background:#1db954;
+  color:#04130a;
+}
+/* ===== ACTION BUTTON GROUP ===== */
+td[data-label="Action"]{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+}
+
+td[data-label="Action"] button{
+  min-width:32px;
+  height:32px;
+  padding:0;
+  border-radius:8px;
+}
+/* ===== STICKY HEADER DEPTH ===== */
+thead th{
+  box-shadow: 0 2px 0 rgba(0,0,0,.4);
+}
+/* ===== ZEBRA VERY SUBTLE ===== */
+tbody tr:nth-child(even){
+  background:rgba(255,255,255,.015);
+}
+/* ================= LOGIN INPUT FOCUS ================= */
+.container > .card:first-of-type input{
+  transition:.2s ease;
+}
+
+.container > .card:first-of-type input:focus{
+  border-color:#1db954;
+  box-shadow:0 0 0 3px rgba(29,185,84,.25);
+}
+/* ================= LOGIN ERROR SHAKE ================= */
+#lockMsg:not(:empty){
+  animation: shake .3s linear;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:translateX(0)}
+}
+/* ================= UNLOCK LOADING BAR ================= */
+
+#lockMsg{
+  position:relative;
+  height:10px;
+  margin-top:12px;
+  border-radius:999px;
+  background:#232834;
+  overflow:hidden;
+}
+
+/* bar jalan */
+#lockMsg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#1db954,#00ff88);
+  transform:translateX(-100%);
+  animation: unlockBar 1.8s ease forwards;
+}
+
+/* burung terbang */
+#lockMsg::after{
+  content:"🐦";
+  position:absolute;
+  top:-16px;
+  left:-24px;
+  font-size:18px;
+  animation: birdFly 1.8s ease forwards;
+}
+
+@keyframes unlockBar{
+  to{ transform:translateX(0); }
+}
+
+@keyframes birdFly{
+  0%{
+    left:-24px;
+    transform:rotate(-10deg);
+  }
+  50%{
+    transform:rotate(10deg);
+  }
+  100%{
+    left:calc(100% - 10px);
+    transform:rotate(0);
+  }
+}
+/* ================= TABS APPEAR ANIMATION ================= */
+
+#tabs{
+  opacity:0;
+  transform:translateY(10px);
+}
+
+#tabs:not(.hidden){
+  animation: tabsIn .45s ease-out forwards;
+  animation-delay:.15s;
+}
+
+@keyframes tabsIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+/* ================= LOGIN CARD EXIT ================= */
+
+.container > .card:first-of-type{
+  transition:.4s ease;
+}
+
+#tabs:not(.hidden) ~ .card:first-of-type{
+  opacity:0;
+  transform:scale(.98);
+}
+/* ================= UNLOCK FAIL EFFECT ================= */
+
+/* base loading bar (reuse) */
+#lockMsg{
+  position:relative;
+  height:10px;
+  margin-top:12px;
+  border-radius:999px;
+  background:#232834;
+  overflow:hidden;
+}
+
+/* ===== FAIL BAR ===== */
+#lockMsg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#e5533d,#ff3b3b);
+  transform:scaleX(0);
+  transform-origin:left;
+}
+
+/* ===== FAIL BIRD ===== */
+#lockMsg::after{
+  content:"🐦";
+  position:absolute;
+  top:-18px;
+  left:45%;
+  font-size:18px;
+  opacity:0;
+}
+
+/* ===== TRIGGER SAAT ADA ❌ ===== */
+#lockMsg:not(:empty){
+  --fail:1;
+}
+
+/* bar muncul */
+#lockMsg:not(:empty)::before{
+  animation: failBar .4s ease forwards;
+}
+
+/* burung jatuh */
+#lockMsg:not(:empty)::after{
+  opacity:1;
+  animation: birdFall .8s cubic-bezier(.4,.0,1,1) forwards;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes failBar{
+  to{ transform:scaleX(1); }
+}
+
+@keyframes birdFall{
+  0%{
+    transform:translateY(0) rotate(0deg);
+  }
+  30%{
+    transform:translateY(4px) rotate(-20deg);
+  }
+  60%{
+    transform:translateY(14px) rotate(25deg);
+  }
+  100%{
+    transform:translateY(40px) rotate(90deg);
+    opacity:0;
+  }
+}
+@keyframes birdFall{
+  100%{
+    transform:translateY(40px) rotate(90deg) scale(.8);
+    opacity:0;
+    filter:blur(1px);
+  }
+}
+
+/* --- table layout fix --- */
+table{
+  table-layout:fixed;
+}
+
+th,td{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* column alignment */
+th:nth-child(1),td:nth-child(1){width:40px;text-align:center}
+th:nth-child(2),td:nth-child(2){width:160px}
+th:nth-child(3),td:nth-child(3){width:180px}
+th:nth-child(4),td:nth-child(4){width:70px;text-align:center}
+th:nth-child(5),td:nth-child(5){width:110px;text-align:center}
+th:nth-child(6),td:nth-child(6){width:160px}
+th:nth-child(7),td:nth-child(7){width:90px;text-align:center}
+th:nth-child(8),td:nth-child(8){width:70px;text-align:center}
+th:nth-child(9),td:nth-child(9){width:90px;text-align:center}
+
+/* header polish */
+thead th{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  color:#9aa4b2;
+}
+
+/* badge nicer */
+.badge{
+  min-width:78px;
+  text-align:center;
+}
+
+/* image hover */
+img.thumb:hover{
+  outline:2px solid #1db954;
+}
+
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes zoomIn{
+  from{transform:scale(.9)}
+  to{transform:scale(1)}
+}
+/* ================= POLISH TABLE (ADD-ON) ================= */
+table{
+  min-width:900px;
+}
+
+thead th{
+  position:sticky;
+  top:0;
+  background:#171a21;
+  z-index:2;
+}
+
+tbody tr:hover{
+  background:#1e2230;
+}
+
+th{
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:.5px;
+  color:#9aa4b2;
+}
+
+td{
+  vertical-align:middle;
+}
+/* ================= MOBILE POLISH ================= */
+@media(max-width:768px){
+
+  .tabs{
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+
+  .tab{
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  .card{
+    padding:12px;
+  }
+
+  input, select, button{
+    font-size:14px;
+  }
+
+  pre{
+    font-size:12px;
+  }
+}
+/* ================= STATUS BADGE POLISH ================= */
+.badge{
+  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;
+}
+
+.APPROVED{ box-shadow:0 0 10px rgba(29,185,84,.35) }
+.PENDING{ box-shadow:0 0 10px rgba(240,173,78,.35) }
+.REJECTED{ box-shadow:0 0 10px rgba(229,83,61,.35) }
+/* ================= BUTTON FEEDBACK ================= */
+button{
+  transition:.15s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+}
+
+button:active{
+  transform:scale(.97);
+}
+/* ================= BUTTON FEEDBACK ================= */
+button{
+  transition:.15s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+}
+
+button:active{
+  transform:scale(.97);
+}
+/* ================= STICKY ACTION ================= */
+@media(max-width:640px){
+  td[data-label="Aksi"]{
+    position:sticky;
+    bottom:0;
+    background:#171a21;
+    padding-top:10px;
+    margin-top:10px;
+    border-top:1px dashed #232834;
+  }
+}
+/* ================= ADMIN HINT ================= */
+.progress{
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:.6}
+  50%{opacity:1}
+  100%{opacity:.6}
+}
+
+/* ======================
+   MOBILE FRIENDLY
+   ====================== */
+@media(max-width:900px){
+
+  .container{
+    margin:0;
+    padding:10px;
+  }
+
+  .tabs{
+    overflow-x:auto;
+  }
+
+  table{
+    font-size:12px;
+  }
+/* ================= FIX TEXT POTONG (MOBILE & DESKTOP) ================= */
+
+/* default: semua kolom gak kepotong */
+th, td{
+  white-space: nowrap;
+}
+
+/* khusus kolom Reason: boleh turun baris */
+td[data-label="Reason"]{
+  white-space: normal;
+  word-break: break-word;
+  max-width: 220px;
+}
+
+/* jaga link last.fm biar gak kepotong */
+td[data-label="Last.fm"] a{
+  white-space: nowrap;
+}
+
+  img.thumb{
+    width:34px;
+    height:34px;
+  }
+
+  pre{
+    font-size:12px;
+  }
+}
+   /* ======================
+   FLOATING THEME TOGGLE
+   ====================== */
+
+#themeToggle{
+  position:fixed;
+  top:14px;
+  left:14px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  font-size:20px;
+  line-height:1;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+  opacity:.9;
+  transition:
+    opacity .25s ease,
+    transform .25s ease;
+}
+
+/* hover feedback */
+#themeToggle:hover{
+  opacity:1;
+  transform:scale(1.08);
+}
+
+/* auto hide */
+#themeToggle.hide{
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+}
+/* =========================================
+   FIX ROW HOVER — LIGHT MODE (TWITTER BLUE)
+   ========================================= */
+
+/* hover baris tabel */
+body[data-theme="light"] tbody tr:hover{
+  background:rgba(29,155,240,.08);   /* Twitter blue transparent */
+  box-shadow:inset 0 0 0 1px rgba(29,155,240,.25);
+}
+
+/* hover sel biar rata */
+body[data-theme="light"] tbody tr:hover td{
+  background:transparent;
+}
+
+/* checkbox row ikut nyatu */
+body[data-theme="light"] tbody tr:hover input[type="checkbox"]{
+  accent-color:#1d9bf0;
+}
+
+/* kolom aksi (biar gak abu-abu) */
+body[data-theme="light"] td[data-label="Action"],
+body[data-theme="light"] td[data-label="Aksi"]{
+  background:transparent;
+}
+body[data-theme="light"] tbody tr{
+  transition:background .15s ease, box-shadow .15s ease;
+}
+
+   
+/* ======================================================
+   ZOOM OVERLAY — FINAL STABLE (MATCH JS)
+   ====================================================== */
+
+/* === OVERLAY === */
+#zoom{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  z-index:999999;
+
+  /* layout */
+  display:flex;
+  align-items:flex-start;        /* scroll dari atas */
+  justify-content:center;
+  overflow:auto;
+
+  /* ruang tombol close */
+  padding:80px 16px 24px;
+
+  /* UX */
+  cursor:grab;
+}
+
+/* default hidden (WAJIB) */
+#zoom.hidden{
+  display:none;
+}
+
+/* === STAGE === */
+.zoom-stage{
+  max-width:100%;
+  max-height:none;
+  user-select:none;
+}
+
+/* === IMAGE === */
+#zoom img{
+  max-width:90vw;
+  height:auto;
+  display:block;
+  margin:auto;
+  border-radius:12px;
+
+  /* future zoom support */
+  transform-origin:center center;
+}
+
+/* === GRAB STATE === */
+#zoom:active{
+  cursor:grabbing;
+}
+
+/* === CLOSE BUTTON === */
+.zoom-close{
+  position:fixed;
+  top:16px;
+  right:16px;
+
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:0;
+
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  font-size:24px;
+  font-weight:bold;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+  z-index:1000000;
+}
+
+.zoom-close:hover{
+  background:rgba(255,255,255,.35);
+}
+
+/* ======================================================
+   THUMBNAIL — CLICK PRIORITY (ANTI TABLE / HOVER)
+   ====================================================== */
+
+td[data-label="Bukti"]{
+  position:relative !important;
+  z-index:5 !important;
+  pointer-events:auto !important;
+}
+
+img.thumb{
+  position:relative !important;
+  z-index:10 !important;
+  pointer-events:auto !important;
+  cursor:zoom-in;
+}
+
+/* hover row tidak boleh blokir */
+tbody tr:hover,
+tbody tr:hover td{
+  box-shadow:none !important;
+}
+/* ==================================================
+   ADMIN HISTORY TABLE — HARD ALIGN FIX
+   ================================================== */
+
+.admin-history-table{
+  table-layout:fixed;
+  width:100%;
+}
+
+/* RESET efek CSS global */
+.admin-history-table th,
+.admin-history-table td{
+  all:unset;
+  display:table-cell;
+  padding:10px 8px;
+  font-size:13px;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+  vertical-align:middle;
+}
+
+/* HEADER */
+.admin-history-table thead th{
+  background:#171a21;
+  color:#9aa4b2;
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:.4px;
+}
+
+/* ===== KUNCI POSISI KOLOM ===== */
+.admin-history-table th:nth-child(1),
+.admin-history-table td:nth-child(1){
+  width:120px; /* DATE */
+}
+
+.admin-history-table th:nth-child(2),
+.admin-history-table td:nth-child(2){
+  width:200px; /* PLAYLIST */
+}
+
+.admin-history-table th:nth-child(3),
+.admin-history-table td:nth-child(3){
+  width:100px; /* TEAM ID */
+  text-align:center;
+}
+
+.admin-history-table th:nth-child(4),
+.admin-history-table td:nth-child(4){
+  width:140px; /* USER */
+}
+
+.admin-history-table th:nth-child(5),
+.admin-history-table td:nth-child(5){
+  width:80px;  /* COUNT */
+  text-align:center;
+}
+
+/* hover aman */
+.admin-history-table tbody tr:hover{
+  background:rgba(29,155,240,.08);
+}
+
+</style>
+
+</head>
+
+<body data-theme="light">
+<div class="container">
+<button id="themeToggle" aria-label="Toggle theme">🌓</button>
+
+
+<!-- ================= LOGIN ================= -->
+<div class="card" style="text-align:center">
+  <h3 style="margin-bottom:12px">Admin Access</h3>
+
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <input id="adminPass"
+           type="password"
+           placeholder="Admin password"
+           style="min-width:220px">
+    <button class="btn" onclick="unlock()">UNLOCK</button>
+  </div>
+
+  <div class="progress" id="lockMsg" style="margin-top:8px"></div>
+</div>
+
+<!-- ================= TABS ================= -->
+<div class="tabs hidden" id="tabs" style="flex-wrap:wrap">
+  <div class="tab active" onclick="openTab('audit')">Audit</div>
+  <div class="tab" onclick="openTab('adminSubmit')">Submit by Admin</div>
+  <div class="tab" onclick="openTab('playlist')">Add Playlist</div>
+  <div class="tab" onclick="openTab('summary')">Weekly Summary</div>
+</div>
+
+<!-- ================= AUDIT ================= -->
+<div id="audit" class="card hidden">
+
+  <!-- FILTER -->
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:8px;
+    margin-bottom:12px
+  ">
+    <select id="fPlaylist"></select>
+    <input id="fUser" placeholder="User">
+    <input id="fFrom" type="date">
+    <input id="fTo" type="date">
+    <select id="fStatus">
+      <option value="">ALL</option>
+      <option>APPROVED</option>
+      <option>PENDING</option>
+      <option>REJECTED</option>
+    </select>
+  </div>
+
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button class="btn" onclick="bulkApprove()">Bulk Approve</button>
+    <div class="progress" id="progressTxt"></div>
+  </div>
+
+  <!-- TABLE -->
+  <div style="width:100%;overflow-x:auto;margin-top:12px">
+     <div id="auditWrap" style="width:100%;overflow-x:auto;margin-top:12px">
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" onclick="toggleAll(this)"></th>
+          <th>User</th>
+          <th>Playlist</th>
+          <th>Count</th>
+          <th>Status</th>
+          <th>Reason</th>
+          <th>Last.fm</th>
+          <th>Bukti</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</div>
+   
+<!-- ================= SUBMIT BY ADMIN ================= -->
+<div id="adminSubmit" class="card hidden">
+
+  <h3 style="margin-bottom:10px">Submit Stream (Admin)</h3>
+
+  <!-- FORM -->
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:8px;
+    margin-bottom:12px
+  ">
+    <input id="admTeamId" placeholder="Team ID">
+    <input id="admUser" placeholder="Username">
+
+    <!-- PLAYLIST (WAJIB) -->
+    <select id="admPlaylist">
+      <option value="">Select Playlist</option>
+    </select>
+
+    <!-- COUNT -->
+    <select id="admCount">
+      <option value="">Stream Count</option>
+      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+      <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+    </select>
+
+    <!-- DATE -->
+    <input id="admDate" type="date">
+
+    <!-- OPTIONAL -->
+    <input id="admLastfm" placeholder="Last.fm (optional)">
+    <input id="admProof" type="file" accept="image/*">
+
+    <button class="btn" onclick="adminSubmit()">Submit</button>
+  </div>
+
+  <div class="progress" id="admMsg"></div>
+
+  <!-- ================= ADMIN HISTORY FILTER ================= -->
+  <h4 style="margin:16px 0 6px">Admin Submit History</h4>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:8px;
+    margin-bottom:10px
+  ">
+    <select id="admHistPlaylist">
+      <option value="">ALL Playlist</option>
+    </select>
+
+    <input id="admHistFrom" type="date">
+    <input id="admHistTo" type="date">
+  </div>
+
+  <!-- HISTORY TABLE -->
+<div style="width:100%;overflow-x:auto">
+  <table class="admin-history-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Playlist</th>
+        <th>Team ID</th>
+        <th>User</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody id="adminHistory"></tbody>
+  </table>
+</div>
+
+</div>
+
+<!-- ================= PLAYLIST ================= -->
+<div id="playlist" class="card hidden">
+  <h3 style="margin-bottom:12px">Add Playlist</h3>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:8px;
+    margin-bottom:10px
+  ">
+    <input id="plName" placeholder="Playlist name">
+    <input id="plLink" placeholder="Playlist link">
+    <input id="plWa" placeholder="WhatsApp group link">
+  </div>
+
+  <button class="btn" onclick="addPlaylist()">ADD</button>
+  <div class="progress" id="plMsg"></div>
+</div>
+
+<!-- ================= WEEKLY SUMMARY ================= -->
+<div id="summary" class="card hidden">
+
+  <h3 style="margin-bottom:6px">Weekly Stream Summary</h3>
+  <p class="progress">Generate weekly report and send to WhatsApp group</p>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:8px;
+    margin-bottom:12px
+  ">
+    <select id="sumPlaylist"></select>
+    <input id="sumStart" type="date">
+    <input id="sumEnd" type="date">
+    <button class="btn" onclick="generateSummary()">Generate Summary</button>
+  </div>
+
+  <label class="progress">WhatsApp Message Preview</label>
+  <pre id="waPreview">Select playlist and week, then click Generate Summary.</pre>
+
+  <div class="progress" style="color:#e5533d;font-weight:700">
+    ⚠️ Inactive members listed above will be locked for review.
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <button class="btn-yellow" onclick="copySummary()">Copy Message</button>
+    <button class="btn" onclick="sendToWhatsApp()">Send to WhatsApp Group</button>
+  </div>
+
+  <div class="progress" style="margin-top:6px">
+    ⚠️ WhatsApp group does not support auto text.<br>
+    Message is copied automatically — just paste & send.
+  </div>
+</div>
+
+</div>
+
+<!-- ================= ZOOM VIEWER ================= -->
+<div id="zoom" class="zoom hidden">
+  <button class="zoom-close">✕</button>
+  <div class="zoom-stage">
+    <img id="zoomImg">
+  </div>
+</div>
+
+
+
+<script>
+const API="https://bestteam.rf.gd/api/stream.php";
+const TOKEN="STREAM_TEAM_2026_SECURE";
+const ADMIN_PASS="ADMIN2525";
+const INITIAL_LIMIT = 80; // ⬅️ batas render awal (ringan)
+  
+   /* ===== CACHE ADMIN INPUT ===== */
+const admTeamId = document.getElementById("admTeamId");
+const admUser   = document.getElementById("admUser");
+
+
+let data=[], unlocked=false;
+let approvedPage = 0;
+const APPROVED_CHUNK = 20; // jumlah row per batch
+
+let playlistMap={};
+
+/* ===== AUTH ===== */
+function unlock(){
+ if(adminPass.value!==ADMIN_PASS){
+  lockMsg.textContent=" ❌ wrong password";return;
+ }
+ unlocked=true;
+ lockMsg.textContent=" ✅ unlocked";
+ tabs.classList.remove("hidden");
+ openTab('audit');
+ loadData();
+ loadPlaylists();
+}
+
+/* ===== TAB ===== */
+function openTab(t){
+  // reset tab active
+  document.querySelectorAll(".tab")
+    .forEach(x => x.classList.remove("active"));
+
+  // hide all sections
+  document
+    .querySelectorAll("#audit,#adminSubmit,#playlist,#summary")
+    .forEach(x => x.classList.add("hidden"));
+
+  // activate tab
+  document
+    .querySelector(`.tab[onclick*="${t}"]`)
+    .classList.add("active");
+
+  // show target
+  document.getElementById(t).classList.remove("hidden");
+
+  // 🔥 TAMBAHAN INI SAJA
+  if(t === "adminSubmit"){
+    renderAdminHistory();
+  }
+}
+
+
+/* ===== AUDIT (ASLI) ===== */
+async function loadData(){
+  if(!unlocked) return;
+
+  const r = await fetch(
+  API + "?type=checkin&token=" + TOKEN
+).then(r => r.json());
+
+  data = r;
+
+  /* ===============================
+     🔁 UPDATE TEAM → USER MAP (FIX)
+     =============================== */
+  window.teamUserMap = window.teamUserMap || {};
+  data.forEach(x=>{
+    if(x.team_id && x.user){
+      window.teamUserMap[String(x.team_id).trim()] = String(x.user).trim();
+    }
+  });
+  /* =============================== */
+
+  if(!window.__FILTER_BUILT__){
+    buildFilters();
+    window.__FILTER_BUILT__ = true;
+  }
+
+  render();
+ 
+}
+
+/* ================= AUTO REFRESH CONTROL ================= */
+
+let autoRefresh = null;
+
+function startAutoRefresh(){
+  if(autoRefresh) return;
+  autoRefresh = setInterval(loadData, 60000); // 1 menit
+}
+
+function stopAutoRefresh(){
+  if(autoRefresh){
+    clearInterval(autoRefresh);
+    autoRefresh = null;
+  }
+}
+
+/* ================= DEFAULT MAP (BIAR TIDAK ERROR) ================= */
+window.teamUserMap = window.teamUserMap || {};
+
+
+
+/* ================================================================ */
+
+function buildFilters(){
+ fPlaylist.innerHTML='<option value="">ALL</option>';
+ [...new Set(data.map(x=>x.playlist))].forEach(p=>{
+  fPlaylist.innerHTML+=`<option>${p}</option>`;
+ });
+}
+
+/* =================================================
+   RENDER FINAL — PENDING FAST + APPROVED LAZY (STABLE)
+   ================================================= */
+
+let approvedPage = 0;
+const INITIAL_LIMIT = 80;
+const APPROVED_CHUNK = 40;
+
+/* ================= MAIN RENDER ================= */
+function render(){
+  rows.innerHTML = "";
+
+  const isApproved = fStatus.value === "APPROVED";
+
+  // reset paging kalau bukan APPROVED
+  if(!isApproved){
+    approvedPage = 0;
+  }
+
+  const list = data.filter(r=>{
+    if(!fStatus.value && r.status !== "PENDING") return false;
+    if(fPlaylist.value && r.playlist !== fPlaylist.value) return false;
+    if(fUser.value && !String(r.username || "").includes(fUser.value)) return false;
+    if(fStatus.value && r.status !== fStatus.value) return false;
+    if(fFrom.value && r.date < fFrom.value) return false;
+    if(fTo.value && r.date > fTo.value) return false;
+    return true;
+  });
+
+  if(isApproved){
+    renderApprovedChunk(list);
+  }else{
+    list.slice(0, INITIAL_LIMIT).forEach(appendRow);
+
+    progressTxt.textContent =
+      list.length > INITIAL_LIMIT
+        ? `Showing ${INITIAL_LIMIT} of ${list.length}`
+        : "";
+  }
+}
+
+/* ================= APPROVED LAZY CHUNK ================= */
+function renderApprovedChunk(list){
+  const start = approvedPage * APPROVED_CHUNK;
+  const end   = start + APPROVED_CHUNK;
+
+  list.slice(start, end).forEach(appendRow);
+
+  approvedPage++;
+
+  progressTxt.textContent =
+    end < list.length
+      ? `Loaded ${end} of ${list.length} APPROVED`
+      : "";
+}
+
+/* ================= ROW BUILDER ================= */
+function appendRow(r){
+  rows.insertAdjacentHTML("beforeend", `
+<tr>
+  <td><input type="checkbox" data-row="${r.id}"></td>
+  <td>${r.username}</td>
+  <td>${r.playlist}</td>
+  <td>${r.count}</td>
+  <td><span class="badge ${r.status}">${r.status}</span></td>
+  <td>${r.reject_reason || "-"}</td>
+  <td>
+    ${r.lastfm ? `<a href="${r.lastfm}" target="_blank">Last.fm</a>` : "-"}
+  </td>
+  <td>
+    ${r.proof ? `<img class="thumb" src="${r.proof}" data-zoom="${r.proof}">` : "-"}
+  </td>
+  <td>
+    <button onclick="approve(${r.id})">✔</button>
+    <button onclick="reject(${r.id})">❌</button>
+  </td>
+</tr>`);
+}
+
+/* ================= ACTION ================= */
+async function approve(id){ await update(id,"APPROVED",""); }
+async function reject(id){
+  const reason = prompt("Alasan reject?");
+  if(!reason) return;
+  await update(id,"REJECTED",reason);
+}
+async function update(id,status,reason){
+  progressTxt.textContent = "Processing...";
+  await fetch(API,{
+    method:"POST",
+    body:new URLSearchParams({
+      type:"admin_update",
+      token:TOKEN,
+      admin_password:ADMIN_PASS,
+      row:id,
+      status,
+      reason
+    })
+  });
+  loadData();
+}
+
+/* ================= BULK ================= */
+async function bulkApprove(){
+  for(const x of document.querySelectorAll("input[data-row]:checked")){
+    await approve(x.dataset.row);
+  }
+}
+function toggleAll(b){
+  document.querySelectorAll("input[data-row]")
+    .forEach(x=>x.checked=b.checked);
+}
+
+/* ================= FILTER HOOK ================= */
+[fPlaylist,fUser,fFrom,fTo,fStatus].forEach(x=>{
+  x.onchange = ()=>{
+    approvedPage = 0;
+    render();
+  };
+});
+
+/* ================= SCROLL LAZY LOAD ================= */
+const auditWrap = document.getElementById("auditWrap");
+
+auditWrap.addEventListener("scroll", ()=>{
+  if(fStatus.value !== "APPROVED") return;
+
+  const nearBottom =
+    auditWrap.scrollTop + auditWrap.clientHeight
+    >= auditWrap.scrollHeight - 50;
+
+  if(!nearBottom) return;
+
+  const list = data.filter(r=>r.status === "APPROVED");
+  renderApprovedChunk(list);
+});
+
+
+/* =================================================
+   ===== WEEKLY SUMMARY (FINAL FIX)
+   ================================================= */
+
+/* ===== LOAD PLAYLIST + WA LINK (GLOBAL) ===== */
+async function loadPlaylists(){
+  const r = await fetch(
+  API + "?type=playlist&token=" + TOKEN
+).then(r=>r.json());
+
+
+  playlistMap = {};
+
+  /* ===== WEEKLY SUMMARY ===== */
+  if(typeof sumPlaylist !== "undefined"){
+    sumPlaylist.innerHTML = '<option value="">Select Playlist</option>';
+  }
+
+  /* ===== ADMIN SUBMIT ===== */
+  const admPl = document.getElementById("admPlaylist");
+  if(admPl){
+    admPl.innerHTML = '<option value="">Select Playlist</option>';
+  }
+
+  /* ===== ADMIN HISTORY FILTER ===== */
+  const admHistPl = document.getElementById("admHistPlaylist");
+  if(admHistPl){
+    admHistPl.innerHTML = '<option value="">ALL Playlist</option>';
+  }
+
+  r.forEach(p=>{
+    // map WA link
+    playlistMap[p.name] = p.wa;
+
+    /* weekly summary */
+    if(typeof sumPlaylist !== "undefined"){
+      sumPlaylist.innerHTML +=
+        `<option value="${p.name}">${p.name}</option>`;
+    }
+
+    /* admin submit */
+    if(admPl){
+      admPl.innerHTML +=
+        `<option value="${p.name}">${p.name}</option>`;
+    }
+
+    /* admin history filter */
+    if(admHistPl){
+      admHistPl.innerHTML +=
+        `<option value="${p.name}">${p.name}</option>`;
+    }
+  });
+}
+
+
+/* ===== OPTIONAL: HITUNG RANGE SENIN–SABTU (JIKA DIPAKAI) ===== */
+function getWeekRange(dateStr){
+  const d = new Date(dateStr);
+  const day = d.getDay(); // 0=Sun ... 6=Sat
+
+  const diffToMonday = (day === 0 ? -6 : 1) - day;
+
+  const monday = new Date(d);
+  monday.setDate(d.getDate() + diffToMonday);
+
+  const saturday = new Date(monday);
+  saturday.setDate(monday.getDate() + 5);
+
+  const fmt = x => x.toISOString().slice(0,10);
+
+  return {
+    start: fmt(monday),
+    end: fmt(saturday)
+  };
+}
+
+/* ===== GENERATE SUMMARY ===== */
+async function generateSummary(){
+  if(!sumPlaylist.value || !sumStart.value || !sumEnd.value){
+    alert("Please select playlist, start date, and end date");
+    return;
+  }
+
+  waPreview.textContent = "Generating summary...";
+
+  const res = await fetch(
+  API +
+  "?type=weekly_summary" +
+  "&token=" + TOKEN +
+  "&playlist=" + encodeURIComponent(sumPlaylist.value) +
+  "&start=" + sumStart.value +
+  "&end=" + sumEnd.value
+).then(r => r.json());
+
+
+  waPreview.textContent = res.text || "No data";
+}
+
+/* ===== COPY SUMMARY ===== */
+function copySummary(){
+  const text = waPreview.textContent.trim();
+  if(!text){
+    alert("No summary to copy");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  alert("Message copied to clipboard");
+}
+
+/* ===== SEND TO WHATSAPP GROUP (COPY + OPEN GROUP) ===== */
+function sendToWhatsApp(){
+  if(!sumPlaylist.value){
+    alert("Select playlist first");
+    return;
+  }
+
+  const text = waPreview.textContent.trim();
+  if(!text){
+    alert("Generate summary first");
+    return;
+  }
+
+  // COPY TEXT
+  navigator.clipboard.writeText(text);
+
+  const waLink = playlistMap[sumPlaylist.value];
+  if(!waLink){
+    alert("WhatsApp group link not found");
+    return;
+  }
+
+  // OPEN WA GROUP
+  window.open(waLink, "_blank");
+
+  setTimeout(()=>{
+    alert(
+      "Message copied to clipboard.\n" +
+      "Paste it into WhatsApp group and send."
+    );
+  }, 400);
+}
+
+/* ===== ADD PLAYLIST ===== */
+async function addPlaylist(){
+ plMsg.textContent="Saving...";
+ const r=await fetch(API,{method:"POST",body:new URLSearchParams({
+  type:"add_playlist",token:TOKEN,admin_password:ADMIN_PASS,
+  name:plName.value,link:plLink.value,wa_link:plWa.value
+ })}).then(r=>r.json());
+ plMsg.textContent=r.status;
+}
+ 
+/* =========================================
+   THEME TOGGLE FLOATING (SAFE ADD-ON)
+   ========================================= */
+
+(function(){
+
+  const btn = document.getElementById("themeToggle");
+  if(!btn) return;
+
+  // default theme (fallback)
+  if(!document.body.dataset.theme){
+    document.body.dataset.theme = "light";
+  }
+
+  // load saved theme
+  const saved = localStorage.getItem("theme");
+  if(saved){
+    document.body.dataset.theme = saved;
+  }
+
+  // toggle click
+  btn.onclick = ()=>{
+    const t = document.body.dataset.theme === "dark" ? "light" : "dark";
+    document.body.dataset.theme = t;
+    localStorage.setItem("theme", t);
+  };
+
+  // auto hide on scroll
+  let lastY = window.scrollY;
+  let hideTimer;
+
+  window.addEventListener("scroll", ()=>{
+    const y = window.scrollY;
+
+    // hide when scrolling down
+    if(y > lastY){
+      btn.classList.add("hide");
+    }else{
+      btn.classList.remove("hide");
+    }
+
+    lastY = y;
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(()=>{
+      btn.classList.remove("hide");
+    }, 900);
+  });
+
+})();
+/* =================================================
+   SUBMIT BY ADMIN (UPDATED & SAFE)
+   ================================================= */
+
+let adminLocked = false;
+
+/* ================= LOCK TEAM + USER ================= */
+function lockAdminIdentity(){
+  if(admTeamId.value && admUser.value){
+    admTeamId.readOnly = true;
+    admUser.readOnly = true;
+    adminLocked = true;
+  }
+}
+
+/* ================= SUBMIT ================= */
+async function adminSubmit(){
+
+  if(!admTeamId.value || !admUser.value){
+    alert("Team ID dan Username wajib diisi");
+    return;
+  }
+
+  if(!admPlaylist.value){
+    alert("Playlist wajib dipilih");
+    return;
+  }
+
+  if(!admCount.value || !admDate.value){
+    alert("Stream count dan tanggal wajib diisi");
+    return;
+  }
+
+  lockAdminIdentity();
+
+  admMsg.textContent = "Submitting...";
+
+  /* OPTIONAL DATA */
+  const lastfm = admLastfm.value || "";
+  const proofFile = admProof.files[0] || null;
+
+  /* NOTE:
+     upload proof belum dikirim (nanti di GAS pakai FormData)
+     sekarang kita fokus UI + history dulu
+  */
+
+  await fetch(API,{
+    method:"POST",
+    body:new URLSearchParams({
+      type:"admin_submit",
+      token:TOKEN,
+      admin_password:ADMIN_PASS,
+      team_id:admTeamId.value,
+      user:admUser.value.toLowerCase(),
+      playlist:admPlaylist.value,
+      count:admCount.value,
+      date:admDate.value,
+      lastfm:lastfm
+    })
+  });
+
+  renderAdminHistory();
+
+  admMsg.textContent = "✅ Submitted (Admin)";
+   // 🔓 UNLOCK AGAR BISA SUBMIT LAGI
+   admTeamId.readOnly = false;
+   admUser.readOnly   = false;
+   admTeamId.value    = "";
+   admUser.value      = "";
+   adminLocked        = false;
+
+
+  /* RESET FIELD YANG BOLEH DIUBAH */
+  admCount.value = "";
+  admDate.value  = "";
+  admLastfm.value = "";
+  admProof.value = "";
+}
+
+/* ================= RENDER HISTORY ================= */
+function renderAdminHistory(){
+
+  adminHistory.innerHTML = "";
+
+  const fPl   = admHistPlaylist.value;
+  const fFrom = admHistFrom.value;
+  const fTo   = admHistTo.value;
+
+  data
+    .filter(r => r.verified_type === "SUBMIT_BY_ADMIN")
+    .filter(r=>{
+      if(fPl && r.playlist !== fPl) return false;
+      if(fFrom && r.date < fFrom) return false;
+      if(fTo && r.date > fTo) return false;
+      return true;
+    })
+    .forEach(r=>{
+      adminHistory.innerHTML += `
+<tr>
+  <td>${r.date}</td>
+  <td>${r.playlist}</td>
+  <td>${r.team_id}</td>
+  <td>${r.username}</td>
+  <td>${r.count}</td>
+</tr>`;
+    });
+}
+
+
+/* ================= FILTER EVENT ================= */
+if(window.admHistPlaylist){
+  admHistPlaylist.onchange = renderAdminHistory;
+  admHistFrom.onchange     = renderAdminHistory;
+  admHistTo.onchange       = renderAdminHistory;
+}
+
+/* ================= AUTO LOCK ================= */
+admTeamId?.addEventListener("blur", ()=>{
+  autofillUserByTeam();
+  lockAdminIdentity();
+});
+admTeamId?.addEventListener("input", ()=>{
+  admUser.value = "";
+  admUser.readOnly = false;
+});
+admUser?.addEventListener("blur", lockAdminIdentity);
+
+/* ==================================================
+   TEAM ID → USERNAME FIX (NON-DESTRUCTIVE)
+   TIDAK MENGHAPUS KODE LAMA
+   ================================================== */
+(function(){
+
+  if(!window.teamUserMap) window.teamUserMap = {};
+
+  // normalisasi (ANTI CASE & SPASI)
+  function norm(v){
+    return String(v || "").trim().toUpperCase();
+  }
+
+  // rebuild ulang map TANPA HAPUS DATA ASLI
+  function rebuildSafe(){
+    const fixed = {};
+
+    Object.keys(window.teamUserMap).forEach(k=>{
+      const nk = norm(k);
+      if(!fixed[nk]){
+        fixed[nk] = window.teamUserMap[k];
+      }
+    });
+
+    window.teamUserMap = fixed;
+  }
+
+  // isi username otomatis
+  function autoFill(){
+    if(!admTeamId || !admUser) return;
+
+    const key = norm(admTeamId.value);
+    if(!key) return;
+
+    const user = window.teamUserMap[key];
+
+    if(user){
+      admUser.value = user;
+      admUser.readOnly = true;
+    }else{
+      admUser.value = "";
+      admUser.readOnly = false;
+    }
+  }
+
+  // 🔁 hook setelah data load (aman walau dipanggil berkali-kali)
+  const oldLoadData = window.loadData;
+  if(typeof oldLoadData === "function"){
+    window.loadData = async function(){
+      await oldLoadData();
+      rebuildSafe();
+      autoFill();
+    };
+  }
+
+  // live typing
+  admTeamId?.addEventListener("input", autoFill);
+
+})();
+/* =====================================================
+   ✅ ZOOM FINAL — SAFE INITIAL STATE
+   - Tidak nutup layar saat load
+   - Klik thumbnail baru buka
+   - Bisa scroll + drag
+   ===================================================== */
+(function(){
+
+  const zoom     = document.getElementById("zoom");
+  const zoomImg  = document.getElementById("zoomImg");
+  const closeBtn = document.querySelector(".zoom-close");
+
+  if(!zoom || !zoomImg){
+    console.error("ZOOM ELEMENT NOT FOUND");
+    return;
+  }
+
+  /* ================= INIT STATE (PALING PENTING) ================= */
+  function hideZoom(){
+    zoom.classList.add("hidden");
+    zoom.style.display = "none";
+    zoomImg.src = "";
+  }
+
+  // ⛔ WAJIB: pastikan saat page load
+  document.addEventListener("DOMContentLoaded", hideZoom);
+  hideZoom(); // fallback kalau script di bawah body
+
+  /* ================= OPEN ================= */
+  function openZoom(src){
+    zoomImg.src = src;
+
+    zoom.scrollTop  = 0;
+    zoom.scrollLeft = 0;
+
+    zoom.style.display = "flex";
+    zoom.classList.remove("hidden");
+  }
+
+  /* ================= CLOSE ================= */
+  function closeZoom(){
+    hideZoom();
+  }
+
+  /* =================================================
+     🔥 CLICK BUKTI (CAPTURE MODE)
+     ================================================= */
+  document.addEventListener("pointerdown", function(e){
+    const td = e.target.closest('td[data-label="Bukti"]');
+    if(!td) return;
+
+    const img = td.querySelector("img.thumb");
+    if(!img) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    openZoom(img.dataset.zoom || img.src);
+  }, true);
+
+  /* ================= CLOSE HANDLERS ================= */
+
+  closeBtn?.addEventListener("click", closeZoom);
+
+  zoom.addEventListener("pointerdown", e=>{
+    if(e.target === zoom) closeZoom();
+  });
+
+  document.addEventListener("keydown", e=>{
+    if(e.key === "Escape") closeZoom();
+  });
+
+  /* ================= DRAG TO SCROLL ================= */
+
+  let isDown = false;
+  let startX = 0, startY = 0;
+  let startScrollLeft = 0, startScrollTop = 0;
+
+  zoom.addEventListener("mousedown", e=>{
+    if(e.target.closest(".zoom-close")) return;
+
+    isDown = true;
+    startX = e.pageX;
+    startY = e.pageY;
+    startScrollLeft = zoom.scrollLeft;
+    startScrollTop  = zoom.scrollTop;
+
+    zoom.style.cursor = "grabbing";
+    e.preventDefault();
+  });
+
+  zoom.addEventListener("mousemove", e=>{
+    if(!isDown) return;
+
+    zoom.scrollLeft = startScrollLeft - (e.pageX - startX);
+    zoom.scrollTop  = startScrollTop  - (e.pageY - startY);
+  });
+
+  ["mouseup","mouseleave"].forEach(ev=>{
+    zoom.addEventListener(ev, ()=>{
+      isDown = false;
+      zoom.style.cursor = "grab";
+    });
+  });
+
+})();
+
+/* =========================================================
+   SAFE ZOOM ADD-ON
+   - CTRL + SCROLL → zoom in / out (DESKTOP)
+   - PINCH → zoom in / out (MOBILE)
+   - SCROLL NORMAL TETAP SCROLL
+   ========================================================= */
+(function(){
+
+  const zoom = document.getElementById("zoom");
+  const img  = document.getElementById("zoomImg");
+  if(!zoom || !img) return;
+
+  let scale = 1;
+  const MIN = 0.6;
+  const MAX = 4;
+  const STEP = 0.15;
+
+  function clamp(v){ return Math.max(MIN, Math.min(MAX, v)); }
+
+  function apply(){
+    img.style.transform = `scale(${scale})`;
+  }
+
+  function reset(){
+    scale = 1;
+    img.style.transform = "";
+  }
+
+  /* ===============================
+     DESKTOP: CTRL + SCROLL
+     =============================== */
+  zoom.addEventListener("wheel", e=>{
+    // ⛔ TANPA CTRL → BIARKAN SCROLL NORMAL
+    if(!e.ctrlKey) return;
+
+    // zoom hanya kalau overlay aktif
+    if(zoom.classList.contains("hidden")) return;
+
+    e.preventDefault(); // stop page zoom / scroll
+
+    if(e.deltaY < 0){
+      scale += STEP;
+    }else{
+      scale -= STEP;
+    }
+
+    scale = clamp(scale);
+    apply();
+  }, { passive:false });
+
+  /* ===============================
+     MOBILE: PINCH ZOOM
+     =============================== */
+  let startDist = 0;
+  let startScale = 1;
+
+  zoom.addEventListener("touchstart", e=>{
+    if(e.touches.length === 2){
+      startDist = getDist(e.touches[0], e.touches[1]);
+      startScale = scale;
+    }
+  }, { passive:true });
+
+  zoom.addEventListener("touchmove", e=>{
+    if(e.touches.length !== 2) return;
+    if(zoom.classList.contains("hidden")) return;
+
+    e.preventDefault(); // stop page scroll saat pinch
+
+    const newDist = getDist(e.touches[0], e.touches[1]);
+    const ratio = newDist / startDist;
+
+    scale = clamp(startScale * ratio);
+    apply();
+  }, { passive:false });
+
+  function getDist(t1, t2){
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  /* ===============================
+     RESET SAAT ZOOM DIBUKA
+     =============================== */
+  const oldOpen = window.openZoom;
+  if(typeof oldOpen === "function"){
+    window.openZoom = function(src){
+      oldOpen(src);
+      reset();
+    };
+  }
+
+  /* DOUBLE CLICK / DOUBLE TAP RESET */
+  img.addEventListener("dblclick", reset);
+
+})();
+
+</script>
+</body>
+</html>
