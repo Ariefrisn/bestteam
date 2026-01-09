@@ -2262,7 +2262,7 @@ img.thumb{
 
 <script>
 /* ===== MAIN TAB SWITCHER ===== */
-function openMainTab(tab){
+function __openMainTab(tab){
   document.querySelectorAll(".main-tab")
     .forEach(el => el.style.display = "none");
 
@@ -2270,7 +2270,6 @@ function openMainTab(tab){
     .forEach(btn => btn.classList.remove("active"));
 
   document.getElementById("tab-" + tab).style.display = "block";
-  event.target.classList.add("active");
 }
 
 /* ================= ADD ONLY – FETCH TIMEOUT PATCH ================= */
@@ -3113,7 +3112,7 @@ async function loadPlaylists(){
 }
 
 async function loadAll(){
- const r = await safeJsonFetch(API+"?type=checkin_list&token=" + TOKEN);
+ const r = await safeJsonFetch(API+"?type=checkin&token=" + TOKEN);
  if (!Array.isArray(r)) return;
 
  // 🔒 HASH DATA → CEK PERUBAHAN
@@ -4547,11 +4546,15 @@ advPlaylist.addEventListener("change", renderAdvance);
 /* ===============================
    HOOK TO MAIN TAB (SAFE OVERRIDE)
    =============================== */
-if(tab === "advance"){
+if (typeof tab !== "undefined" && tab === "advance") {
   loadAdvance?.();
 }
+
 window.openMainTab = function(tab){
-  __openMainTab(tab);
+  __openMainTab(tab); // ✅ PANGGIL ASLI, BUKAN DIRI SENDIRI
+
+  window.activeTab = tab;
+
   if(tab === "advance"){
     loadAdvance().then(()=>{
       buildAdvPlaylist();
@@ -4559,6 +4562,7 @@ window.openMainTab = function(tab){
     });
   }
 };
+
 
 (() => {
 
