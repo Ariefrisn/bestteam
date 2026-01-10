@@ -2113,23 +2113,24 @@ img.thumb{
 </head>
 
 <body>
-  <script type="module">
+<script type="module">
   import {
     apiPlaylist,
     apiCheckinList,
     apiCheckinSubmit,
-    apiLeaderboard,
-    apiAdvance
+    apiAdvance,
+    apiWeeklySummary
   } from "./assets/api.js";
 
   window.API = {
-    playlist : apiPlaylist,
-    list     : apiCheckinList,
-    submit   : apiCheckinSubmit,
-    board    : apiLeaderboard,
-    advance  : apiAdvance
+    playlist: apiPlaylist,
+    list: apiCheckinList,
+    submit: apiCheckinSubmit,
+    advance: apiAdvance,
+    weekly: apiWeeklySummary
   };
 </script>
+
 
  <script>
 window.__IS_MOBILE__ = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -3781,10 +3782,15 @@ async function loadPlaylists(){
   // reset map (GLOBAL)
   window.playlistSpotifyMap = {};
 
-  if (!Array.isArray(data)) {
-    console.error("PLAYLIST DATA NOT ARRAY");
-    return;
-  }
+if (!Array.isArray(data)) {
+  console.error("PLAYLIST DATA NOT ARRAY");
+} else {
+  data.forEach(x => {
+    const name = x.name;
+    const link = x.spotify;
+    // lanjut logic
+  });
+}
 
   data.forEach(x => {
     // ✅ FIELD SESUAI GAS
