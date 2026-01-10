@@ -352,9 +352,9 @@ tbody tr:nth-child(even){
   transform:translateY(10px);
 }
 
-#tabs:not(.hidden){
-  animation: tabsIn .45s ease-out forwards;
-  animation-delay:.15s;
+.container > .card:first-child{
+  opacity:0;
+  transform:scale(.98);
 }
 
 @keyframes tabsIn{
@@ -369,10 +369,12 @@ tbody tr:nth-child(even){
   transition:.4s ease;
 }
 
-#tabs:not(.hidden) ~ .card:first-of-type{
+.login-card.hidden{
   opacity:0;
-  transform:scale(.98);
+  transform:scale(.96);
+  pointer-events:none;
 }
+
 /* ================= UNLOCK FAIL EFFECT ================= */
 
 /* base loading bar (reuse) */
@@ -884,6 +886,198 @@ tbody tr:hover td{
 .admin-history-table tbody tr:hover{
   background:rgba(29,155,240,.08);
 }
+.card.hidden{
+  display:none !important;
+  opacity:0 !important;
+}
+/* =====================================================
+   FACEBOOK-STYLE ADMIN LOGIN (PRO)
+   ===================================================== */
+
+.login-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--bg);
+  transition:background .3s ease;
+}
+
+/* CARD */
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border-radius:14px;
+  padding:28px 26px 32px;
+  border:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  animation: loginIn .45s ease forwards;
+}
+
+/* TITLE */
+.login-title{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.login-brand{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.6px;
+  color:var(--blue);
+}
+
+.login-sub{
+  font-size:14px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* ===== LOGIN FIELD FIX (ANTI LONCAT) ===== */
+
+.login-field{
+  position:relative;
+}
+
+/* kunci ukuran input */
+.login-field input{
+  width:100%;
+  height:48px;                 /* ⬅️ KUNCI */
+  padding:0 48px 0 14px;       /* kanan dikasih ruang icon */
+  border-radius:8px;
+  border:1px solid var(--input-border);
+  background:var(--input);
+  color:var(--text);
+  font-size:15px;
+  line-height:48px;            /* ⬅️ SAMA DENGAN HEIGHT */
+  box-sizing:border-box;
+}
+
+/* icon wrapper */
+.toggle-pass{
+  position:absolute;
+  top:50%;
+  right:10px;
+  transform:translateY(-50%);
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  font-size:16px;
+  color:var(--muted);
+}
+
+/* hover */
+.toggle-pass:hover{
+  background:rgba(0,0,0,.05);
+}
+body[data-theme="dark"] .toggle-pass:hover{
+  background:rgba(255,255,255,.08);
+}
+
+/* SHOW PASSWORD */
+.toggle-pass{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:0;
+  cursor:pointer;
+  font-size:18px;
+  opacity:.6;
+}
+
+.toggle-pass:hover{ opacity:1 }
+
+/* BUTTON */
+.login-btn{
+  width:100%;
+  height:44px;
+  border-radius:8px;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  margin-top:6px;
+}
+
+.login-btn:hover{ background:var(--blue-dark) }
+.login-btn:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+/* SPINNER */
+.login-btn.loading .btn-text{
+  visibility:hidden;
+}
+
+.login-btn.loading .btn-spinner{
+  display:block;
+}
+
+.btn-spinner{
+  display:none;
+  width:18px;
+  height:18px;
+  border:3px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  animation: spin .8s linear infinite;
+}
+
+/* MESSAGE */
+.login-msg{
+  margin-top:14px;
+  font-size:13px;
+  text-align:center;
+  color:#e5533d;
+  min-height:18px;
+}
+
+/* ERROR SHAKE */
+.login-box.error{
+  animation: shake .35s linear;
+}
+
+/* ANIMATIONS */
+@keyframes spin{
+  to{ transform:rotate(360deg) translate(-50%,-50%) }
+}
+
+@keyframes loginIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
 
 </style>
 
@@ -894,24 +1088,48 @@ tbody tr:hover td{
 <button id="themeToggle" aria-label="Toggle theme">🌓</button>
 
 
-<!-- ================= LOGIN ================= -->
-<div class="card" style="text-align:center">
-  <h3 style="margin-bottom:12px">Admin Access</h3>
+<!-- ================= LOGIN (FACEBOOK STYLE PRO) ================= -->
+<div class="login-wrapper">
+  <div class="login-box" id="loginBox">
 
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-    <input id="adminPass"
-           type="password"
-           placeholder="Admin password"
-           style="min-width:220px">
-    <button class="btn" onclick="unlock()">UNLOCK</button>
+    <div class="login-title">
+      <div class="login-brand">BEST TEAM HUB</div>
+      <div class="login-sub">Admin Access</div>
+    </div>
+
+    <div class="login-field">
+      <input
+        id="adminPass"
+        type="password"
+        placeholder="Admin password"
+        autocomplete="current-password"
+      >
+      <button
+        class="toggle-pass"
+        type="button"
+        onclick="togglePassword()"
+        aria-label="Show password"
+      >👁</button>
+    </div>
+
+    <button
+      class="login-btn"
+      id="loginBtn"
+      onclick="handleLogin()"
+    >
+      <span class="btn-text">Log In</span>
+      <span class="btn-spinner"></span>
+    </button>
+
+    <div class="login-msg" id="lockMsg"></div>
+
   </div>
-
-  <div class="progress" id="lockMsg" style="margin-top:8px"></div>
 </div>
+
 
 <!-- ================= TABS ================= -->
 <div class="tabs hidden" id="tabs" style="flex-wrap:wrap">
-  <div class="tab active" onclick="openTab('audit')">Audit</div>
+  <div class="tab" onclick="openTab('audit')">Audit</div>
   <div class="tab" onclick="openTab('adminSubmit')">Submit by Admin</div>
   <div class="tab" onclick="openTab('playlist')">Add Playlist</div>
   <div class="tab" onclick="openTab('summary')">Weekly Summary</div>
@@ -944,27 +1162,26 @@ tbody tr:hover td{
     <div class="progress" id="progressTxt"></div>
   </div>
 
-  <!-- TABLE -->
-  <div style="width:100%;overflow-x:auto;margin-top:12px">
-     <div id="auditWrap" style="width:100%;overflow-x:auto;margin-top:12px">
-    <table>
-      <thead>
-        <tr>
-          <th><input type="checkbox" onclick="toggleAll(this)"></th>
-          <th>User</th>
-          <th>Playlist</th>
-          <th>Count</th>
-          <th>Status</th>
-          <th>Reason</th>
-          <th>Last.fm</th>
-          <th>Bukti</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </div>
+ <!-- TABLE -->
+<div id="auditWrap" style="width:100%;overflow-x:auto;margin-top:12px">
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" onclick="toggleAll(this)"></th>
+        <th>User</th>
+        <th>Playlist</th>
+        <th>Count</th>
+        <th>Status</th>
+        <th>Reason</th>
+        <th>Last.fm</th>
+        <th>Bukti</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
 </div>
+</div> <!-- ⬅️⬅️⬅️ INI YANG HILANG -->
    
 <!-- ================= SUBMIT BY ADMIN ================= -->
 <div id="adminSubmit" class="card hidden">
@@ -1108,55 +1325,175 @@ tbody tr:hover td{
 
 
 <script>
-const API="https://bestteam.rf.gd/api/stream.php";
+const API="https://bestteamhub.fun/api/stream.php";
 const TOKEN="STREAM_TEAM_2026_SECURE";
 const ADMIN_PASS="ADMIN2525";
 const INITIAL_LIMIT = 80; // ⬅️ batas render awal (ringan)
-  
+
+   // 🔒 GLOBAL LOCK SAAT LOAD
+document.addEventListener("DOMContentLoaded", ()=>{
+  // sembunyikan tabs
+  const tabs = document.getElementById("tabs");
+  if(tabs) tabs.classList.add("hidden");
+
+  // sembunyikan semua card konten
+  document
+    .querySelectorAll("#audit,#adminSubmit,#playlist,#summary")
+    .forEach(x => x.classList.add("hidden"));
+});
+ 
    /* ===== CACHE ADMIN INPUT ===== */
 const admTeamId = document.getElementById("admTeamId");
 const admUser   = document.getElementById("admUser");
 
 
 let data=[], unlocked=false;
-let approvedPage = 0;
-const APPROVED_CHUNK = 20; // jumlah row per batch
-
 let playlistMap={};
+   
+/* ================= LOGIN UX HELPERS ================= */
+
+// auto-fill password if saved
+if(localStorage.getItem("admin_pass")){
+  adminPass.value = localStorage.getItem("admin_pass");
+}
+
+// show / hide password
+function togglePassword(){
+  adminPass.type = adminPass.type === "password" ? "text" : "password";
+}
+
+// wrapper login
+async function handleLogin(){
+  const btn = document.getElementById("loginBtn");
+  const box = document.getElementById("loginBox");
+
+  if(!adminPass.value){
+    box.classList.add("error");
+    setTimeout(()=>box.classList.remove("error"),350);
+    lockMsg.textContent = "Password required";
+    return;
+  }
+
+  btn.classList.add("loading");
+  btn.disabled = true;
+  lockMsg.textContent = "";
+
+  // simpan password lokal (client only)
+  localStorage.setItem("admin_pass", adminPass.value);
+
+  try{
+    await unlock(); // 🔒 pakai fungsi lama
+  }finally{
+    btn.classList.remove("loading");
+    btn.disabled = false;
+  }
+}
 
 /* ===== AUTH ===== */
-function unlock(){
- if(adminPass.value!==ADMIN_PASS){
-  lockMsg.textContent=" ❌ wrong password";return;
- }
- unlocked=true;
- lockMsg.textContent=" ✅ unlocked";
- tabs.classList.remove("hidden");
- openTab('audit');
- loadData();
- loadPlaylists();
+async function unlock(){
+  const pass = adminPass.value.trim();
+  if(!pass){
+    lockMsg.textContent = " ❌ empty password";
+    return;
+  }
+
+  lockMsg.textContent = "⏳ checking…";
+
+  try{
+    const res = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: TOKEN,
+        type: "admin_update",   // 🔒 auth test only
+        admin_password: pass,
+        row: 0
+      })
+    });
+
+    const text = await res.text();
+    console.log("RAW ADMIN AUTH RESPONSE:", text);
+
+    let data;
+    try{
+      data = JSON.parse(text);
+    }catch(e){
+      lockMsg.textContent = " ❌ server return non-JSON";
+      alert(text.slice(0,300));
+      return;
+    }
+
+    if(data.status === "unauthorized"){
+      lockMsg.textContent = " ❌ wrong password";
+      return;
+    }
+
+    /* =====================
+       ✅ AUTH OK (FINAL)
+       ===================== */
+
+    unlocked = true;
+    lockMsg.textContent = " ✅ unlocked";
+
+   /* =====================
+   HILANGKAN LOGIN TOTAL
+   ===================== */
+const loginWrap = document.querySelector(".login-wrapper");
+if(loginWrap){
+  loginWrap.style.opacity = "0";
+  loginWrap.style.pointerEvents = "none";
+  loginWrap.style.transition = "opacity .3s ease";
+
+  setTimeout(()=>{
+    loginWrap.remove(); // ⬅️ BENAR-BENAR HILANG
+  },300);
 }
+
+
+    // 🔓 TAMPILKAN TABS
+    tabs.classList.remove("hidden");
+     tabs.style.display = "flex";
+    tabs.style.opacity = "1";
+    tabs.style.transform = "none";
+
+
+    // 🧭 BUKA TAB PERTAMA
+    openTab("audit");
+
+    // 🔄 LOAD DATA
+    await loadData();
+    await loadPlaylists();
+
+  }catch(err){
+    lockMsg.textContent = " ❌ fetch error";
+    alert(err.message);
+  }
+}
+
 
 /* ===== TAB ===== */
 function openTab(t){
+  // 🔒 STOP JIKA BELUM LOGIN
+  if(!unlocked) return;
+
   // reset tab active
   document.querySelectorAll(".tab")
     .forEach(x => x.classList.remove("active"));
 
-  // hide all sections
+  // sembunyikan semua konten
   document
     .querySelectorAll("#audit,#adminSubmit,#playlist,#summary")
     .forEach(x => x.classList.add("hidden"));
 
-  // activate tab
-  document
-    .querySelector(`.tab[onclick*="${t}"]`)
-    .classList.add("active");
+  // aktifkan tab
+  const tabBtn = document.querySelector(`.tab[onclick*="${t}"]`);
+  if(tabBtn) tabBtn.classList.add("active");
 
-  // show target
-  document.getElementById(t).classList.remove("hidden");
+  // tampilkan konten
+  const target = document.getElementById(t);
+  if(target) target.classList.remove("hidden");
 
-  // 🔥 TAMBAHAN INI SAJA
+  // admin submit extra
   if(t === "adminSubmit"){
     renderAdminHistory();
   }
@@ -1178,9 +1515,9 @@ async function loadData(){
      =============================== */
   window.teamUserMap = window.teamUserMap || {};
   data.forEach(x=>{
-    if(x.team_id && x.user){
-      window.teamUserMap[String(x.team_id).trim()] = String(x.user).trim();
-    }
+ if(x.team_id && x.username){
+  window.teamUserMap[String(x.team_id).trim()] = String(x.username).trim();
+}
   });
   /* =============================== */
 
@@ -1228,7 +1565,6 @@ function buildFilters(){
    ================================================= */
 
 let approvedPage = 0;
-const INITIAL_LIMIT = 80;
 const APPROVED_CHUNK = 40;
 
 /* ================= MAIN RENDER ================= */
@@ -1243,7 +1579,8 @@ function render(){
   }
 
   const list = data.filter(r=>{
-    if(!fStatus.value && r.status !== "PENDING") return false;
+    // ❌ JANGAN PAKSA PENDING SAAT ALL
+// if(!fStatus.value && r.status !== "PENDING") return false;
     if(fPlaylist.value && r.playlist !== fPlaylist.value) return false;
     if(fUser.value && !String(r.username || "").includes(fUser.value)) return false;
     if(fStatus.value && r.status !== fStatus.value) return false;
@@ -1598,50 +1935,72 @@ async function adminSubmit(){
   }
 
   lockAdminIdentity();
-
   admMsg.textContent = "Submitting...";
 
   /* OPTIONAL DATA */
   const lastfm = admLastfm.value || "";
   const proofFile = admProof.files[0] || null;
 
-  /* NOTE:
-     upload proof belum dikirim (nanti di GAS pakai FormData)
-     sekarang kita fokus UI + history dulu
-  */
+  try{
+    const res = await fetch(API,{
+      method:"POST",
+      body:new URLSearchParams({
+        type:"admin_submit",
+        token:TOKEN,
+        admin_password:ADMIN_PASS,
+        team_id:admTeamId.value,
+        user:admUser.value.toLowerCase(),
+        playlist:admPlaylist.value,
+        count:admCount.value,
+        date:admDate.value,
+        lastfm:lastfm
+      })
+    });
 
-  await fetch(API,{
-    method:"POST",
-    body:new URLSearchParams({
-      type:"admin_submit",
-      token:TOKEN,
-      admin_password:ADMIN_PASS,
-      team_id:admTeamId.value,
-      user:admUser.value.toLowerCase(),
-      playlist:admPlaylist.value,
-      count:admCount.value,
-      date:admDate.value,
-      lastfm:lastfm
-    })
-  });
+    // ⛔ SERVER ERROR
+    if(!res.ok){
+      const txt = await res.text();
+      console.error("ADMIN SUBMIT ERROR:", txt);
+      alert("Submit gagal (server error)");
+      admMsg.textContent = "❌ Submit failed";
+      return;
+    }
 
+    const json = await res.json();
+
+    if(json.status !== "APPROVED"){
+      console.error("ADMIN SUBMIT FAIL:", json);
+      alert("Submit ditolak server");
+      admMsg.textContent = "❌ Submit rejected";
+      return;
+    }
+
+  }catch(err){
+    console.error("FETCH ERROR:", err);
+    alert("Submit gagal (network error)");
+    admMsg.textContent = "❌ Network error";
+    return;
+  }
+
+  // ===== SUKSES (LOGIKA ASLI) =====
+  await loadData();          // ⬅️ WAJIB
   renderAdminHistory();
-
   admMsg.textContent = "✅ Submitted (Admin)";
-   // 🔓 UNLOCK AGAR BISA SUBMIT LAGI
-   admTeamId.readOnly = false;
-   admUser.readOnly   = false;
-   admTeamId.value    = "";
-   admUser.value      = "";
-   adminLocked        = false;
 
+  // 🔓 UNLOCK AGAR BISA SUBMIT LAGI
+  admTeamId.readOnly = false;
+  admUser.readOnly   = false;
+  admTeamId.value    = "";
+  admUser.value      = "";
+  adminLocked        = false;
 
   /* RESET FIELD YANG BOLEH DIUBAH */
-  admCount.value = "";
-  admDate.value  = "";
-  admLastfm.value = "";
-  admProof.value = "";
+  admCount.value   = "";
+  admDate.value    = "";
+  admLastfm.value  = "";
+  admProof.value   = "";
 }
+
 
 /* ================= RENDER HISTORY ================= */
 function renderAdminHistory(){
@@ -1794,21 +2153,16 @@ admUser?.addEventListener("blur", lockAdminIdentity);
     hideZoom();
   }
 
-  /* =================================================
-     🔥 CLICK BUKTI (CAPTURE MODE)
-     ================================================= */
-  document.addEventListener("pointerdown", function(e){
-    const td = e.target.closest('td[data-label="Bukti"]');
-    if(!td) return;
+ // ================= PREVIEW BUKTI (FINAL FIX) =================
+document.addEventListener("click", function(e){
+  const img = e.target.closest("img.thumb");
+  if(!img) return;
 
-    const img = td.querySelector("img.thumb");
-    if(!img) return;
+  e.preventDefault();
+  e.stopPropagation();
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
-    openZoom(img.dataset.zoom || img.src);
-  }, true);
+  openZoom(img.dataset.zoom || img.src);
+});
 
   /* ================= CLOSE HANDLERS ================= */
 
@@ -1954,6 +2308,16 @@ admUser?.addEventListener("blur", lockAdminIdentity);
   img.addEventListener("dblclick", reset);
 
 })();
+/* =========================================
+   ALIAS FIX — AUTOFILL USER BY TEAM
+   JANGAN DIHAPUS
+   ========================================= */
+function autofillUserByTeam(){
+  if(typeof admTeamId === "undefined") return;
+  // trigger logic autofill yang sudah ada
+  admTeamId.dispatchEvent(new Event("input"));
+}
+   
 
 </script>
 </body>
