@@ -2113,6 +2113,24 @@ img.thumb{
 </head>
 
 <body>
+  <script type="module">
+  import {
+    apiPlaylist,
+    apiCheckinList,
+    apiCheckinSubmit,
+    apiLeaderboard,
+    apiAdvance
+  } from "./assets/api.js";
+
+  window.API = {
+    playlist : apiPlaylist,
+    list     : apiCheckinList,
+    submit   : apiCheckinSubmit,
+    board    : apiLeaderboard,
+    advance  : apiAdvance
+  };
+</script>
+
  <script>
 window.__IS_MOBILE__ = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 </script>
@@ -2980,34 +2998,7 @@ function __openMainTab(tab){
 }
 
 /* ================= ADD ONLY – FETCH TIMEOUT PATCH ================= */
-const __nativeFetch = window.fetch; // ⬅️ SIMPAN FETCH ASLI (INI KUNCI)
 
-function fetchWithTimeout(resource, options = {}) {
- const { timeout = 20000 } = options;
- const controller = new AbortController();
- const id = setTimeout(() => controller.abort(), timeout);
-
- // ⬇️ WAJIB __nativeFetch, BUKAN fetch
- return __nativeFetch(resource, {
-  ...options,
-  signal: controller.signal
- }).finally(() => clearTimeout(id));
-}
-
-window.fetch = function(resource, options){
- return fetchWithTimeout(resource, options || {});
-};
-
-/* ===== SAFE JSON WRAPPER (ADD ONLY) ===== */
-async function safeJsonFetch(url, options){
- try{
-  const res = await fetch(url, options);
-  return await res.json();
- }catch(e){
-  console.warn("⚠️ Fetch JSON error:", url, e);
-  return null;
- }
-}
 
 /* FAILSAFE GLOBAL */
 window.addEventListener("unhandledrejection",()=>{
@@ -3016,7 +3007,7 @@ window.addEventListener("unhandledrejection",()=>{
 });
 
 /* ================= CONFIG ================= */
-const API = "https://bestteam.rf.gd/api/stream.php";
+
 const TOKEN="STREAM_TEAM_2026_SECURE";
 
   function norm(v){
@@ -3593,16 +3584,17 @@ if (
    
   // 📦 PAYLOAD
   const fd = new URLSearchParams({
-    type: "checkin",
-    token: TOKEN,
-    team_id: teamId.value,
-    username: username.value,
-    playlist: playlistSelect.value,
-    count: count.value,
-    lastfm: lastfm.value,
-    proof_base64: img,
-    lang: curLang
-  });
+    const out = await API.submit({
+  token    : TOKEN,
+  team_id  : teamId.value,
+  username : username.value,
+  playlist : playlistSelect.value,
+  count    : count.value,
+  lastfm   : lastfm.value,
+  proof_base64 : img,
+  lang     : curLang
+});
+
 
   let out;
   try {
@@ -3765,18 +3757,24 @@ function waitForPlaylistSelect(cb, retry = 0){
 
 /* ===== LOAD ===== */
 async function loadPlaylists(){
-  console.log("loadPlaylists() CALLED");
+  const data = await API.playlist(TOKEN);
 
-  const data = await safeJsonFetch(API + "?type=playlist&token=" + TOKEN);
-  console.log("PLAYLIST RAW:", data);
+  playlistSelect.innerHTML = `<option value="">Select Playlist</option>`;
+  lbPlaylist.innerHTML = `<option value="">ALL</option>`;
+  window.playlistSpotifyMap = {};
 
-  const sel = document.getElementById("playlistSelect");
-  const lb  = document.getElementById("lbPlaylist");
-
-  if (!sel) {
-    console.error("playlistSelect NOT FOUND");
-    return;
-  }
+  data.forEach(p=>{
+    playlistSelect.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${p.name}">${p.name}</option>`
+    );
+    lbPlaylist.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${p.name}">${p.name}</option>`
+    );
+    window.playlistSpotifyMap[p.name] = p.spotify;
+  });
+}
 
   // reset dropdown
   sel.innerHTML = `<option value="">Select Playlist</option>`;
@@ -3819,39 +3817,28 @@ async function loadPlaylists(){
 }
 
 async function loadAll(){
- const r = await safeJsonFetch(API+"?type=checkin&token=" + TOKEN);
- if (!Array.isArray(r)) return;
+  const r = await API.list(TOKEN);
+  if (!Array.isArray(r)) return;
 
- // 🔒 HASH DATA → CEK PERUBAHAN
- const hash = JSON.stringify(r.map(x=>[
-   x.team_id,x.user,x.username,x.playlist,
-   x.count,x.status,x.reason,x.time,x.date
- ]));
+  rows = r;
 
- if (hash === __lastHash) return; // ⛔️ TIDAK ADA PERUBAHAN
+  teamMap = {};
+  rows.forEach(x=>{
+    if(x.team_id && (x.user || x.username)){
+      teamMap[x.team_id] = x.user || x.username;
+    }
+  });
 
- __lastHash = hash;
- rows = r;
- 
-/* === ADD ONLY: BUILD TEAM ID → USERNAME MAP === */
-teamMap = {};
-rows.forEach(r=>{
- if(r.team_id && (r.user || r.username)){
-  if(!teamMap[r.team_id]){
-   teamMap[r.team_id] = r.user || r.username;
+  renderLeaderboard();
+  renderHistory();
+
+  if(!dataReady){
+    loadingOverlay.style.display="none";
+    lockInput(false);
+    dataReady=true;
   }
- }
-});
-
- renderLeaderboard();
- renderHistory();
-
- if(!dataReady){
-  loadingOverlay.style.display="none";
-  lockInput(false);
-  dataReady=true;
- }
 }
+
 
 
 /* === FAILSAFE UNLOCK (UNCHANGED) === */
@@ -5252,18 +5239,14 @@ function inLBDateRange(ts){
    ADVANCE STREAM – FINAL (NO OVERRIDE, NO RECOUNT)
    =============================== */
 
-const API_ADVANCE = "https://bestteam.rf.gd/api/stream.php?type=advance&token=STREAM_TEAM_2026_SECURE";
+
 let advanceData = [];
 
 async function loadAdvance(){
-  try{
-    const res = await fetch(API_ADVANCE);
-    const data = await res.json();
+  const data = await API.advance(TOKEN);
+  advanceData = Array.isArray(data) ? data : [];
+}
 
-    if(!Array.isArray(data)){
-      advanceData = [];
-      return;
-    }
 
     // 🔥 PENTING: PAKE DATA DARI PHP LANGSUNG
     // JANGAN DIHITUNG ULANG DI JS
